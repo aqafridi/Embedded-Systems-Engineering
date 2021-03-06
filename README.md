@@ -1,2 +1,2 @@
 # EmbeddedSystemsProgramming
-This repo is for embedded system and Architecture engineering project using PIC, Arduino, STM32, ESP and Raspberry pi
+This repo is for embedded systems and computer Architecture projects using PIC, Arduino, STM32, ESP and Raspberry pi
