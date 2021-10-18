@@ -1,0 +1,190 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F877A ]
+[d frameptr 0 ]
+"9 H:\New Folder (2)\lcd.X/LCD16.h
+[v _Lcd_SetBit Lcd_SetBit `(v  1 e 1 0 ]
+"32
+[v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
+"41
+[v _Lcd_Clear Lcd_Clear `(i  1 e 2 0 ]
+"47
+[v _Lcd_Set_Cursor Lcd_Set_Cursor `(v  1 e 1 0 ]
+"68
+[v _Lcd_Start Lcd_Start `(v  1 e 1 0 ]
+"86
+[v _Lcd_Print_Char Lcd_Print_Char `(v  1 e 1 0 ]
+"102
+[v _Lcd_Print_String Lcd_Print_String `(v  1 e 1 0 ]
+"10 G:\New folder (6)\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 G:\New folder (6)\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 G:\New folder (6)\pic\sources\c90\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"13 H:\New Folder (2)\lcd.X\lcd.c
+[v _Initialize_UART Initialize_UART `(v  1 e 1 0 ]
+"41
+[v _UART_send_char UART_send_char `(v  1 e 1 0 ]
+"46
+[v _UART_get_char UART_get_char `(uc  1 e 1 0 ]
+"58
+[v _main main `(i  1 e 2 0 ]
+"216 H:/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f877a.h
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+[s S51 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"233
+[u S60 . 1 `S51 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES60  1 e 1 @6 ]
+"1059
+[v _TXREG TXREG `VEuc  1 e 1 @25 ]
+"1066
+[v _RCREG RCREG `VEuc  1 e 1 @26 ]
+"1499
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"2080
+[v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
+"2416
+[v _BRGH BRGH `VEb  1 e 0 @1218 ]
+"2515
+[v _CREN CREN `VEb  1 e 0 @196 ]
+"2614
+[v _OERR OERR `VEb  1 e 0 @193 ]
+"2743
+[v _RCIF RCIF `VEb  1 e 0 @101 ]
+"2755
+[v _RD2 RD2 `VEb  1 e 0 @66 ]
+"2758
+[v _RD3 RD3 `VEb  1 e 0 @67 ]
+"2761
+[v _RD4 RD4 `VEb  1 e 0 @68 ]
+"2764
+[v _RD5 RD5 `VEb  1 e 0 @69 ]
+"2767
+[v _RD6 RD6 `VEb  1 e 0 @70 ]
+"2770
+[v _RD7 RD7 `VEb  1 e 0 @71 ]
+"2794
+[v _RX9 RX9 `VEb  1 e 0 @198 ]
+"2812
+[v _SPEN SPEN `VEb  1 e 0 @199 ]
+"2842
+[v _SYNC SYNC `VEb  1 e 0 @1220 ]
+"2977
+[v _TRISC6 TRISC6 `VEb  1 e 0 @1086 ]
+"2980
+[v _TRISC7 TRISC7 `VEb  1 e 0 @1087 ]
+"3022
+[v _TX9 TX9 `VEb  1 e 0 @1222 ]
+"3031
+[v _TXEN TXEN `VEb  1 e 0 @1221 ]
+"3037
+[v _TXIF TXIF `VEb  1 e 0 @100 ]
+"58 H:\New Folder (2)\lcd.X\lcd.c
+[v _main main `(i  1 e 2 0 ]
+{
+"67
+[v main@get_value get_value `i  1 a 2 0 ]
+"95
+} 0
+"41
+[v _UART_send_char UART_send_char `(v  1 e 1 0 ]
+{
+[v UART_send_char@bt bt `uc  1 a 1 wreg ]
+[v UART_send_char@bt bt `uc  1 a 1 wreg ]
+[v UART_send_char@bt bt `uc  1 a 1 0 ]
+"45
+} 0
+"46
+[v _UART_get_char UART_get_char `(uc  1 e 1 0 ]
+{
+"57
+} 0
+"68 H:\New Folder (2)\lcd.X/LCD16.h
+[v _Lcd_Start Lcd_Start `(v  1 e 1 0 ]
+{
+"84
+} 0
+"47
+[v _Lcd_Set_Cursor Lcd_Set_Cursor `(v  1 e 1 0 ]
+{
+[v Lcd_Set_Cursor@a a `uc  1 a 1 wreg ]
+"49
+[v Lcd_Set_Cursor@temp temp `uc  1 a 1 9 ]
+[v Lcd_Set_Cursor@y y `uc  1 a 1 8 ]
+[v Lcd_Set_Cursor@z z `uc  1 a 1 7 ]
+"47
+[v Lcd_Set_Cursor@a a `uc  1 a 1 wreg ]
+[v Lcd_Set_Cursor@b b `uc  1 p 1 4 ]
+"50
+[v Lcd_Set_Cursor@a a `uc  1 a 1 6 ]
+"66
+} 0
+"102
+[v _Lcd_Print_String Lcd_Print_String `(v  1 e 1 0 ]
+{
+[v Lcd_Print_String@a a `*.24uc  1 a 1 wreg ]
+"104
+[v Lcd_Print_String@i i `i  1 a 2 9 ]
+"102
+[v Lcd_Print_String@a a `*.24uc  1 a 1 wreg ]
+"105
+[v Lcd_Print_String@a a `*.24uc  1 a 1 11 ]
+"107
+} 0
+"86
+[v _Lcd_Print_Char Lcd_Print_Char `(v  1 e 1 0 ]
+{
+[v Lcd_Print_Char@data data `uc  1 a 1 wreg ]
+"98
+[v Lcd_Print_Char@i_92 i `i  1 a 2 7 ]
+"94
+[v Lcd_Print_Char@i i `i  1 a 2 5 ]
+"88
+[v Lcd_Print_Char@Upper_Nibble Upper_Nibble `uc  1 a 1 3 ]
+[v Lcd_Print_Char@Lower_Nibble Lower_Nibble `uc  1 a 1 2 ]
+"86
+[v Lcd_Print_Char@data data `uc  1 a 1 wreg ]
+"89
+[v Lcd_Print_Char@data data `uc  1 a 1 4 ]
+"100
+} 0
+"41
+[v _Lcd_Clear Lcd_Clear `(i  1 e 2 0 ]
+{
+"45
+} 0
+"32
+[v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
+{
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+"34
+[v Lcd_Cmd@a a `uc  1 a 1 3 ]
+"39
+} 0
+"9
+[v _Lcd_SetBit Lcd_SetBit `(v  1 e 1 0 ]
+{
+[v Lcd_SetBit@data_bit data_bit `uc  1 a 1 wreg ]
+[v Lcd_SetBit@data_bit data_bit `uc  1 a 1 wreg ]
+"11
+[v Lcd_SetBit@data_bit data_bit `uc  1 a 1 0 ]
+"30
+} 0
+"13 H:\New Folder (2)\lcd.X\lcd.c
+[v _Initialize_UART Initialize_UART `(v  1 e 1 0 ]
+{
+"40
+} 0

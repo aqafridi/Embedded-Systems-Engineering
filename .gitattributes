@@ -1,0 +1,9 @@
+* text=auto
+*.jpg binary
+*.png binary
+*.i binary
+*.mk binary
+*.bash binary
+*.json binary
+*Makefile binary
+*.pdsprj binary

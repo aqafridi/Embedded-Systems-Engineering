@@ -1,0 +1,735 @@
+
+
+Microchip MPLAB XC8 Assembler V2.10 build 88905656 
+                                                                                               Fri May 29 11:00:29 2020
+
+Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
+     1                           	processor	18F4550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	flic
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     7                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     8                           	psect	text1,global,reloc=2,class=CODE,delta=1
+     9                           	psect	intcode,global,reloc=2,class=CODE,delta=1
+    10                           	psect	intcode_body,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    12                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    13                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    14                           	psect	temp,global,ovrld,common,class=COMRAM,space=1,delta=1
+    15  0000                     
+    16                           ; Version 2.10
+    17                           ; Generated 31/07/2019 GMT
+    18                           ; 
+    19                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    20                           ; All rights reserved.
+    21                           ; 
+    22                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    23                           ; 
+    24                           ; Redistribution and use in source and binary forms, with or without modification, are
+    25                           ; permitted provided that the following conditions are met:
+    26                           ; 
+    27                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    28                           ;        conditions and the following disclaimer.
+    29                           ; 
+    30                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    31                           ;        of conditions and the following disclaimer in the documentation and/or other
+    32                           ;        materials provided with the distribution.
+    33                           ; 
+    34                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    35                           ;        software without specific prior written permission.
+    36                           ; 
+    37                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    38                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    39                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    40                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    41                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    42                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    43                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    44                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    45                           ; 
+    46                           ; 
+    47                           ; Code-generator required, PIC18F4550 Definitions
+    48                           ; 
+    49                           ; SFR Addresses
+    50  0000                     _INTCON2bits	set	4081
+    51  0000                     _TRISB	set	3987
+    52  0000                     _LATBbits	set	3978
+    53  0000                     _INTCONbits	set	4082
+    54                           
+    55                           ; #config settings
+    56  0000                     
+    57                           	psect	cinit
+    58  000138                     __pcinit:
+    59                           	opt callstack 0
+    60  000138                     start_initialization:
+    61                           	opt callstack 0
+    62  000138                     __initialization:
+    63                           	opt callstack 0
+    64  000138                     end_of_initialization:
+    65                           	opt callstack 0
+    66  000138                     __end_of__initialization:
+    67                           	opt callstack 0
+    68  000138  900F               	bcf	int$flags,0,c	;clear compiler interrupt flag (level 1)
+    69  00013A  920F               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+    70  00013C  0100               	movlb	0
+    71  00013E  EF84  F000         	goto	_main	;jump to C main() function
+    72                           
+    73                           	psect	cstackCOMRAM
+    74  000001                     __pcstackCOMRAM:
+    75                           	opt callstack 0
+    76  000001                     i2delay@time:
+    77                           	opt callstack 0
+    78                           
+    79                           ; 2 bytes @ 0x0
+    80  000001                     	ds	2
+    81  000003                     i2delay@i:
+    82                           	opt callstack 0
+    83                           
+    84                           ; 2 bytes @ 0x2
+    85  000003                     	ds	2
+    86  000005                     i2delay@j:
+    87                           	opt callstack 0
+    88                           
+    89                           ; 2 bytes @ 0x4
+    90  000005                     	ds	2
+    91  000007                     button@i:
+    92                           	opt callstack 0
+    93                           
+    94                           ; 2 bytes @ 0x6
+    95  000007                     	ds	2
+    96  000009                     delay@time:
+    97                           	opt callstack 0
+    98                           
+    99                           ; 2 bytes @ 0x8
+   100  000009                     	ds	2
+   101  00000B                     delay@i:
+   102                           	opt callstack 0
+   103                           
+   104                           ; 2 bytes @ 0xA
+   105  00000B                     	ds	2
+   106  00000D                     delay@j:
+   107                           	opt callstack 0
+   108                           
+   109                           ; 2 bytes @ 0xC
+   110  00000D                     	ds	2
+   111  00000F                     
+   112                           ; 1 bytes @ 0xE
+   113 ;;
+   114 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   115 ;;
+   116 ;; *************** function _main *****************
+   117 ;; Defined at:
+   118 ;;		line 96 in file "interrupt2.c"
+   119 ;; Parameters:    Size  Location     Type
+   120 ;;		None
+   121 ;; Auto vars:     Size  Location     Type
+   122 ;;		None
+   123 ;; Return value:  Size  Location     Type
+   124 ;;                  1    wreg      void 
+   125 ;; Registers used:
+   126 ;;		wreg, status,2, status,0, cstack
+   127 ;; Tracked objects:
+   128 ;;		On entry : 0/0
+   129 ;;		On exit  : 0/0
+   130 ;;		Unchanged: 0/0
+   131 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   132 ;;      Params:         0       0       0       0       0       0       0       0       0
+   133 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   134 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   135 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   136 ;;Total ram usage:        0 bytes
+   137 ;; Hardware stack levels required when called:    3
+   138 ;; This function calls:
+   139 ;;		_delay
+   140 ;; This function is called by:
+   141 ;;		Startup code after reset
+   142 ;; This function uses a non-reentrant model
+   143 ;;
+   144                           
+   145                           	psect	text0
+   146  000108                     __ptext0:
+   147                           	opt callstack 0
+   148  000108                     _main:
+   149                           	opt callstack 28
+   150  000108                     
+   151                           ;interrupt2.c: 97:     TRISB=0x0F;
+   152  000108  0E0F               	movlw	15
+   153  00010A  6E93               	movwf	147,c	;volatile
+   154  00010C                     
+   155                           ;interrupt2.c: 98:     INTCONbits.INT0IE=1;
+   156  00010C  88F2               	bsf	242,4,c	;volatile
+   157  00010E                     
+   158                           ;interrupt2.c: 99:     INTCON2bits.INTEDG0=0;
+   159  00010E  9CF1               	bcf	241,6,c	;volatile
+   160  000110                     
+   161                           ;interrupt2.c: 100:     INTCONbits.TMR0IF=0;
+   162  000110  94F2               	bcf	242,2,c	;volatile
+   163  000112                     
+   164                           ;interrupt2.c: 101:     INTCONbits.GIE=1;
+   165  000112  8EF2               	bsf	242,7,c	;volatile
+   166  000114                     l834:
+   167                           
+   168                           ;interrupt2.c: 104:         LATBbits.LATB4=1;
+   169  000114  888A               	bsf	138,4,c	;volatile
+   170  000116                     
+   171                           ;interrupt2.c: 105:         delay(1000);
+   172  000116  0E03               	movlw	3
+   173  000118  6E0A               	movwf	(delay@time+1)^0,c
+   174  00011A  0EE8               	movlw	232
+   175  00011C  6E09               	movwf	delay@time^0,c
+   176  00011E  EC5F  F000         	call	_delay	;wreg free
+   177  000122                     
+   178                           ;interrupt2.c: 106:         LATBbits.LATB4=0;
+   179  000122  988A               	bcf	138,4,c	;volatile
+   180  000124                     
+   181                           ;interrupt2.c: 107:         delay(1000);
+   182  000124  0E03               	movlw	3
+   183  000126  6E0A               	movwf	(delay@time+1)^0,c
+   184  000128  0EE8               	movlw	232
+   185  00012A  6E09               	movwf	delay@time^0,c
+   186  00012C  EC5F  F000         	call	_delay	;wreg free
+   187  000130  EF8A  F000         	goto	l834
+   188  000134  EF07  F000         	goto	start
+   189  000138                     __end_of_main:
+   190                           	opt callstack 0
+   191                           
+   192 ;; *************** function _delay *****************
+   193 ;; Defined at:
+   194 ;;		line 110 in file "interrupt2.c"
+   195 ;; Parameters:    Size  Location     Type
+   196 ;;  time            2    8[COMRAM] unsigned int 
+   197 ;; Auto vars:     Size  Location     Type
+   198 ;;  j               2   12[COMRAM] unsigned int 
+   199 ;;  i               2   10[COMRAM] unsigned int 
+   200 ;; Return value:  Size  Location     Type
+   201 ;;                  1    wreg      void 
+   202 ;; Registers used:
+   203 ;;		wreg, status,2, status,0
+   204 ;; Tracked objects:
+   205 ;;		On entry : 0/0
+   206 ;;		On exit  : 0/0
+   207 ;;		Unchanged: 0/0
+   208 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   209 ;;      Params:         2       0       0       0       0       0       0       0       0
+   210 ;;      Locals:         4       0       0       0       0       0       0       0       0
+   211 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   212 ;;      Totals:         6       0       0       0       0       0       0       0       0
+   213 ;;Total ram usage:        6 bytes
+   214 ;; Hardware stack levels used:    1
+   215 ;; Hardware stack levels required when called:    2
+   216 ;; This function calls:
+   217 ;;		Nothing
+   218 ;; This function is called by:
+   219 ;;		_main
+   220 ;; This function uses a non-reentrant model
+   221 ;;
+   222                           
+   223                           	psect	text1
+   224  0000BE                     __ptext1:
+   225                           	opt callstack 0
+   226  0000BE                     _delay:
+   227                           	opt callstack 28
+   228  0000BE                     
+   229                           ;interrupt2.c: 111:     unsigned int i,j;;interrupt2.c: 112:     for(i=0;i<time;i++)
+   230  0000BE  0E00               	movlw	0
+   231  0000C0  6E0C               	movwf	(delay@i+1)^0,c
+   232  0000C2  0E00               	movlw	0
+   233  0000C4  6E0B               	movwf	delay@i^0,c
+   234  0000C6  EF78  F000         	goto	l790
+   235  0000CA                     l778:
+   236                           
+   237                           ;interrupt2.c: 113:         for(j=0;j<100;j++);
+   238  0000CA  0E00               	movlw	0
+   239  0000CC  6E0E               	movwf	(delay@j+1)^0,c
+   240  0000CE  0E00               	movlw	0
+   241  0000D0  6E0D               	movwf	delay@j^0,c
+   242  0000D2                     l784:
+   243  0000D2  4A0D               	infsnz	delay@j^0,f,c
+   244  0000D4  2A0E               	incf	(delay@j+1)^0,f,c
+   245  0000D6  500E               	movf	(delay@j+1)^0,w,c
+   246  0000D8  E109               	bnz	u70
+   247  0000DA  0E64               	movlw	100
+   248  0000DC  5C0D               	subwf	delay@j^0,w,c
+   249  0000DE  A0D8               	btfss	status,0,c
+   250  0000E0  EF74  F000         	goto	u71
+   251  0000E4  EF76  F000         	goto	u70
+   252  0000E8                     u71:
+   253  0000E8  EF69  F000         	goto	l784
+   254  0000EC                     u70:
+   255  0000EC  4A0B               	infsnz	delay@i^0,f,c
+   256  0000EE  2A0C               	incf	(delay@i+1)^0,f,c
+   257  0000F0                     l790:
+   258  0000F0  5009               	movf	delay@time^0,w,c
+   259  0000F2  5C0B               	subwf	delay@i^0,w,c
+   260  0000F4  500A               	movf	(delay@time+1)^0,w,c
+   261  0000F6  580C               	subwfb	(delay@i+1)^0,w,c
+   262  0000F8  A0D8               	btfss	status,0,c
+   263  0000FA  EF81  F000         	goto	u81
+   264  0000FE  EF83  F000         	goto	u80
+   265  000102                     u81:
+   266  000102  EF65  F000         	goto	l778
+   267  000106                     u80:
+   268  000106  0012               	return		;funcret
+   269  000108                     __end_of_delay:
+   270                           	opt callstack 0
+   271                           
+   272 ;; *************** function _button *****************
+   273 ;; Defined at:
+   274 ;;		line 84 in file "interrupt2.c"
+   275 ;; Parameters:    Size  Location     Type
+   276 ;;		None
+   277 ;; Auto vars:     Size  Location     Type
+   278 ;;  i               2    6[COMRAM] int 
+   279 ;; Return value:  Size  Location     Type
+   280 ;;                  1    wreg      void 
+   281 ;; Registers used:
+   282 ;;		wreg, status,2, status,0, cstack
+   283 ;; Tracked objects:
+   284 ;;		On entry : 0/0
+   285 ;;		On exit  : 0/0
+   286 ;;		Unchanged: 0/0
+   287 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   288 ;;      Params:         0       0       0       0       0       0       0       0       0
+   289 ;;      Locals:         2       0       0       0       0       0       0       0       0
+   290 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   291 ;;      Totals:         2       0       0       0       0       0       0       0       0
+   292 ;;Total ram usage:        2 bytes
+   293 ;; Hardware stack levels used:    1
+   294 ;; Hardware stack levels required when called:    1
+   295 ;; This function calls:
+   296 ;;		i2_delay
+   297 ;; This function is called by:
+   298 ;;		Interrupt level 2
+   299 ;; This function uses a non-reentrant model
+   300 ;;
+   301                           
+   302                           	psect	intcode
+   303  000008                     __pintcode:
+   304                           	opt callstack 0
+   305  000008                     _button:
+   306                           	opt callstack 28
+   307                           
+   308                           ;incstack = 0
+   309  000008  820F               	bsf	int$flags,1,c	;set compiler interrupt flag (level 2)
+   310  00000A  ED09  F000         	call	int_func,f	;refresh shadow registers
+   311                           
+   312                           	psect	intcode_body
+   313  000012                     __pintcode_body:
+   314                           	opt callstack 28
+   315  000012                     int_func:
+   316                           	opt callstack 28
+   317  000012  0006               	pop		; remove dummy address from shadow register refresh
+   318  000014                     
+   319                           ;interrupt2.c: 86:     if(INTCONbits.TMR0IF==1){
+   320  000014  A4F2               	btfss	242,2,c	;volatile
+   321  000016  EF0F  F000         	goto	i2u11_41
+   322  00001A  EF11  F000         	goto	i2u11_40
+   323  00001E                     i2u11_41:
+   324  00001E  EF34  F000         	goto	i2l18
+   325  000022                     i2u11_40:
+   326  000022                     
+   327                           ;interrupt2.c: 87:         for(int i=0;i<5;i++){
+   328  000022  0E00               	movlw	0
+   329  000024  6E08               	movwf	(button@i+1)^0,c
+   330  000026  0E00               	movlw	0
+   331  000028  6E07               	movwf	button@i^0,c
+   332  00002A                     i2l16:
+   333                           
+   334                           ;interrupt2.c: 88:             LATBbits.LATB5=1;
+   335  00002A  8A8A               	bsf	138,5,c	;volatile
+   336  00002C                     
+   337                           ;interrupt2.c: 89:             delay(1000);
+   338  00002C  0E03               	movlw	3
+   339  00002E  6E02               	movwf	(i2delay@time+1)^0,c
+   340  000030  0EE8               	movlw	232
+   341  000032  6E01               	movwf	i2delay@time^0,c
+   342  000034  EC36  F000         	call	i2_delay	;wreg free
+   343  000038                     
+   344                           ;interrupt2.c: 90:             LATBbits.LATB5=0;
+   345  000038  9A8A               	bcf	138,5,c	;volatile
+   346                           
+   347                           ;interrupt2.c: 91:             delay(1000);
+   348  00003A  0E03               	movlw	3
+   349  00003C  6E02               	movwf	(i2delay@time+1)^0,c
+   350  00003E  0EE8               	movlw	232
+   351  000040  6E01               	movwf	i2delay@time^0,c
+   352  000042  EC36  F000         	call	i2_delay	;wreg free
+   353  000046                     
+   354                           ;interrupt2.c: 92:         }
+   355  000046  4A07               	infsnz	button@i^0,f,c
+   356  000048  2A08               	incf	(button@i+1)^0,f,c
+   357  00004A  BE08               	btfsc	(button@i+1)^0,7,c
+   358  00004C  EF31  F000         	goto	i2u12_41
+   359  000050  5008               	movf	(button@i+1)^0,w,c
+   360  000052  E109               	bnz	i2u12_40
+   361  000054  0E05               	movlw	5
+   362  000056  5C07               	subwf	button@i^0,w,c
+   363  000058  A0D8               	btfss	status,0,c
+   364  00005A  EF31  F000         	goto	i2u12_41
+   365  00005E  EF33  F000         	goto	i2u12_40
+   366  000062                     i2u12_41:
+   367  000062  EF15  F000         	goto	i2l16
+   368  000066                     i2u12_40:
+   369  000066                     
+   370                           ;interrupt2.c: 93:         INTCONbits.TMR0IF=0;
+   371  000066  94F2               	bcf	242,2,c	;volatile
+   372  000068                     i2l18:
+   373  000068  920F               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+   374  00006A  0011               	retfie		f
+   375  00006C                     __end_of_button:
+   376                           	opt callstack 0
+   377                           
+   378 ;; *************** function i2_delay *****************
+   379 ;; Defined at:
+   380 ;;		line 110 in file "interrupt2.c"
+   381 ;; Parameters:    Size  Location     Type
+   382 ;;  time            2    0[COMRAM] unsigned int 
+   383 ;; Auto vars:     Size  Location     Type
+   384 ;;  delay           2    4[COMRAM] unsigned int 
+   385 ;;  delay           2    2[COMRAM] unsigned int 
+   386 ;; Return value:  Size  Location     Type
+   387 ;;                  1    wreg      void 
+   388 ;; Registers used:
+   389 ;;		wreg, status,2, status,0
+   390 ;; Tracked objects:
+   391 ;;		On entry : 0/0
+   392 ;;		On exit  : 0/0
+   393 ;;		Unchanged: 0/0
+   394 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   395 ;;      Params:         2       0       0       0       0       0       0       0       0
+   396 ;;      Locals:         4       0       0       0       0       0       0       0       0
+   397 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   398 ;;      Totals:         6       0       0       0       0       0       0       0       0
+   399 ;;Total ram usage:        6 bytes
+   400 ;; Hardware stack levels used:    1
+   401 ;; This function calls:
+   402 ;;		Nothing
+   403 ;; This function is called by:
+   404 ;;		_button
+   405 ;; This function uses a non-reentrant model
+   406 ;;
+   407                           
+   408                           	psect	text3
+   409  00006C                     __ptext3:
+   410                           	opt callstack 0
+   411  00006C                     i2_delay:
+   412                           	opt callstack 28
+   413  00006C                     
+   414                           ;interrupt2.c: 111:     unsigned int i,j;;interrupt2.c: 112:     for(i=0;i<time;i++)
+   415  00006C  0E00               	movlw	0
+   416  00006E  6E04               	movwf	(i2delay@i+1)^0,c
+   417  000070  0E00               	movlw	0
+   418  000072  6E03               	movwf	i2delay@i^0,c
+   419  000074  EF53  F000         	goto	i2l806
+   420  000078                     i2l794:
+   421                           
+   422                           ;interrupt2.c: 113:         for(j=0;j<100;j++);
+   423  000078  0E00               	movlw	0
+   424  00007A  6E06               	movwf	(i2delay@j+1)^0,c
+   425  00007C  0E00               	movlw	0
+   426  00007E  6E05               	movwf	i2delay@j^0,c
+   427  000080                     i2l796:
+   428  000080  5006               	movf	(i2delay@j+1)^0,w,c
+   429  000082  E109               	bnz	i2u9_40
+   430  000084  0E64               	movlw	100
+   431  000086  5C05               	subwf	i2delay@j^0,w,c
+   432  000088  A0D8               	btfss	status,0,c
+   433  00008A  EF49  F000         	goto	i2u9_41
+   434  00008E  EF4B  F000         	goto	i2u9_40
+   435  000092                     i2u9_41:
+   436  000092  EF4D  F000         	goto	i2l800
+   437  000096                     i2u9_40:
+   438  000096  EF51  F000         	goto	i2l804
+   439  00009A                     i2l800:
+   440  00009A  4A05               	infsnz	i2delay@j^0,f,c
+   441  00009C  2A06               	incf	(i2delay@j+1)^0,f,c
+   442  00009E  EF40  F000         	goto	i2l796
+   443  0000A2                     i2l804:
+   444  0000A2  4A03               	infsnz	i2delay@i^0,f,c
+   445  0000A4  2A04               	incf	(i2delay@i+1)^0,f,c
+   446  0000A6                     i2l806:
+   447  0000A6  5001               	movf	i2delay@time^0,w,c
+   448  0000A8  5C03               	subwf	i2delay@i^0,w,c
+   449  0000AA  5002               	movf	(i2delay@time+1)^0,w,c
+   450  0000AC  5804               	subwfb	(i2delay@i+1)^0,w,c
+   451  0000AE  A0D8               	btfss	status,0,c
+   452  0000B0  EF5C  F000         	goto	i2u10_41
+   453  0000B4  EF5E  F000         	goto	i2u10_40
+   454  0000B8                     i2u10_41:
+   455  0000B8  EF3C  F000         	goto	i2l794
+   456  0000BC                     i2u10_40:
+   457  0000BC  0012               	return		;funcret
+   458  0000BE                     __end_ofi2_delay:
+   459                           	opt callstack 0
+   460  0000                     
+   461                           	psect	rparam
+   462  0000                     
+   463                           	psect	temp
+   464  00000F                     btemp:
+   465                           	opt callstack 0
+   466  00000F                     	ds	1
+   467  0000                     int$flags	set	btemp
+   468  0000                     wtemp8	set	btemp+1
+   469  0000                     ttemp5	set	btemp+1
+   470  0000                     ttemp6	set	btemp+4
+   471  0000                     ttemp7	set	btemp+8
+   472                           tosu	equ	0xFFF
+   473                           tosh	equ	0xFFE
+   474                           tosl	equ	0xFFD
+   475                           stkptr	equ	0xFFC
+   476                           pclatu	equ	0xFFB
+   477                           pclath	equ	0xFFA
+   478                           pcl	equ	0xFF9
+   479                           tblptru	equ	0xFF8
+   480                           tblptrh	equ	0xFF7
+   481                           tblptrl	equ	0xFF6
+   482                           tablat	equ	0xFF5
+   483                           prodh	equ	0xFF4
+   484                           prodl	equ	0xFF3
+   485                           indf0	equ	0xFEF
+   486                           postinc0	equ	0xFEE
+   487                           postdec0	equ	0xFED
+   488                           preinc0	equ	0xFEC
+   489                           plusw0	equ	0xFEB
+   490                           fsr0h	equ	0xFEA
+   491                           fsr0l	equ	0xFE9
+   492                           wreg	equ	0xFE8
+   493                           indf1	equ	0xFE7
+   494                           postinc1	equ	0xFE6
+   495                           postdec1	equ	0xFE5
+   496                           preinc1	equ	0xFE4
+   497                           plusw1	equ	0xFE3
+   498                           fsr1h	equ	0xFE2
+   499                           fsr1l	equ	0xFE1
+   500                           bsr	equ	0xFE0
+   501                           indf2	equ	0xFDF
+   502                           postinc2	equ	0xFDE
+   503                           postdec2	equ	0xFDD
+   504                           preinc2	equ	0xFDC
+   505                           plusw2	equ	0xFDB
+   506                           fsr2h	equ	0xFDA
+   507                           fsr2l	equ	0xFD9
+   508                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           94     14      14
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_delay
+
+Critical Paths under _button in COMRAM
+
+    _button->i2_delay
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _button in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _button in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _button in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _button in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _button in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _button in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _button in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _button in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     344
+                              _delay
+ ---------------------------------------------------------------------------------
+ (1) _delay                                                6     4      2     344
+                                              8 COMRAM     6     4      2
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _button                                               2     2      0     190
+                                              6 COMRAM     2     2      0
+                            i2_delay
+ ---------------------------------------------------------------------------------
+ (3) i2_delay                                              6     4      2     144
+                                              0 COMRAM     6     4      2
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _delay
+
+ _button (ROOT)
+   i2_delay
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5E      E       E       1       14.9%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+ABS                  0      0       0      20        0.0%
+BIGRAM             7FF      0       0      21        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.10 build 88905656 
+Symbol Table                                                                                   Fri May 29 11:00:29 2020
+
+                     l34 0106                       u70 00EC                       u71 00E8  
+                     u80 0106                       u81 0102              __CFG_BORV$3 000000  
+           __CFG_CP0$OFF 000000             __CFG_CP1$OFF 000000             __CFG_CP2$OFF 000000  
+           __CFG_CP3$OFF 000000              __CFG_LVP$ON 000000                      l830 0110  
+                    l840 0124                      l832 0112                      l824 0108  
+                    l834 0114                      l826 010C                      l836 0116  
+                    l828 010E                      l790 00F0                      l838 0122  
+                    l784 00D2                      l776 00BE                      l786 00D6  
+                    l778 00CA                      l788 00EC             __CFG_CPB$OFF 000000  
+           __CFG_CPD$OFF 000000             __CFG_BOR$OFF 000000             __CFG_FOSC$HS 000000  
+           __CFG_WDT$OFF 000000                     i2l16 002A                     i2l17 0066  
+                   i2l34 00BC                     i2l18 0068                     _main 0108  
+                   btemp 000F          __end_ofi2_delay 00BE                     start 000E  
+          __CFG_IESO$OFF 000000            __CFG_MCLRE$ON 000000             ___param_bank 000000  
+          __CFG_PLLDIV$1 000000           __CFG_CCP2MX$ON 000000                    ?_main 0001  
+                  i2l800 009A                    i2l810 0022                    i2l804 00A2  
+                  i2l820 0046                    i2l806 00A6                    i2l822 004A  
+                  i2l816 002C                    i2l808 0014                    i2l818 0038  
+                  i2l792 006C                    i2l794 0078                    i2l796 0080  
+          __CFG_USBDIV$1 000000                    _TRISB 000F93            __CFG_PWRT$OFF 000000  
+          __CFG_WRT0$OFF 000000            __CFG_WRT1$OFF 000000            __CFG_WRT2$OFF 000000  
+          __CFG_WRT3$OFF 000000           __CFG_EBTR0$OFF 000000           __CFG_FCMEN$OFF 000000  
+         __CFG_EBTR1$OFF 000000           __CFG_EBTR2$OFF 000000           __CFG_EBTR3$OFF 000000  
+          __CFG_WRTB$OFF 000000            __CFG_WRTC$OFF 000000            __CFG_WRTD$OFF 000000  
+         __CFG_EBTRB$OFF 000000                    _delay 00BE              i2delay@time 0001  
+                  ttemp5 0010                    ttemp6 0013                    ttemp7 0017  
+                  status 000FD8                    wtemp8 0010           __CFG_ICPRT$OFF 000000  
+         __CFG_PBADEN$ON 000000          __initialization 0138             __end_of_main 0138  
+                 ??_main 000F            __activetblptr 000000                   ?_delay 0009  
+              ??i2_delay 0003                   i2u9_40 0096                   i2u9_41 0092  
+         __CFG_XINST$OFF 000000           __CFG_STVREN$ON 000000                   _button 0008  
+                 delay@i 000B                   delay@j 000D               __accesstop 0060  
+__end_of__initialization 0138            ___rparam_used 000001           __pcstackCOMRAM 0001  
+          __end_of_delay 0108                  ??_delay 000B                  ?_button 0001  
+                i2u10_40 00BC                  i2u10_41 00B8                  i2u11_40 0022  
+                i2u11_41 001E                  i2u12_40 0066                  i2u12_41 0062  
+                i2_delay 006C          __CFG_VREGEN$OFF 000000                  __Hparam 0000  
+                __Lparam 0000                  __pcinit 0138          __size_of_button 0064  
+                __ramtop 0800                  __ptext0 0108                  __ptext1 00BE  
+                __ptext3 006C           __pintcode_body 0012     end_of_initialization 0138  
+                button@i 0007                  int_func 0012           __end_of_button 006C  
+    start_initialization 0138         __CFG_LPT1OSC$OFF 000000                 ??_button 0007  
+               ?i2_delay 0001                __pintcode 0008           __size_of_delay 004A  
+              delay@time 0009                 _LATBbits 000F8A         __CFG_WDTPS$32768 000000  
+               i2delay@i 0003                 i2delay@j 0005              _INTCON2bits 000FF1  
+       __size_ofi2_delay 0052                 __Hrparam 0000                 __Lrparam 0000  
+          __size_of_main 0030                 int$flags 000F    __CFG_CPUDIV$OSC1_PLL2 000000  
+             _INTCONbits 000FF2                 intlevel2 0000  

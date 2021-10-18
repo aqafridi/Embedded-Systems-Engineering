@@ -1,0 +1,13 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -DL -O11111114 -fo8 -N"D:\4th Semester\EE222-LAB\PIC MickroC pro\Ultrasound_sensor_interfacing\Ultrasound_sensor_interfacing.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"D:\4th Semester\EE222-LAB\PIC MickroC pro\Ultrasound_sensor_interfacing\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" "Ultrasound_sensor_interfacing.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_Conversions.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	Ultrasound_sensor_interfacing.c
+hint: 19	1163	Variable 'apple' has been declared, but not used	Ultrasound_sensor_interfacing.c
+hint: 20	1163	Variable 'text' has been declared, but not used	Ultrasound_sensor_interfacing.c
+diagnostics: 34	123	Compiled Successfully	Ultrasound_sensor_interfacing.c
+diagnostics: 0	127	All files Compiled in 93 ms	 
+hint: 0	1144	Used RAM (bytes): 33 (9%)  Free RAM (bytes): 319 (91%)	Used RAM (bytes): 33 (9%)  Free RAM (bytes): 319 (91%)
+hint: 0	1144	Used ROM (program words): 352 (4%)  Free ROM (program words): 7840 (96%)	Used ROM (program words): 352 (4%)  Free ROM (program words): 7840 (96%)
+diagnostics: 0	125	Project Linked Successfully	Ultrasound_sensor_interfacing.mcppi
+diagnostics: 0	128	Linked in 63 ms	 
+diagnostics: 0	129	Project 'Ultrasound_sensor_interfacing.mcppi' completed: 188 ms	 
+diagnostics: 0	103	Finished successfully: 07 Sep 2020, 13:07:49	Ultrasound_sensor_interfacing.mcppi

@@ -1,0 +1,135 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4550 ]
+[d frameptr 4065 ]
+"7 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"7 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"79 D:\4th Semester\EE222-LAB\PIC18 LABs\lab 6.X\lab 6.c
+[v _ISR ISR `IIH(v  1 e 1 0 ]
+"158
+[v _main main `(v  1 e 1 0 ]
+"5402 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f4550.h
+[v _TXREG TXREG `VEuc  1 e 1 @4013 ]
+"5426
+[v _SPBRG SPBRG `VEuc  1 e 1 @4015 ]
+"6510
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @4032 ]
+"6581
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"6666
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
+"6799
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+"7415
+[v _T1CON T1CON `VEuc  1 e 1 @4045 ]
+"7518
+[v _TMR1 TMR1 `VEus  1 e 2 @4046 ]
+"7525
+[v _TMR1L TMR1L `VEuc  1 e 1 @4046 ]
+"8069
+[v _T0CON T0CON `VEuc  1 e 1 @4053 ]
+"8139
+[v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
+"8973
+[v _ADIE ADIE `VEb  1 e 0 @31982 ]
+"8976
+[v _ADIF ADIF `VEb  1 e 0 @31990 ]
+"9021
+[v _BRGH BRGH `VEb  1 e 0 @32098 ]
+"9201
+[v _CREN CREN `VEb  1 e 0 @32092 ]
+"9741
+[v _GIE GIE `VEb  1 e 0 @32663 ]
+"9756
+[v _GODONE GODONE `VEb  1 e 0 @32273 ]
+"10269
+[v _PEIE PEIE `VEb  1 e 0 @32662 ]
+"10584
+[v _SPEN SPEN `VEb  1 e 0 @32095 ]
+"10710
+[v _SYNC SYNC `VEb  1 e 0 @32100 ]
+"10812
+[v _TMR0IE TMR0IE `VEb  1 e 0 @32661 ]
+"10815
+[v _TMR0IF TMR0IF `VEb  1 e 0 @32658 ]
+"10821
+[v _TMR0ON TMR0ON `VEb  1 e 0 @32431 ]
+"10836
+[v _TMR1ON TMR1ON `VEb  1 e 0 @32360 ]
+"10881
+[v _TRISA0 TRISA0 `VEb  1 e 0 @31888 ]
+"11034
+[v _TXEN TXEN `VEb  1 e 0 @32101 ]
+"11043
+[v _TXIF TXIF `VEb  1 e 0 @31988 ]
+"73 D:\4th Semester\EE222-LAB\PIC18 LABs\lab 6.X\lab 6.c
+[v _count count `uc  1 e 1 0 ]
+"74
+[v _value value `uc  1 e 1 0 ]
+"75
+[v _units units `uc  1 e 1 0 ]
+"76
+[v _tens tens `uc  1 e 1 0 ]
+"77
+[v _hund hund `uc  1 e 1 0 ]
+"158
+[v _main main `(v  1 e 1 0 ]
+{
+"190
+} 0
+"79
+[v _ISR ISR `IIH(v  1 e 1 0 ]
+{
+"155
+} 0
+"7 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 5 ]
+[v ___awmod@counter counter `uc  1 a 1 4 ]
+"7
+[v ___awmod@dividend dividend `i  1 p 2 0 ]
+[v ___awmod@divisor divisor `i  1 p 2 2 ]
+"34
+} 0
+"7 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 6 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 5 ]
+[v ___awdiv@counter counter `uc  1 a 1 4 ]
+"7
+[v ___awdiv@dividend dividend `i  1 p 2 0 ]
+[v ___awdiv@divisor divisor `i  1 p 2 2 ]
+"41
+} 0

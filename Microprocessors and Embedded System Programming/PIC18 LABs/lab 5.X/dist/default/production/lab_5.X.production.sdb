@@ -1,0 +1,85 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4550 ]
+[d frameptr 4065 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"79 D:\4th Semester\EE222-LAB\PIC18 LABs\lab 5.X\lab 5.c
+[v _ISR ISR `IIH(v  1 e 1 0 ]
+"95
+[v _main main `(v  1 e 1 0 ]
+"6242 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f4550.h
+[v _CCP2CON CCP2CON `VEuc  1 e 1 @4026 ]
+"6313
+[v _CCPR2L CCPR2L `VEuc  1 e 1 @4027 ]
+"6327
+[v _CCP1CON CCP1CON `VEuc  1 e 1 @4029 ]
+"6496
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @4030 ]
+"6510
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @4032 ]
+"6581
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"6666
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
+"6799
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+"7200
+[v _T2CON T2CON `VEuc  1 e 1 @4042 ]
+"7298
+[v _PR2 PR2 `VEuc  1 e 1 @4043 ]
+"8973
+[v _ADIE ADIE `VEb  1 e 0 @31982 ]
+"8976
+[v _ADIF ADIF `VEb  1 e 0 @31990 ]
+"9120
+[v _CHS0 CHS0 `VEb  1 e 0 @32274 ]
+"9741
+[v _GIE GIE `VEb  1 e 0 @32663 ]
+"9756
+[v _GODONE GODONE `VEb  1 e 0 @32273 ]
+"10269
+[v _PEIE PEIE `VEb  1 e 0 @32662 ]
+"10848
+[v _TMR2ON TMR2ON `VEb  1 e 0 @32338 ]
+"10881
+[v _TRISA0 TRISA0 `VEb  1 e 0 @31888 ]
+"10884
+[v _TRISA1 TRISA1 `VEb  1 e 0 @31889 ]
+"10929
+[v _TRISC1 TRISC1 `VEb  1 e 0 @31905 ]
+"10932
+[v _TRISC2 TRISC2 `VEb  1 e 0 @31906 ]
+"95 D:\4th Semester\EE222-LAB\PIC18 LABs\lab 5.X\lab 5.c
+[v _main main `(v  1 e 1 0 ]
+{
+"120
+} 0
+"79
+[v _ISR ISR `IIH(v  1 e 1 0 ]
+{
+"93
+} 0

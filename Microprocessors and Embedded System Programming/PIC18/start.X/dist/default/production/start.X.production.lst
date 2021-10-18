@@ -1,0 +1,794 @@
+
+
+Microchip MPLAB XC8 Assembler V2.10 build 88905656 
+                                                                                               Thu Jun 18 21:07:53 2020
+
+Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
+     1                           	processor	18F4550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	flic
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     7                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     8                           	psect	text1,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    10                           	psect	intcode,global,reloc=2,class=CODE,delta=1
+    11                           	psect	intcode_body,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    14                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    15                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    16                           	psect	temp,global,ovrld,common,class=COMRAM,space=1,delta=1
+    17  0000                     
+    18                           ; Version 2.10
+    19                           ; Generated 31/07/2019 GMT
+    20                           ; 
+    21                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    22                           ; All rights reserved.
+    23                           ; 
+    24                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    25                           ; 
+    26                           ; Redistribution and use in source and binary forms, with or without modification, are
+    27                           ; permitted provided that the following conditions are met:
+    28                           ; 
+    29                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    30                           ;        conditions and the following disclaimer.
+    31                           ; 
+    32                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    33                           ;        of conditions and the following disclaimer in the documentation and/or other
+    34                           ;        materials provided with the distribution.
+    35                           ; 
+    36                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    37                           ;        software without specific prior written permission.
+    38                           ; 
+    39                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    40                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    41                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    42                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    43                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    44                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    45                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    46                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    47                           ; 
+    48                           ; 
+    49                           ; Code-generator required, PIC18F4550 Definitions
+    50                           ; 
+    51                           ; SFR Addresses
+    52  0000                     _T1CONbits	set	4045
+    53  0000                     _T0CONbits	set	4053
+    54  0000                     _TMR1L	set	4046
+    55  0000                     _TMR1H	set	4047
+    56  0000                     _TMR0L	set	4054
+    57  0000                     _TMR0H	set	4055
+    58  0000                     _T1CON	set	4045
+    59  0000                     _T0CON	set	4053
+    60  0000                     _PIE1bits	set	3997
+    61  0000                     _PORTDbits	set	3971
+    62  0000                     _TRISDbits	set	3989
+    63  0000                     _PIR1bits	set	3998
+    64  0000                     _INTCONbits	set	4082
+    65  0000                     _GIE	set	32663
+    66  0000                     _PEIE	set	32662
+    67                           
+    68                           ; #config settings
+    69  0000                     
+    70                           	psect	cinit
+    71  0000E8                     __pcinit:
+    72                           	opt callstack 0
+    73  0000E8                     start_initialization:
+    74                           	opt callstack 0
+    75  0000E8                     __initialization:
+    76                           	opt callstack 0
+    77  0000E8                     end_of_initialization:
+    78                           	opt callstack 0
+    79  0000E8                     __end_of__initialization:
+    80                           	opt callstack 0
+    81  0000E8  9001               	bcf	int$flags,0,c	;clear compiler interrupt flag (level 1)
+    82  0000EA  9201               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+    83  0000EC  0100               	movlb	0
+    84  0000EE  EF09  F000         	goto	_main	;jump to C main() function
+    85                           
+    86                           	psect	cstackCOMRAM
+    87  000000                     __pcstackCOMRAM:
+    88                           	opt callstack 0
+    89  000000                     
+    90                           ; 1 bytes @ 0x0
+    91 ;;
+    92 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    93 ;;
+    94 ;; *************** function _main *****************
+    95 ;; Defined at:
+    96 ;;		line 87 in file "newmain.c"
+    97 ;; Parameters:    Size  Location     Type
+    98 ;;		None
+    99 ;; Auto vars:     Size  Location     Type
+   100 ;;		None
+   101 ;; Return value:  Size  Location     Type
+   102 ;;                  1    wreg      void 
+   103 ;; Registers used:
+   104 ;;		wreg, status,2, cstack
+   105 ;; Tracked objects:
+   106 ;;		On entry : 0/0
+   107 ;;		On exit  : 0/0
+   108 ;;		Unchanged: 0/0
+   109 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   110 ;;      Params:         0       0       0       0       0       0       0       0       0
+   111 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   112 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   113 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   114 ;;Total ram usage:        0 bytes
+   115 ;; Hardware stack levels required when called:    3
+   116 ;; This function calls:
+   117 ;;		_tmr0
+   118 ;;		_tmr1
+   119 ;; This function is called by:
+   120 ;;		Startup code after reset
+   121 ;; This function uses a non-reentrant model
+   122 ;;
+   123                           
+   124                           	psect	text0
+   125  000012                     __ptext0:
+   126                           	opt callstack 0
+   127  000012                     _main:
+   128                           	opt callstack 28
+   129  000012                     
+   130                           ;newmain.c: 88:     TRISDbits.TRISD0=0;
+   131  000012  9095               	bcf	149,0,c	;volatile
+   132                           
+   133                           ;newmain.c: 89:     PORTDbits.RD0=0;
+   134  000014  9083               	bcf	131,0,c	;volatile
+   135                           
+   136                           ;newmain.c: 90:     INTCONbits.TMR0IE=1;
+   137  000016  8AF2               	bsf	242,5,c	;volatile
+   138                           
+   139                           ;newmain.c: 91:     PIE1bits.TMR1IE=1;
+   140  000018  809D               	bsf	157,0,c	;volatile
+   141  00001A                     
+   142                           ;newmain.c: 92:     T0CON=0x00;
+   143  00001A  0E00               	movlw	0
+   144  00001C  6ED5               	movwf	213,c	;volatile
+   145                           
+   146                           ;newmain.c: 93:     T1CON=0x88;
+   147  00001E  0E88               	movlw	136
+   148  000020  6ECD               	movwf	205,c	;volatile
+   149                           
+   150                           ;newmain.c: 94:     TMR0H=0xFC;
+   151  000022  0EFC               	movlw	252
+   152  000024  6ED7               	movwf	215,c	;volatile
+   153                           
+   154                           ;newmain.c: 95:     TMR0L=0x17;
+   155  000026  0E17               	movlw	23
+   156  000028  6ED6               	movwf	214,c	;volatile
+   157                           
+   158                           ;newmain.c: 96:     TMR1H=0xEC;
+   159  00002A  0EEC               	movlw	236
+   160  00002C  6ECF               	movwf	207,c	;volatile
+   161                           
+   162                           ;newmain.c: 97:     TMR1L=0x77;
+   163  00002E  0E77               	movlw	119
+   164  000030  6ECE               	movwf	206,c	;volatile
+   165  000032                     
+   166                           ;newmain.c: 98:     INTCONbits.TMR0IF=0;
+   167  000032  94F2               	bcf	242,2,c	;volatile
+   168  000034                     
+   169                           ;newmain.c: 99:     PIR1bits.TMR1IF=0;
+   170  000034  909E               	bcf	158,0,c	;volatile
+   171  000036                     
+   172                           ;newmain.c: 100:     T0CONbits.TMR0ON=1;
+   173  000036  8ED5               	bsf	213,7,c	;volatile
+   174  000038                     
+   175                           ;newmain.c: 101:     T1CONbits.TMR1ON=1;
+   176  000038  80CD               	bsf	205,0,c	;volatile
+   177  00003A                     
+   178                           ;newmain.c: 102:     PEIE=1;
+   179  00003A  8CF2               	bsf	4082,6,c	;volatile
+   180  00003C                     
+   181                           ;newmain.c: 103:     GIE=1;
+   182  00003C  8EF2               	bsf	4082,7,c	;volatile
+   183  00003E                     l785:
+   184                           
+   185                           ;newmain.c: 105:         tmr0();
+   186  00003E  EC4A  F000         	call	_tmr0	;wreg free
+   187  000042                     
+   188                           ;newmain.c: 106:         tmr1();
+   189  000042  EC3C  F000         	call	_tmr1	;wreg free
+   190  000046  EF1F  F000         	goto	l785
+   191  00004A  EF07  F000         	goto	start
+   192  00004E                     __end_of_main:
+   193                           	opt callstack 0
+   194                           
+   195 ;; *************** function _tmr1 *****************
+   196 ;; Defined at:
+   197 ;;		line 119 in file "newmain.c"
+   198 ;; Parameters:    Size  Location     Type
+   199 ;;		None
+   200 ;; Auto vars:     Size  Location     Type
+   201 ;;		None
+   202 ;; Return value:  Size  Location     Type
+   203 ;;                  1    wreg      void 
+   204 ;; Registers used:
+   205 ;;		wreg, status,2
+   206 ;; Tracked objects:
+   207 ;;		On entry : 0/0
+   208 ;;		On exit  : 0/0
+   209 ;;		Unchanged: 0/0
+   210 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   211 ;;      Params:         0       0       0       0       0       0       0       0       0
+   212 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   213 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   214 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   215 ;;Total ram usage:        0 bytes
+   216 ;; Hardware stack levels used:    1
+   217 ;; Hardware stack levels required when called:    2
+   218 ;; This function calls:
+   219 ;;		Nothing
+   220 ;; This function is called by:
+   221 ;;		_main
+   222 ;; This function uses a non-reentrant model
+   223 ;;
+   224                           
+   225                           	psect	text1
+   226  000078                     __ptext1:
+   227                           	opt callstack 0
+   228  000078                     _tmr1:
+   229                           	opt callstack 28
+   230  000078                     
+   231                           ;newmain.c: 121:     PIR1bits.TMR1IF=0;
+   232  000078  909E               	bcf	158,0,c	;volatile
+   233  00007A                     
+   234                           ;newmain.c: 122:     TMR1H=0xEC;
+   235  00007A  0EEC               	movlw	236
+   236  00007C  6ECF               	movwf	207,c	;volatile
+   237                           
+   238                           ;newmain.c: 123:     TMR1L=0x77;
+   239  00007E  0E77               	movlw	119
+   240  000080  6ECE               	movwf	206,c	;volatile
+   241  000082                     
+   242                           ;newmain.c: 124:     PORTDbits.RD0=0;
+   243  000082  9083               	bcf	131,0,c	;volatile
+   244  000084                     l58:
+   245  000084  A09E               	btfss	158,0,c	;volatile
+   246  000086  EF47  F000         	goto	u21
+   247  00008A  EF49  F000         	goto	u20
+   248  00008E                     u21:
+   249  00008E  EF42  F000         	goto	l58
+   250  000092                     u20:
+   251  000092  0012               	return		;funcret
+   252  000094                     __end_of_tmr1:
+   253                           	opt callstack 0
+   254                           
+   255 ;; *************** function _tmr0 *****************
+   256 ;; Defined at:
+   257 ;;		line 110 in file "newmain.c"
+   258 ;; Parameters:    Size  Location     Type
+   259 ;;		None
+   260 ;; Auto vars:     Size  Location     Type
+   261 ;;		None
+   262 ;; Return value:  Size  Location     Type
+   263 ;;                  1    wreg      void 
+   264 ;; Registers used:
+   265 ;;		wreg, status,2
+   266 ;; Tracked objects:
+   267 ;;		On entry : 0/0
+   268 ;;		On exit  : 0/0
+   269 ;;		Unchanged: 0/0
+   270 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   271 ;;      Params:         0       0       0       0       0       0       0       0       0
+   272 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   273 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   274 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   275 ;;Total ram usage:        0 bytes
+   276 ;; Hardware stack levels used:    1
+   277 ;; Hardware stack levels required when called:    2
+   278 ;; This function calls:
+   279 ;;		Nothing
+   280 ;; This function is called by:
+   281 ;;		_main
+   282 ;; This function uses a non-reentrant model
+   283 ;;
+   284                           
+   285                           	psect	text2
+   286  000094                     __ptext2:
+   287                           	opt callstack 0
+   288  000094                     _tmr0:
+   289                           	opt callstack 28
+   290  000094                     
+   291                           ;newmain.c: 112:     INTCONbits.TMR0IF=0;
+   292  000094  94F2               	bcf	242,2,c	;volatile
+   293  000096                     
+   294                           ;newmain.c: 113:     TMR0H=0xFC;
+   295  000096  0EFC               	movlw	252
+   296  000098  6ED7               	movwf	215,c	;volatile
+   297                           
+   298                           ;newmain.c: 114:     TMR0L=0x17;
+   299  00009A  0E17               	movlw	23
+   300  00009C  6ED6               	movwf	214,c	;volatile
+   301  00009E                     
+   302                           ;newmain.c: 115:     PORTDbits.RD0=1;
+   303  00009E  8083               	bsf	131,0,c	;volatile
+   304  0000A0                     l52:
+   305  0000A0  A4F2               	btfss	242,2,c	;volatile
+   306  0000A2  EF55  F000         	goto	u11
+   307  0000A6  EF57  F000         	goto	u10
+   308  0000AA                     u11:
+   309  0000AA  EF50  F000         	goto	l52
+   310  0000AE                     u10:
+   311  0000AE  0012               	return		;funcret
+   312  0000B0                     __end_of_tmr0:
+   313                           	opt callstack 0
+   314                           
+   315 ;; *************** function _ISR *****************
+   316 ;; Defined at:
+   317 ;;		line 81 in file "newmain.c"
+   318 ;; Parameters:    Size  Location     Type
+   319 ;;		None
+   320 ;; Auto vars:     Size  Location     Type
+   321 ;;		None
+   322 ;; Return value:  Size  Location     Type
+   323 ;;                  1    wreg      void 
+   324 ;; Registers used:
+   325 ;;		wreg, status,2, cstack
+   326 ;; Tracked objects:
+   327 ;;		On entry : 0/0
+   328 ;;		On exit  : 0/0
+   329 ;;		Unchanged: 0/0
+   330 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   331 ;;      Params:         0       0       0       0       0       0       0       0       0
+   332 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   333 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   334 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   335 ;;Total ram usage:        0 bytes
+   336 ;; Hardware stack levels used:    1
+   337 ;; Hardware stack levels required when called:    1
+   338 ;; This function calls:
+   339 ;;		i2_tmr0
+   340 ;;		i2_tmr1
+   341 ;; This function is called by:
+   342 ;;		Interrupt level 2
+   343 ;; This function uses a non-reentrant model
+   344 ;;
+   345                           
+   346                           	psect	intcode
+   347  000008                     __pintcode:
+   348                           	opt callstack 0
+   349  000008                     _ISR:
+   350                           	opt callstack 28
+   351                           
+   352                           ;incstack = 0
+   353  000008  8201               	bsf	int$flags,1,c	;set compiler interrupt flag (level 2)
+   354  00000A  ED27  F000         	call	int_func,f	;refresh shadow registers
+   355                           
+   356                           	psect	intcode_body
+   357  00004E                     __pintcode_body:
+   358                           	opt callstack 28
+   359  00004E                     int_func:
+   360                           	opt callstack 28
+   361  00004E  0006               	pop		; remove dummy address from shadow register refresh
+   362  000050                     
+   363                           ;newmain.c: 82:     if(INTCONbits.TMR0IF==1)
+   364  000050  A4F2               	btfss	242,2,c	;volatile
+   365  000052  EF2D  F000         	goto	i2u5_41
+   366  000056  EF2F  F000         	goto	i2u5_40
+   367  00005A                     i2u5_41:
+   368  00005A  EF31  F000         	goto	i2l765
+   369  00005E                     i2u5_40:
+   370  00005E                     
+   371                           ;newmain.c: 83:         tmr0();
+   372  00005E  EC66  F000         	call	i2_tmr0	;wreg free
+   373  000062                     i2l765:
+   374                           
+   375                           ;newmain.c: 84:     if(PIR1bits.TMR1IF==1)
+   376  000062  A09E               	btfss	158,0,c	;volatile
+   377  000064  EF36  F000         	goto	i2u6_41
+   378  000068  EF38  F000         	goto	i2u6_40
+   379  00006C                     i2u6_41:
+   380  00006C  EF3A  F000         	goto	i2l41
+   381  000070                     i2u6_40:
+   382  000070                     
+   383                           ;newmain.c: 85:         tmr1();
+   384  000070  EC58  F000         	call	i2_tmr1	;wreg free
+   385  000074                     i2l41:
+   386  000074  9201               	bcf	int$flags,1,c	;clear compiler interrupt flag (level 2)
+   387  000076  0011               	retfie		f
+   388  000078                     __end_of_ISR:
+   389                           	opt callstack 0
+   390                           
+   391 ;; *************** function i2_tmr1 *****************
+   392 ;; Defined at:
+   393 ;;		line 119 in file "newmain.c"
+   394 ;; Parameters:    Size  Location     Type
+   395 ;;		None
+   396 ;; Auto vars:     Size  Location     Type
+   397 ;;		None
+   398 ;; Return value:  Size  Location     Type
+   399 ;;                  1    wreg      void 
+   400 ;; Registers used:
+   401 ;;		wreg, status,2
+   402 ;; Tracked objects:
+   403 ;;		On entry : 0/0
+   404 ;;		On exit  : 0/0
+   405 ;;		Unchanged: 0/0
+   406 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   407 ;;      Params:         0       0       0       0       0       0       0       0       0
+   408 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   409 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   410 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   411 ;;Total ram usage:        0 bytes
+   412 ;; Hardware stack levels used:    1
+   413 ;; This function calls:
+   414 ;;		Nothing
+   415 ;; This function is called by:
+   416 ;;		_ISR
+   417 ;; This function uses a non-reentrant model
+   418 ;;
+   419                           
+   420                           	psect	text4
+   421  0000B0                     __ptext4:
+   422                           	opt callstack 0
+   423  0000B0                     i2_tmr1:
+   424                           	opt callstack 28
+   425  0000B0                     
+   426                           ;newmain.c: 121:     PIR1bits.TMR1IF=0;
+   427  0000B0  909E               	bcf	158,0,c	;volatile
+   428  0000B2                     
+   429                           ;newmain.c: 122:     TMR1H=0xEC;
+   430  0000B2  0EEC               	movlw	236
+   431  0000B4  6ECF               	movwf	207,c	;volatile
+   432                           
+   433                           ;newmain.c: 123:     TMR1L=0x77;
+   434  0000B6  0E77               	movlw	119
+   435  0000B8  6ECE               	movwf	206,c	;volatile
+   436  0000BA                     
+   437                           ;newmain.c: 124:     PORTDbits.RD0=0;
+   438  0000BA  9083               	bcf	131,0,c	;volatile
+   439  0000BC                     i2l58:
+   440  0000BC  A09E               	btfss	158,0,c	;volatile
+   441  0000BE  EF63  F000         	goto	i2u4_41
+   442  0000C2  EF65  F000         	goto	i2u4_40
+   443  0000C6                     i2u4_41:
+   444  0000C6  EF5E  F000         	goto	i2l58
+   445  0000CA                     i2u4_40:
+   446  0000CA  0012               	return		;funcret
+   447  0000CC                     __end_ofi2_tmr1:
+   448                           	opt callstack 0
+   449                           
+   450 ;; *************** function i2_tmr0 *****************
+   451 ;; Defined at:
+   452 ;;		line 110 in file "newmain.c"
+   453 ;; Parameters:    Size  Location     Type
+   454 ;;		None
+   455 ;; Auto vars:     Size  Location     Type
+   456 ;;		None
+   457 ;; Return value:  Size  Location     Type
+   458 ;;                  1    wreg      void 
+   459 ;; Registers used:
+   460 ;;		wreg, status,2
+   461 ;; Tracked objects:
+   462 ;;		On entry : 0/0
+   463 ;;		On exit  : 0/0
+   464 ;;		Unchanged: 0/0
+   465 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   466 ;;      Params:         0       0       0       0       0       0       0       0       0
+   467 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   468 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   469 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   470 ;;Total ram usage:        0 bytes
+   471 ;; Hardware stack levels used:    1
+   472 ;; This function calls:
+   473 ;;		Nothing
+   474 ;; This function is called by:
+   475 ;;		_ISR
+   476 ;; This function uses a non-reentrant model
+   477 ;;
+   478                           
+   479                           	psect	text5
+   480  0000CC                     __ptext5:
+   481                           	opt callstack 0
+   482  0000CC                     i2_tmr0:
+   483                           	opt callstack 28
+   484  0000CC                     
+   485                           ;newmain.c: 112:     INTCONbits.TMR0IF=0;
+   486  0000CC  94F2               	bcf	242,2,c	;volatile
+   487  0000CE                     
+   488                           ;newmain.c: 113:     TMR0H=0xFC;
+   489  0000CE  0EFC               	movlw	252
+   490  0000D0  6ED7               	movwf	215,c	;volatile
+   491                           
+   492                           ;newmain.c: 114:     TMR0L=0x17;
+   493  0000D2  0E17               	movlw	23
+   494  0000D4  6ED6               	movwf	214,c	;volatile
+   495  0000D6                     
+   496                           ;newmain.c: 115:     PORTDbits.RD0=1;
+   497  0000D6  8083               	bsf	131,0,c	;volatile
+   498  0000D8                     i2l52:
+   499  0000D8  A4F2               	btfss	242,2,c	;volatile
+   500  0000DA  EF71  F000         	goto	i2u3_41
+   501  0000DE  EF73  F000         	goto	i2u3_40
+   502  0000E2                     i2u3_41:
+   503  0000E2  EF6C  F000         	goto	i2l52
+   504  0000E6                     i2u3_40:
+   505  0000E6  0012               	return		;funcret
+   506  0000E8                     __end_ofi2_tmr0:
+   507                           	opt callstack 0
+   508  0000                     
+   509                           	psect	rparam
+   510  0000                     
+   511                           	psect	temp
+   512  000001                     btemp:
+   513                           	opt callstack 0
+   514  000001                     	ds	1
+   515  0000                     int$flags	set	btemp
+   516  0000                     wtemp8	set	btemp+1
+   517  0000                     ttemp5	set	btemp+1
+   518  0000                     ttemp6	set	btemp+4
+   519  0000                     ttemp7	set	btemp+8
+   520                           tosu	equ	0xFFF
+   521                           tosh	equ	0xFFE
+   522                           tosl	equ	0xFFD
+   523                           stkptr	equ	0xFFC
+   524                           pclatu	equ	0xFFB
+   525                           pclath	equ	0xFFA
+   526                           pcl	equ	0xFF9
+   527                           tblptru	equ	0xFF8
+   528                           tblptrh	equ	0xFF7
+   529                           tblptrl	equ	0xFF6
+   530                           tablat	equ	0xFF5
+   531                           prodh	equ	0xFF4
+   532                           prodl	equ	0xFF3
+   533                           indf0	equ	0xFEF
+   534                           postinc0	equ	0xFEE
+   535                           postdec0	equ	0xFED
+   536                           preinc0	equ	0xFEC
+   537                           plusw0	equ	0xFEB
+   538                           fsr0h	equ	0xFEA
+   539                           fsr0l	equ	0xFE9
+   540                           wreg	equ	0xFE8
+   541                           indf1	equ	0xFE7
+   542                           postinc1	equ	0xFE6
+   543                           postdec1	equ	0xFE5
+   544                           preinc1	equ	0xFE4
+   545                           plusw1	equ	0xFE3
+   546                           fsr1h	equ	0xFE2
+   547                           fsr1l	equ	0xFE1
+   548                           bsr	equ	0xFE0
+   549                           indf2	equ	0xFDF
+   550                           postinc2	equ	0xFDE
+   551                           postdec2	equ	0xFDD
+   552                           preinc2	equ	0xFDC
+   553                           plusw2	equ	0xFDB
+   554                           fsr2h	equ	0xFDA
+   555                           fsr2l	equ	0xFD9
+   556                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           94      0       0
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    None.
+
+Critical Paths under _ISR in COMRAM
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _ISR in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _ISR in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _ISR in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _ISR in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0       0
+                               _tmr0
+                               _tmr1
+ ---------------------------------------------------------------------------------
+ (1) _tmr1                                                 0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _tmr0                                                 0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _ISR                                                  0     0      0       0
+                             i2_tmr0
+                             i2_tmr1
+ ---------------------------------------------------------------------------------
+ (3) i2_tmr1                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (3) i2_tmr0                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _tmr0
+   _tmr1
+
+ _ISR (ROOT)
+   i2_tmr0
+   i2_tmr1
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5E      0       0       1        0.0%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+ABS                  0      0       0      20        0.0%
+BIGRAM             7FF      0       0      21        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.10 build 88905656 
+Symbol Table                                                                                   Thu Jun 18 21:07:53 2020
+
+                     l52 00A0                       l61 0092                       l55 00AE  
+                     l58 0084                       u10 00AE                       u11 00AA  
+                     u20 0092                       u21 008E              __CFG_BORV$3 000000  
+           __CFG_CP0$OFF 000000             __CFG_CP1$OFF 000000             __CFG_CP2$OFF 000000  
+           __CFG_CP3$OFF 000000              __CFG_LVP$ON 000000                      l741 009E  
+                    l743 0078                      l737 0094                      l745 007A  
+                    l739 0096                      l747 0082                      l771 001A  
+                    l781 003A                      l773 0032                      l783 003C  
+                    l775 0034                      l785 003E                      l777 0036  
+                    l769 0012                      l787 0042                      l779 0038  
+                    _GIE 007F97             __CFG_CPB$OFF 000000             __CFG_CPD$OFF 000000  
+                    _ISR 0008             __CFG_BOR$OFF 000000             __CFG_FOSC$HS 000000  
+                   ?_ISR 0000             __CFG_WDT$OFF 000000                     _PEIE 007F96  
+                   i2l41 0074                     i2l52 00D8                     i2l61 00CA  
+                   i2l55 00E6                     i2l58 00BC                     _main 0012  
+                   _tmr0 0094                     _tmr1 0078                     btemp 0001  
+                   start 000E            __CFG_IESO$OFF 000000            __CFG_MCLRE$ON 000000  
+           ___param_bank 000000                    ??_ISR 0000            __CFG_PLLDIV$1 000000  
+         __CFG_CCP2MX$ON 000000                    ?_main 0000                    ?_tmr0 0000  
+                  ?_tmr1 0000                    _T0CON 000FD5                    _T1CON 000FCD  
+                  i2l751 00CE                    i2l753 00D6                    i2l761 0050  
+                  i2l755 00B0                    i2l763 005E                    i2l749 00CC  
+                  i2l757 00B2                    i2l765 0062                    i2l759 00BA  
+                  i2l767 0070                    _TMR0H 000FD7                    _TMR1H 000FCF  
+                  _TMR0L 000FD6                    _TMR1L 000FCE            __CFG_USBDIV$1 000000  
+          __CFG_PWRT$OFF 000000            __CFG_WRT0$OFF 000000            __CFG_WRT1$OFF 000000  
+          __CFG_WRT2$OFF 000000            __CFG_WRT3$OFF 000000           __CFG_EBTR0$OFF 000000  
+         __CFG_FCMEN$OFF 000000           __CFG_EBTR1$OFF 000000           __CFG_EBTR2$OFF 000000  
+         __CFG_EBTR3$OFF 000000            __CFG_WRTB$OFF 000000            __CFG_WRTC$OFF 000000  
+          __CFG_WRTD$OFF 000000           __CFG_EBTRB$OFF 000000                    ttemp5 0002  
+                  ttemp6 0005                    ttemp7 0009                    wtemp8 0002  
+         __CFG_ICPRT$OFF 000000           __CFG_PBADEN$ON 000000          __initialization 00E8  
+           __end_of_main 004E             __end_of_tmr0 00B0             __end_of_tmr1 0094  
+                 ??_main 0000                   ??_tmr0 0000                   ??_tmr1 0000  
+          __activetblptr 000000                   i2u3_40 00E6                   i2u3_41 00E2  
+                 i2u4_40 00CA                   i2u4_41 00C6                   i2u5_40 005E  
+                 i2u5_41 005A                   i2u6_40 0070                   i2u6_41 006C  
+                 i2_tmr0 00CC                   i2_tmr1 00B0           __CFG_XINST$OFF 000000  
+         __CFG_STVREN$ON 000000               __accesstop 0060  __end_of__initialization 00E8  
+          ___rparam_used 000001           __pcstackCOMRAM 0000                  ?i2_tmr0 0000  
+                ?i2_tmr1 0000          __CFG_VREGEN$OFF 000000          __size_ofi2_tmr0 001C  
+        __size_ofi2_tmr1 001C                  __Hparam 0000                  __Lparam 0000  
+                __pcinit 00E8                  __ramtop 0800                  __ptext0 0012  
+                __ptext1 0078                  __ptext2 0094                  __ptext4 00B0  
+                __ptext5 00CC                _T0CONbits 000FD5             __size_of_ISR 0070  
+              _T1CONbits 000FCD           __pintcode_body 004E     end_of_initialization 00E8  
+                int_func 004E                _PORTDbits 000F83                _TRISDbits 000F95  
+         __end_ofi2_tmr0 00E8           __end_ofi2_tmr1 00CC      start_initialization 00E8  
+            __end_of_ISR 0078                 ??i2_tmr0 0000                 ??i2_tmr1 0000  
+       __CFG_LPT1OSC$OFF 000000                __pintcode 0008                 _PIE1bits 000F9D  
+               _PIR1bits 000F9E         __CFG_WDTPS$32768 000000                 __Hrparam 0000  
+               __Lrparam 0000            __size_of_main 003C            __size_of_tmr0 001C  
+          __size_of_tmr1 001C                 int$flags 0001    __CFG_CPUDIV$OSC1_PLL2 000000  
+             _INTCONbits 000FF2                 intlevel2 0000  

@@ -1,0 +1,2422 @@
+
+
+Microchip MPLAB XC8 Assembler V2.10 build 88905656 
+                                                                                               Fri Sep 04 14:16:44 2020
+
+Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og1 
+     1                           	processor	18F4550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	flic
+     5                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1,noexec
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     8                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text10,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text11,global,reloc=2,class=CODE,delta=1
+    20                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    21                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    22  0000                     
+    23                           ; Version 2.10
+    24                           ; Generated 31/07/2019 GMT
+    25                           ; 
+    26                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    27                           ; All rights reserved.
+    28                           ; 
+    29                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    30                           ; 
+    31                           ; Redistribution and use in source and binary forms, with or without modification, are
+    32                           ; permitted provided that the following conditions are met:
+    33                           ; 
+    34                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    35                           ;        conditions and the following disclaimer.
+    36                           ; 
+    37                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    38                           ;        of conditions and the following disclaimer in the documentation and/or other
+    39                           ;        materials provided with the distribution.
+    40                           ; 
+    41                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    42                           ;        software without specific prior written permission.
+    43                           ; 
+    44                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    45                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    46                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    47                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    48                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    49                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    50                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    51                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    52                           ; 
+    53                           ; 
+    54                           ; Code-generator required, PIC18F4550 Definitions
+    55                           ; 
+    56                           ; SFR Addresses
+    57  0000                     _PORTD	set	3971
+    58  0000                     _TRISD	set	3989
+    59  0000                     _TRISC	set	3988
+    60  0000                     _TRISB	set	3987
+    61  0000                     _RCREG	set	4014
+    62  0000                     _PIR1bits	set	3998
+    63  0000                     _SPBRG	set	4015
+    64  0000                     _RC2	set	31762
+    65  0000                     _RC1	set	31761
+    66  0000                     _RD7	set	31775
+    67  0000                     _RD6	set	31774
+    68  0000                     _RD5	set	31773
+    69  0000                     _RD4	set	31772
+    70  0000                     _RD3	set	31771
+    71  0000                     _RD2	set	31770
+    72  0000                     _RD1	set	31769
+    73  0000                     _RD0	set	31768
+    74  0000                     _OERR	set	32089
+    75  0000                     _RX9	set	32094
+    76  0000                     _TX9	set	32102
+    77  0000                     _CREN	set	32092
+    78  0000                     _SPEN	set	32095
+    79  0000                     _SYNC	set	32100
+    80  0000                     _BRGH	set	32098
+    81  0000                     _TRISC7	set	31911
+    82  0000                     _TRISC6	set	31910
+    83  0000                     _RB1	set	31753
+    84  0000                     _RB0	set	31752
+    85  0000                     _RB5	set	31757
+    86  0000                     _RB4	set	31756
+    87  0000                     _RB3	set	31755
+    88  0000                     _RB2	set	31754
+    89                           
+    90                           	psect	smallconst
+    91  000800                     __psmallconst:
+    92                           	opt callstack 0
+    93  000800  00                 	db	0
+    94  000801                     STR_12:
+    95  000801  4C                 	db	76	;'L'
+    96  000802  36                 	db	54	;'6'
+    97  000803  20                 	db	32
+    98  000804  4C                 	db	76	;'L'
+    99  000805  37                 	db	55	;'7'
+   100  000806  20                 	db	32
+   101  000807  4C                 	db	76	;'L'
+   102  000808  38                 	db	56	;'8'
+   103  000809  20                 	db	32
+   104  00080A  4C                 	db	76	;'L'
+   105  00080B  39                 	db	57	;'9'
+   106  00080C  20                 	db	32
+   107  00080D  4C                 	db	76	;'L'
+   108  00080E  31                 	db	49	;'1'
+   109  00080F  30                 	db	48	;'0'
+   110  000810  00                 	db	0
+   111  000811                     STR_23:
+   112  000811  48                 	db	72	;'H'
+   113  000812  4F                 	db	79	;'O'
+   114  000813  4D                 	db	77	;'M'
+   115  000814  45                 	db	69	;'E'
+   116  000815  20                 	db	32
+   117  000816  41                 	db	65	;'A'
+   118  000817  55                 	db	85	;'U'
+   119  000818  54                 	db	84	;'T'
+   120  000819  4F                 	db	79	;'O'
+   121  00081A  4D                 	db	77	;'M'
+   122  00081B  41                 	db	65	;'A'
+   123  00081C  54                 	db	84	;'T'
+   124  00081D  49                 	db	73	;'I'
+   125  00081E  4F                 	db	79	;'O'
+   126  00081F  4E                 	db	78	;'N'
+   127  000820  00                 	db	0
+   128  000821                     STR_1:
+   129  000821  4C                 	db	76	;'L'
+   130  000822  31                 	db	49	;'1'
+   131  000823  20                 	db	32
+   132  000824  4C                 	db	76	;'L'
+   133  000825  32                 	db	50	;'2'
+   134  000826  20                 	db	32
+   135  000827  4C                 	db	76	;'L'
+   136  000828  33                 	db	51	;'3'
+   137  000829  20                 	db	32
+   138  00082A  4C                 	db	76	;'L'
+   139  00082B  34                 	db	52	;'4'
+   140  00082C  20                 	db	32
+   141  00082D  4C                 	db	76	;'L'
+   142  00082E  35                 	db	53	;'5'
+   143  00082F  00                 	db	0
+   144  000830                     STR_3:
+   145  000830  4F                 	db	79	;'O'
+   146  000831  4E                 	db	78	;'N'
+   147  000832  20                 	db	32
+   148  000833  00                 	db	0
+   149  000834                     STR_2:
+   150  000834  4F                 	db	79	;'O'
+   151  000835  46                 	db	70	;'F'
+   152  000836  46                 	db	70	;'F'
+   153  000837  00                 	db	0
+   154  0000                     
+   155                           ; #config settings
+   156  000838  00                 	db	0	; dummy byte at the end
+   157  0000                     
+   158                           	psect	cinit
+   159  001002                     __pcinit:
+   160                           	opt callstack 0
+   161  001002                     start_initialization:
+   162                           	opt callstack 0
+   163  001002                     __initialization:
+   164                           	opt callstack 0
+   165  001002                     end_of_initialization:
+   166                           	opt callstack 0
+   167  001002                     __end_of__initialization:
+   168                           	opt callstack 0
+   169  001002  0E00               	movlw	low (__Lsmallconst shr (0+16))
+   170  001004  6EF8               	movwf	tblptru,c
+   171  001006  0E08               	movlw	high __Lsmallconst
+   172  001008  6EF7               	movwf	tblptrh,c
+   173  00100A  0100               	movlb	0
+   174  00100C  EFB6  F005         	goto	_main	;jump to C main() function
+   175                           
+   176                           	psect	cstackCOMRAM
+   177  000001                     __pcstackCOMRAM:
+   178                           	opt callstack 0
+   179  000001                     Lcd_SetBit@data_bit:
+   180                           	opt callstack 0
+   181  000001                     delay@i:
+   182                           	opt callstack 0
+   183                           
+   184                           ; 2 bytes @ 0x0
+   185  000001                     	ds	1
+   186  000002                     ??_Lcd_Cmd:
+   187  000002                     Lcd_Print_Char@Lower_Nibble:
+   188                           	opt callstack 0
+   189                           
+   190                           ; 1 bytes @ 0x1
+   191  000002                     	ds	1
+   192  000003                     Lcd_Cmd@a:
+   193                           	opt callstack 0
+   194  000003                     Lcd_Print_Char@Upper_Nibble:
+   195                           	opt callstack 0
+   196  000003                     delay@z:
+   197                           	opt callstack 0
+   198                           
+   199                           ; 2 bytes @ 0x2
+   200  000003                     	ds	1
+   201  000004                     ??_Lcd_Start:
+   202  000004                     Lcd_Set_Cursor@b:
+   203                           	opt callstack 0
+   204  000004                     Lcd_Print_Char@i:
+   205                           	opt callstack 0
+   206                           
+   207                           ; 2 bytes @ 0x3
+   208  000004                     	ds	1
+   209  000005                     Lcd_Set_Cursor@a:
+   210                           	opt callstack 0
+   211                           
+   212                           ; 1 bytes @ 0x4
+   213  000005                     	ds	1
+   214  000006                     Lcd_Set_Cursor@z:
+   215                           	opt callstack 0
+   216  000006                     Lcd_Print_Char@i_115:
+   217                           	opt callstack 0
+   218                           
+   219                           ; 2 bytes @ 0x5
+   220  000006                     	ds	1
+   221  000007                     Lcd_Set_Cursor@y:
+   222                           	opt callstack 0
+   223                           
+   224                           ; 1 bytes @ 0x6
+   225  000007                     	ds	1
+   226  000008                     Lcd_Set_Cursor@temp:
+   227                           	opt callstack 0
+   228  000008                     Lcd_Print_Char@data:
+   229                           	opt callstack 0
+   230                           
+   231                           ; 1 bytes @ 0x7
+   232  000008                     	ds	1
+   233  000009                     Lcd_Print_String@a:
+   234                           	opt callstack 0
+   235                           
+   236                           ; 2 bytes @ 0x8
+   237  000009                     	ds	2
+   238  00000B                     ??_Lcd_Print_String:
+   239                           
+   240                           ; 1 bytes @ 0xA
+   241  00000B                     	ds	2
+   242  00000D                     Lcd_Print_String@i:
+   243                           	opt callstack 0
+   244                           
+   245                           ; 2 bytes @ 0xC
+   246  00000D                     	ds	2
+   247  00000F                     ??_main:
+   248                           
+   249                           ; 1 bytes @ 0xE
+   250  00000F                     	ds	1
+   251  000010                     main@get_value:
+   252                           	opt callstack 0
+   253                           
+   254                           ; 2 bytes @ 0xF
+   255  000010                     	ds	2
+   256                           
+   257 ;;
+   258 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   259 ;;
+   260 ;; *************** function _main *****************
+   261 ;; Defined at:
+   262 ;;		line 216 in file "home_automation_4550.c"
+   263 ;; Parameters:    Size  Location     Type
+   264 ;;		None
+   265 ;; Auto vars:     Size  Location     Type
+   266 ;;  get_value       2   15[COMRAM] int 
+   267 ;;  a               2    0        unsigned int 
+   268 ;; Return value:  Size  Location     Type
+   269 ;;                  2  159[None  ] int 
+   270 ;; Registers used:
+   271 ;;		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+   272 ;; Tracked objects:
+   273 ;;		On entry : 0/0
+   274 ;;		On exit  : 0/0
+   275 ;;		Unchanged: 0/0
+   276 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   277 ;;      Params:         0       0       0       0       0       0       0       0       0
+   278 ;;      Locals:         2       0       0       0       0       0       0       0       0
+   279 ;;      Temps:          1       0       0       0       0       0       0       0       0
+   280 ;;      Totals:         3       0       0       0       0       0       0       0       0
+   281 ;;Total ram usage:        3 bytes
+   282 ;; Hardware stack levels required when called:    4
+   283 ;; This function calls:
+   284 ;;		_Initialize_UART
+   285 ;;		_Lcd_Clear
+   286 ;;		_Lcd_Print_String
+   287 ;;		_Lcd_Set_Cursor
+   288 ;;		_Lcd_Start
+   289 ;;		_UART_get_char
+   290 ;;		_lcdhome
+   291 ;; This function is called by:
+   292 ;;		Startup code after reset
+   293 ;; This function uses a non-reentrant model
+   294 ;;
+   295                           
+   296                           	psect	text0
+   297  000B6C                     __ptext0:
+   298                           	opt callstack 0
+   299  000B6C                     _main:
+   300                           	opt callstack 27
+   301  000B6C                     
+   302                           ;home_automation_4550.c: 218: unsigned int a;TRISB = 0x00;
+   303  000B6C  0E00               	movlw	0
+   304  000B6E  6E93               	movwf	147,c	;volatile
+   305                           
+   306                           ;home_automation_4550.c: 219: TRISC=0x00;
+   307  000B70  0E00               	movlw	0
+   308  000B72  6E94               	movwf	148,c	;volatile
+   309  000B74                     
+   310                           ;home_automation_4550.c: 220: RC1=0;
+   311  000B74  9282               	bcf	3970,1,c	;volatile
+   312  000B76                     
+   313                           ;home_automation_4550.c: 221: RC2=0;
+   314  000B76  9482               	bcf	3970,2,c	;volatile
+   315  000B78                     
+   316                           ;home_automation_4550.c: 222: Lcd_Start();
+   317  000B78  EC20  F007         	call	_Lcd_Start	;wreg free
+   318  000B7C                     
+   319                           ;home_automation_4550.c: 223: Lcd_Clear();
+   320  000B7C  EC08  F008         	call	_Lcd_Clear	;wreg free
+   321  000B80                     
+   322                           ;home_automation_4550.c: 224: Lcd_Set_Cursor(1,1);
+   323  000B80  0E01               	movlw	1
+   324  000B82  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   325  000B84  0E01               	movlw	1
+   326  000B86  ECED  F006         	call	_Lcd_Set_Cursor
+   327  000B8A                     
+   328                           ;home_automation_4550.c: 225: Lcd_Print_String("HOME AUTOMATION");
+   329  000B8A  0E11               	movlw	low STR_23
+   330  000B8C  6E09               	movwf	Lcd_Print_String@a^0,c
+   331  000B8E  0E08               	movlw	high STR_23
+   332  000B90  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   333  000B92  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   334  000B96                     
+   335                           ;home_automation_4550.c: 226: int get_value;;home_automation_4550.c: 227: TRISD=0x00;
+   336  000B96  0E00               	movlw	0
+   337  000B98  6E95               	movwf	149,c	;volatile
+   338  000B9A                     
+   339                           ;home_automation_4550.c: 228: PORTD=0x00;
+   340  000B9A  0E00               	movlw	0
+   341  000B9C  6E83               	movwf	131,c	;volatile
+   342  000B9E                     
+   343                           ;home_automation_4550.c: 229: Initialize_UART();
+   344  000B9E  ECF6  F007         	call	_Initialize_UART	;wreg free
+   345  000BA2                     l1382:
+   346                           
+   347                           ;home_automation_4550.c: 231: {;home_automation_4550.c: 232: lcdhome();
+   348  000BA2  EC1D  F004         	call	_lcdhome	;wreg free
+   349  000BA6                     
+   350                           ;home_automation_4550.c: 233: get_value= UART_get_char();
+   351  000BA6  ECD4  F007         	call	_UART_get_char	;wreg free
+   352  000BAA  6E0F               	movwf	??_main^0,c
+   353  000BAC  500F               	movf	??_main^0,w,c
+   354  000BAE  6E10               	movwf	main@get_value^0,c
+   355  000BB0  6A11               	clrf	(main@get_value+1)^0,c
+   356  000BB2                     
+   357                           ;home_automation_4550.c: 237: if (get_value == '1')
+   358  000BB2  0E31               	movlw	49
+   359  000BB4  1810               	xorwf	main@get_value^0,w,c
+   360  000BB6  1011               	iorwf	(main@get_value+1)^0,w,c
+   361  000BB8  A4D8               	btfss	status,2,c
+   362  000BBA  EFE1  F005         	goto	u871
+   363  000BBE  EFE3  F005         	goto	u870
+   364  000BC2                     u871:
+   365  000BC2  EFF0  F005         	goto	l1392
+   366  000BC6                     u870:
+   367  000BC6                     
+   368                           ;home_automation_4550.c: 238: {RD0=!RD0;
+   369  000BC6  A083               	btfss	3971,0,c	;volatile
+   370  000BC8  EFE8  F005         	goto	u881
+   371  000BCC  EFEB  F005         	goto	u880
+   372  000BD0                     u881:
+   373  000BD0  8083               	bsf	3971,0,c	;volatile
+   374  000BD2  EFEC  F005         	goto	u895
+   375  000BD6                     u880:
+   376  000BD6  9083               	bcf	3971,0,c	;volatile
+   377  000BD8                     u895:
+   378  000BD8                     l1390:
+   379                           
+   380                           ;home_automation_4550.c: 239: lcdhome();
+   381  000BD8  EC1D  F004         	call	_lcdhome	;wreg free
+   382                           
+   383                           ;home_automation_4550.c: 240: }
+   384  000BDC  EFD1  F005         	goto	l1382
+   385  000BE0                     l1392:
+   386  000BE0  0E32               	movlw	50
+   387  000BE2  1810               	xorwf	main@get_value^0,w,c
+   388  000BE4  1011               	iorwf	(main@get_value+1)^0,w,c
+   389  000BE6  A4D8               	btfss	status,2,c
+   390  000BE8  EFF8  F005         	goto	u901
+   391  000BEC  EFFA  F005         	goto	u900
+   392  000BF0                     u901:
+   393  000BF0  EF05  F006         	goto	l1398
+   394  000BF4                     u900:
+   395  000BF4                     
+   396                           ;home_automation_4550.c: 242: {;home_automation_4550.c: 243: RD1=!RD1;
+   397  000BF4  A283               	btfss	3971,1,c	;volatile
+   398  000BF6  EFFF  F005         	goto	u911
+   399  000BFA  EF02  F006         	goto	u910
+   400  000BFE                     u911:
+   401  000BFE  8283               	bsf	3971,1,c	;volatile
+   402  000C00  EF03  F006         	goto	u925
+   403  000C04                     u910:
+   404  000C04  9283               	bcf	3971,1,c	;volatile
+   405  000C06                     u925:
+   406  000C06  EFEC  F005         	goto	l1390
+   407  000C0A                     l1398:
+   408  000C0A  0E33               	movlw	51
+   409  000C0C  1810               	xorwf	main@get_value^0,w,c
+   410  000C0E  1011               	iorwf	(main@get_value+1)^0,w,c
+   411  000C10  A4D8               	btfss	status,2,c
+   412  000C12  EF0D  F006         	goto	u931
+   413  000C16  EF0F  F006         	goto	u930
+   414  000C1A                     u931:
+   415  000C1A  EF1A  F006         	goto	l1404
+   416  000C1E                     u930:
+   417  000C1E                     
+   418                           ;home_automation_4550.c: 247: {;home_automation_4550.c: 248: RD2=!RD2;
+   419  000C1E  A483               	btfss	3971,2,c	;volatile
+   420  000C20  EF14  F006         	goto	u941
+   421  000C24  EF17  F006         	goto	u940
+   422  000C28                     u941:
+   423  000C28  8483               	bsf	3971,2,c	;volatile
+   424  000C2A  EF18  F006         	goto	u955
+   425  000C2E                     u940:
+   426  000C2E  9483               	bcf	3971,2,c	;volatile
+   427  000C30                     u955:
+   428  000C30  EFEC  F005         	goto	l1390
+   429  000C34                     l1404:
+   430  000C34  0E34               	movlw	52
+   431  000C36  1810               	xorwf	main@get_value^0,w,c
+   432  000C38  1011               	iorwf	(main@get_value+1)^0,w,c
+   433  000C3A  A4D8               	btfss	status,2,c
+   434  000C3C  EF22  F006         	goto	u961
+   435  000C40  EF24  F006         	goto	u960
+   436  000C44                     u961:
+   437  000C44  EF2F  F006         	goto	l1410
+   438  000C48                     u960:
+   439  000C48                     
+   440                           ;home_automation_4550.c: 252: {;home_automation_4550.c: 253: RD3=!RD3;
+   441  000C48  A683               	btfss	3971,3,c	;volatile
+   442  000C4A  EF29  F006         	goto	u971
+   443  000C4E  EF2C  F006         	goto	u970
+   444  000C52                     u971:
+   445  000C52  8683               	bsf	3971,3,c	;volatile
+   446  000C54  EF2D  F006         	goto	u985
+   447  000C58                     u970:
+   448  000C58  9683               	bcf	3971,3,c	;volatile
+   449  000C5A                     u985:
+   450  000C5A  EFEC  F005         	goto	l1390
+   451  000C5E                     l1410:
+   452  000C5E  0E35               	movlw	53
+   453  000C60  1810               	xorwf	main@get_value^0,w,c
+   454  000C62  1011               	iorwf	(main@get_value+1)^0,w,c
+   455  000C64  A4D8               	btfss	status,2,c
+   456  000C66  EF37  F006         	goto	u991
+   457  000C6A  EF39  F006         	goto	u990
+   458  000C6E                     u991:
+   459  000C6E  EF44  F006         	goto	l1416
+   460  000C72                     u990:
+   461  000C72                     
+   462                           ;home_automation_4550.c: 257: {;home_automation_4550.c: 258: RD4=!RD4;
+   463  000C72  A883               	btfss	3971,4,c	;volatile
+   464  000C74  EF3E  F006         	goto	u1001
+   465  000C78  EF41  F006         	goto	u1000
+   466  000C7C                     u1001:
+   467  000C7C  8883               	bsf	3971,4,c	;volatile
+   468  000C7E  EF42  F006         	goto	u1015
+   469  000C82                     u1000:
+   470  000C82  9883               	bcf	3971,4,c	;volatile
+   471  000C84                     u1015:
+   472  000C84  EFEC  F005         	goto	l1390
+   473  000C88                     l1416:
+   474  000C88  0E36               	movlw	54
+   475  000C8A  1810               	xorwf	main@get_value^0,w,c
+   476  000C8C  1011               	iorwf	(main@get_value+1)^0,w,c
+   477  000C8E  A4D8               	btfss	status,2,c
+   478  000C90  EF4C  F006         	goto	u1021
+   479  000C94  EF4E  F006         	goto	u1020
+   480  000C98                     u1021:
+   481  000C98  EF59  F006         	goto	l1422
+   482  000C9C                     u1020:
+   483  000C9C                     
+   484                           ;home_automation_4550.c: 262: {;home_automation_4550.c: 263: RD5=!RD5;
+   485  000C9C  AA83               	btfss	3971,5,c	;volatile
+   486  000C9E  EF53  F006         	goto	u1031
+   487  000CA2  EF56  F006         	goto	u1030
+   488  000CA6                     u1031:
+   489  000CA6  8A83               	bsf	3971,5,c	;volatile
+   490  000CA8  EF57  F006         	goto	u1045
+   491  000CAC                     u1030:
+   492  000CAC  9A83               	bcf	3971,5,c	;volatile
+   493  000CAE                     u1045:
+   494  000CAE  EFEC  F005         	goto	l1390
+   495  000CB2                     l1422:
+   496  000CB2  0E37               	movlw	55
+   497  000CB4  1810               	xorwf	main@get_value^0,w,c
+   498  000CB6  1011               	iorwf	(main@get_value+1)^0,w,c
+   499  000CB8  A4D8               	btfss	status,2,c
+   500  000CBA  EF61  F006         	goto	u1051
+   501  000CBE  EF63  F006         	goto	u1050
+   502  000CC2                     u1051:
+   503  000CC2  EF6E  F006         	goto	l1428
+   504  000CC6                     u1050:
+   505  000CC6                     
+   506                           ;home_automation_4550.c: 266: {;home_automation_4550.c: 267: RD6=!RD6;
+   507  000CC6  AC83               	btfss	3971,6,c	;volatile
+   508  000CC8  EF68  F006         	goto	u1061
+   509  000CCC  EF6B  F006         	goto	u1060
+   510  000CD0                     u1061:
+   511  000CD0  8C83               	bsf	3971,6,c	;volatile
+   512  000CD2  EF6C  F006         	goto	u1075
+   513  000CD6                     u1060:
+   514  000CD6  9C83               	bcf	3971,6,c	;volatile
+   515  000CD8                     u1075:
+   516  000CD8  EFEC  F005         	goto	l1390
+   517  000CDC                     l1428:
+   518  000CDC  0E38               	movlw	56
+   519  000CDE  1810               	xorwf	main@get_value^0,w,c
+   520  000CE0  1011               	iorwf	(main@get_value+1)^0,w,c
+   521  000CE2  A4D8               	btfss	status,2,c
+   522  000CE4  EF76  F006         	goto	u1081
+   523  000CE8  EF78  F006         	goto	u1080
+   524  000CEC                     u1081:
+   525  000CEC  EF83  F006         	goto	l1434
+   526  000CF0                     u1080:
+   527  000CF0                     
+   528                           ;home_automation_4550.c: 271: {;home_automation_4550.c: 272: RD7=!RD7;
+   529  000CF0  AE83               	btfss	3971,7,c	;volatile
+   530  000CF2  EF7D  F006         	goto	u1091
+   531  000CF6  EF80  F006         	goto	u1090
+   532  000CFA                     u1091:
+   533  000CFA  8E83               	bsf	3971,7,c	;volatile
+   534  000CFC  EF81  F006         	goto	u1105
+   535  000D00                     u1090:
+   536  000D00  9E83               	bcf	3971,7,c	;volatile
+   537  000D02                     u1105:
+   538  000D02  EFEC  F005         	goto	l1390
+   539  000D06                     l1434:
+   540  000D06  0E39               	movlw	57
+   541  000D08  1810               	xorwf	main@get_value^0,w,c
+   542  000D0A  1011               	iorwf	(main@get_value+1)^0,w,c
+   543  000D0C  A4D8               	btfss	status,2,c
+   544  000D0E  EF8B  F006         	goto	u1111
+   545  000D12  EF8D  F006         	goto	u1110
+   546  000D16                     u1111:
+   547  000D16  EF98  F006         	goto	l1440
+   548  000D1A                     u1110:
+   549  000D1A                     
+   550                           ;home_automation_4550.c: 276: {;home_automation_4550.c: 277: RC1=!RC1;
+   551  000D1A  A282               	btfss	3970,1,c	;volatile
+   552  000D1C  EF92  F006         	goto	u1121
+   553  000D20  EF95  F006         	goto	u1120
+   554  000D24                     u1121:
+   555  000D24  8282               	bsf	3970,1,c	;volatile
+   556  000D26  EF96  F006         	goto	u1135
+   557  000D2A                     u1120:
+   558  000D2A  9282               	bcf	3970,1,c	;volatile
+   559  000D2C                     u1135:
+   560  000D2C  EFEC  F005         	goto	l1390
+   561  000D30                     l1440:
+   562  000D30  0E30               	movlw	48
+   563  000D32  1810               	xorwf	main@get_value^0,w,c
+   564  000D34  1011               	iorwf	(main@get_value+1)^0,w,c
+   565  000D36  A4D8               	btfss	status,2,c
+   566  000D38  EFA0  F006         	goto	u1141
+   567  000D3C  EFA2  F006         	goto	u1140
+   568  000D40                     u1141:
+   569  000D40  EFAD  F006         	goto	l174
+   570  000D44                     u1140:
+   571  000D44                     
+   572                           ;home_automation_4550.c: 281: {;home_automation_4550.c: 282: RC2=!RC2;
+   573  000D44  A482               	btfss	3970,2,c	;volatile
+   574  000D46  EFA7  F006         	goto	u1151
+   575  000D4A  EFAA  F006         	goto	u1150
+   576  000D4E                     u1151:
+   577  000D4E  8482               	bsf	3970,2,c	;volatile
+   578  000D50  EFAB  F006         	goto	u1165
+   579  000D54                     u1150:
+   580  000D54  9482               	bcf	3970,2,c	;volatile
+   581  000D56                     u1165:
+   582  000D56  EFEC  F005         	goto	l1390
+   583  000D5A                     l174:
+   584  000D5A  EFD1  F005         	goto	l1382
+   585  000D5E  EF00  F000         	goto	start
+   586  000D62                     __end_of_main:
+   587                           	opt callstack 0
+   588                           
+   589 ;; *************** function _lcdhome *****************
+   590 ;; Defined at:
+   591 ;;		line 119 in file "home_automation_4550.c"
+   592 ;; Parameters:    Size  Location     Type
+   593 ;;		None
+   594 ;; Auto vars:     Size  Location     Type
+   595 ;;		None
+   596 ;; Return value:  Size  Location     Type
+   597 ;;                  1    wreg      void 
+   598 ;; Registers used:
+   599 ;;		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+   600 ;; Tracked objects:
+   601 ;;		On entry : 0/0
+   602 ;;		On exit  : 0/0
+   603 ;;		Unchanged: 0/0
+   604 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   605 ;;      Params:         0       0       0       0       0       0       0       0       0
+   606 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   607 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   608 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   609 ;;Total ram usage:        0 bytes
+   610 ;; Hardware stack levels used:    1
+   611 ;; Hardware stack levels required when called:    3
+   612 ;; This function calls:
+   613 ;;		_Lcd_Clear
+   614 ;;		_Lcd_Print_String
+   615 ;;		_Lcd_Set_Cursor
+   616 ;;		_delay
+   617 ;; This function is called by:
+   618 ;;		_main
+   619 ;; This function uses a non-reentrant model
+   620 ;;
+   621                           
+   622                           	psect	text1
+   623  00083A                     __ptext1:
+   624                           	opt callstack 0
+   625  00083A                     _lcdhome:
+   626                           	opt callstack 27
+   627  00083A                     
+   628                           ;home_automation_4550.c: 120: Lcd_Clear();
+   629  00083A  EC08  F008         	call	_Lcd_Clear	;wreg free
+   630  00083E                     
+   631                           ;home_automation_4550.c: 121: Lcd_Set_Cursor(1,1);
+   632  00083E  0E01               	movlw	1
+   633  000840  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   634  000842  0E01               	movlw	1
+   635  000844  ECED  F006         	call	_Lcd_Set_Cursor
+   636  000848                     
+   637                           ;home_automation_4550.c: 122: Lcd_Print_String("L1 L2 L3 L4 L5");
+   638  000848  0E21               	movlw	low STR_1
+   639  00084A  6E09               	movwf	Lcd_Print_String@a^0,c
+   640  00084C  0E08               	movlw	high STR_1
+   641  00084E  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   642  000850  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   643  000854                     
+   644                           ;home_automation_4550.c: 123: if (RD0==0){
+   645  000854  B083               	btfsc	3971,0,c	;volatile
+   646  000856  EF2F  F004         	goto	u671
+   647  00085A  EF31  F004         	goto	u670
+   648  00085E                     u671:
+   649  00085E  EF3E  F004         	goto	l125
+   650  000862                     u670:
+   651  000862                     
+   652                           ;home_automation_4550.c: 124: Lcd_Set_Cursor(2,1);
+   653  000862  0E01               	movlw	1
+   654  000864  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   655  000866  0E02               	movlw	2
+   656  000868  ECED  F006         	call	_Lcd_Set_Cursor
+   657  00086C                     
+   658                           ;home_automation_4550.c: 125: Lcd_Print_String("OFF");
+   659  00086C  0E34               	movlw	low STR_2
+   660  00086E  6E09               	movwf	Lcd_Print_String@a^0,c
+   661  000870  0E08               	movlw	high STR_2
+   662  000872  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   663  000874  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   664                           
+   665                           ;home_automation_4550.c: 126: }
+   666  000878  EF50  F004         	goto	l1262
+   667  00087C                     l125:
+   668  00087C  A083               	btfss	3971,0,c	;volatile
+   669  00087E  EF43  F004         	goto	u681
+   670  000882  EF45  F004         	goto	u680
+   671  000886                     u681:
+   672  000886  EF50  F004         	goto	l1262
+   673  00088A                     u680:
+   674  00088A                     
+   675                           ;home_automation_4550.c: 128: {;home_automation_4550.c: 129: Lcd_Set_Cursor(2,1);
+   676  00088A  0E01               	movlw	1
+   677  00088C  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   678  00088E  0E02               	movlw	2
+   679  000890  ECED  F006         	call	_Lcd_Set_Cursor
+   680  000894                     
+   681                           ;home_automation_4550.c: 130: Lcd_Print_String("ON ");
+   682  000894  0E30               	movlw	low STR_3
+   683  000896  6E09               	movwf	Lcd_Print_String@a^0,c
+   684  000898  0E08               	movlw	high STR_3
+   685  00089A  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   686  00089C  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   687  0008A0                     l1262:
+   688                           
+   689                           ;home_automation_4550.c: 132: if (RD1==0){
+   690  0008A0  B283               	btfsc	3971,1,c	;volatile
+   691  0008A2  EF55  F004         	goto	u691
+   692  0008A6  EF57  F004         	goto	u690
+   693  0008AA                     u691:
+   694  0008AA  EF64  F004         	goto	l128
+   695  0008AE                     u690:
+   696  0008AE                     
+   697                           ;home_automation_4550.c: 133: Lcd_Set_Cursor(2,4);
+   698  0008AE  0E04               	movlw	4
+   699  0008B0  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   700  0008B2  0E02               	movlw	2
+   701  0008B4  ECED  F006         	call	_Lcd_Set_Cursor
+   702  0008B8                     
+   703                           ;home_automation_4550.c: 134: Lcd_Print_String("OFF");
+   704  0008B8  0E34               	movlw	low STR_2
+   705  0008BA  6E09               	movwf	Lcd_Print_String@a^0,c
+   706  0008BC  0E08               	movlw	high STR_2
+   707  0008BE  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   708  0008C0  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   709                           
+   710                           ;home_automation_4550.c: 135: }
+   711  0008C4  EF76  F004         	goto	l1272
+   712  0008C8                     l128:
+   713  0008C8  A283               	btfss	3971,1,c	;volatile
+   714  0008CA  EF69  F004         	goto	u701
+   715  0008CE  EF6B  F004         	goto	u700
+   716  0008D2                     u701:
+   717  0008D2  EF76  F004         	goto	l1272
+   718  0008D6                     u700:
+   719  0008D6                     
+   720                           ;home_automation_4550.c: 137: {;home_automation_4550.c: 138: Lcd_Set_Cursor(2,4);
+   721  0008D6  0E04               	movlw	4
+   722  0008D8  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   723  0008DA  0E02               	movlw	2
+   724  0008DC  ECED  F006         	call	_Lcd_Set_Cursor
+   725  0008E0                     
+   726                           ;home_automation_4550.c: 139: Lcd_Print_String("ON ");
+   727  0008E0  0E30               	movlw	low STR_3
+   728  0008E2  6E09               	movwf	Lcd_Print_String@a^0,c
+   729  0008E4  0E08               	movlw	high STR_3
+   730  0008E6  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   731  0008E8  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   732  0008EC                     l1272:
+   733                           
+   734                           ;home_automation_4550.c: 141: if (RD2==0){
+   735  0008EC  B483               	btfsc	3971,2,c	;volatile
+   736  0008EE  EF7B  F004         	goto	u711
+   737  0008F2  EF7D  F004         	goto	u710
+   738  0008F6                     u711:
+   739  0008F6  EF8A  F004         	goto	l131
+   740  0008FA                     u710:
+   741  0008FA                     
+   742                           ;home_automation_4550.c: 142: Lcd_Set_Cursor(2,7);
+   743  0008FA  0E07               	movlw	7
+   744  0008FC  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   745  0008FE  0E02               	movlw	2
+   746  000900  ECED  F006         	call	_Lcd_Set_Cursor
+   747  000904                     
+   748                           ;home_automation_4550.c: 143: Lcd_Print_String("OFF");
+   749  000904  0E34               	movlw	low STR_2
+   750  000906  6E09               	movwf	Lcd_Print_String@a^0,c
+   751  000908  0E08               	movlw	high STR_2
+   752  00090A  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   753  00090C  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   754                           
+   755                           ;home_automation_4550.c: 144: }else if(RD2==1)
+   756  000910  EF9C  F004         	goto	l1282
+   757  000914                     l131:
+   758  000914  A483               	btfss	3971,2,c	;volatile
+   759  000916  EF8F  F004         	goto	u721
+   760  00091A  EF91  F004         	goto	u720
+   761  00091E                     u721:
+   762  00091E  EF9C  F004         	goto	l1282
+   763  000922                     u720:
+   764  000922                     
+   765                           ;home_automation_4550.c: 145: {;home_automation_4550.c: 146: Lcd_Set_Cursor(2,7);
+   766  000922  0E07               	movlw	7
+   767  000924  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   768  000926  0E02               	movlw	2
+   769  000928  ECED  F006         	call	_Lcd_Set_Cursor
+   770  00092C                     
+   771                           ;home_automation_4550.c: 147: Lcd_Print_String("ON ");
+   772  00092C  0E30               	movlw	low STR_3
+   773  00092E  6E09               	movwf	Lcd_Print_String@a^0,c
+   774  000930  0E08               	movlw	high STR_3
+   775  000932  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   776  000934  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   777  000938                     l1282:
+   778                           
+   779                           ;home_automation_4550.c: 149: if (RD3==0){
+   780  000938  B683               	btfsc	3971,3,c	;volatile
+   781  00093A  EFA1  F004         	goto	u731
+   782  00093E  EFA3  F004         	goto	u730
+   783  000942                     u731:
+   784  000942  EFB0  F004         	goto	l134
+   785  000946                     u730:
+   786  000946                     
+   787                           ;home_automation_4550.c: 150: Lcd_Set_Cursor(2,10);
+   788  000946  0E0A               	movlw	10
+   789  000948  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   790  00094A  0E02               	movlw	2
+   791  00094C  ECED  F006         	call	_Lcd_Set_Cursor
+   792  000950                     
+   793                           ;home_automation_4550.c: 151: Lcd_Print_String("OFF");
+   794  000950  0E34               	movlw	low STR_2
+   795  000952  6E09               	movwf	Lcd_Print_String@a^0,c
+   796  000954  0E08               	movlw	high STR_2
+   797  000956  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   798  000958  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   799                           
+   800                           ;home_automation_4550.c: 152: }
+   801  00095C  EFC2  F004         	goto	l1292
+   802  000960                     l134:
+   803  000960  A683               	btfss	3971,3,c	;volatile
+   804  000962  EFB5  F004         	goto	u741
+   805  000966  EFB7  F004         	goto	u740
+   806  00096A                     u741:
+   807  00096A  EFC2  F004         	goto	l1292
+   808  00096E                     u740:
+   809  00096E                     
+   810                           ;home_automation_4550.c: 154: {;home_automation_4550.c: 155: Lcd_Set_Cursor(2,10);
+   811  00096E  0E0A               	movlw	10
+   812  000970  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   813  000972  0E02               	movlw	2
+   814  000974  ECED  F006         	call	_Lcd_Set_Cursor
+   815  000978                     
+   816                           ;home_automation_4550.c: 156: Lcd_Print_String("ON ");
+   817  000978  0E30               	movlw	low STR_3
+   818  00097A  6E09               	movwf	Lcd_Print_String@a^0,c
+   819  00097C  0E08               	movlw	high STR_3
+   820  00097E  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   821  000980  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   822  000984                     l1292:
+   823                           
+   824                           ;home_automation_4550.c: 158: if (RD4==0){
+   825  000984  B883               	btfsc	3971,4,c	;volatile
+   826  000986  EFC7  F004         	goto	u751
+   827  00098A  EFC9  F004         	goto	u750
+   828  00098E                     u751:
+   829  00098E  EFD6  F004         	goto	l137
+   830  000992                     u750:
+   831  000992                     
+   832                           ;home_automation_4550.c: 159: Lcd_Set_Cursor(2,13);
+   833  000992  0E0D               	movlw	13
+   834  000994  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   835  000996  0E02               	movlw	2
+   836  000998  ECED  F006         	call	_Lcd_Set_Cursor
+   837  00099C                     
+   838                           ;home_automation_4550.c: 160: Lcd_Print_String("OFF");
+   839  00099C  0E34               	movlw	low STR_2
+   840  00099E  6E09               	movwf	Lcd_Print_String@a^0,c
+   841  0009A0  0E08               	movlw	high STR_2
+   842  0009A2  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   843  0009A4  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   844                           
+   845                           ;home_automation_4550.c: 161: }
+   846  0009A8  EFE8  F004         	goto	l1302
+   847  0009AC                     l137:
+   848  0009AC  A883               	btfss	3971,4,c	;volatile
+   849  0009AE  EFDB  F004         	goto	u761
+   850  0009B2  EFDD  F004         	goto	u760
+   851  0009B6                     u761:
+   852  0009B6  EFE8  F004         	goto	l1302
+   853  0009BA                     u760:
+   854  0009BA                     
+   855                           ;home_automation_4550.c: 163: {;home_automation_4550.c: 164: Lcd_Set_Cursor(2,13);
+   856  0009BA  0E0D               	movlw	13
+   857  0009BC  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   858  0009BE  0E02               	movlw	2
+   859  0009C0  ECED  F006         	call	_Lcd_Set_Cursor
+   860  0009C4                     
+   861                           ;home_automation_4550.c: 165: Lcd_Print_String("ON ");
+   862  0009C4  0E30               	movlw	low STR_3
+   863  0009C6  6E09               	movwf	Lcd_Print_String@a^0,c
+   864  0009C8  0E08               	movlw	high STR_3
+   865  0009CA  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   866  0009CC  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   867  0009D0                     l1302:
+   868                           
+   869                           ;home_automation_4550.c: 167: delay();
+   870  0009D0  ECAB  F007         	call	_delay	;wreg free
+   871  0009D4                     
+   872                           ;home_automation_4550.c: 168: Lcd_Set_Cursor(1,1);
+   873  0009D4  0E01               	movlw	1
+   874  0009D6  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   875  0009D8  0E01               	movlw	1
+   876  0009DA  ECED  F006         	call	_Lcd_Set_Cursor
+   877  0009DE                     
+   878                           ;home_automation_4550.c: 169: Lcd_Print_String("L6 L7 L8 L9 L10");if (RD5==0){
+   879  0009DE  0E01               	movlw	low STR_12
+   880  0009E0  6E09               	movwf	Lcd_Print_String@a^0,c
+   881  0009E2  0E08               	movlw	high STR_12
+   882  0009E4  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   883  0009E6  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   884  0009EA  BA83               	btfsc	3971,5,c	;volatile
+   885  0009EC  EFFA  F004         	goto	u771
+   886  0009F0  EFFC  F004         	goto	u770
+   887  0009F4                     u771:
+   888  0009F4  EF09  F005         	goto	l140
+   889  0009F8                     u770:
+   890  0009F8                     
+   891                           ;home_automation_4550.c: 170: Lcd_Set_Cursor(2,1);
+   892  0009F8  0E01               	movlw	1
+   893  0009FA  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   894  0009FC  0E02               	movlw	2
+   895  0009FE  ECED  F006         	call	_Lcd_Set_Cursor
+   896  000A02                     
+   897                           ;home_automation_4550.c: 171: Lcd_Print_String("OFF");
+   898  000A02  0E34               	movlw	low STR_2
+   899  000A04  6E09               	movwf	Lcd_Print_String@a^0,c
+   900  000A06  0E08               	movlw	high STR_2
+   901  000A08  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   902  000A0A  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   903                           
+   904                           ;home_automation_4550.c: 172: }
+   905  000A0E  EF1B  F005         	goto	l1318
+   906  000A12                     l140:
+   907  000A12  AA83               	btfss	3971,5,c	;volatile
+   908  000A14  EF0E  F005         	goto	u781
+   909  000A18  EF10  F005         	goto	u780
+   910  000A1C                     u781:
+   911  000A1C  EF1B  F005         	goto	l1318
+   912  000A20                     u780:
+   913  000A20                     
+   914                           ;home_automation_4550.c: 174: {;home_automation_4550.c: 175: Lcd_Set_Cursor(2,1);
+   915  000A20  0E01               	movlw	1
+   916  000A22  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   917  000A24  0E02               	movlw	2
+   918  000A26  ECED  F006         	call	_Lcd_Set_Cursor
+   919  000A2A                     
+   920                           ;home_automation_4550.c: 176: Lcd_Print_String("ON ");
+   921  000A2A  0E30               	movlw	low STR_3
+   922  000A2C  6E09               	movwf	Lcd_Print_String@a^0,c
+   923  000A2E  0E08               	movlw	high STR_3
+   924  000A30  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   925  000A32  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   926  000A36                     l1318:
+   927                           
+   928                           ;home_automation_4550.c: 178: if (RD6==0){
+   929  000A36  BC83               	btfsc	3971,6,c	;volatile
+   930  000A38  EF20  F005         	goto	u791
+   931  000A3C  EF22  F005         	goto	u790
+   932  000A40                     u791:
+   933  000A40  EF2F  F005         	goto	l143
+   934  000A44                     u790:
+   935  000A44                     
+   936                           ;home_automation_4550.c: 179: Lcd_Set_Cursor(2,4);
+   937  000A44  0E04               	movlw	4
+   938  000A46  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   939  000A48  0E02               	movlw	2
+   940  000A4A  ECED  F006         	call	_Lcd_Set_Cursor
+   941  000A4E                     
+   942                           ;home_automation_4550.c: 180: Lcd_Print_String("OFF");
+   943  000A4E  0E34               	movlw	low STR_2
+   944  000A50  6E09               	movwf	Lcd_Print_String@a^0,c
+   945  000A52  0E08               	movlw	high STR_2
+   946  000A54  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   947  000A56  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   948                           
+   949                           ;home_automation_4550.c: 181: }
+   950  000A5A  EF41  F005         	goto	l1328
+   951  000A5E                     l143:
+   952  000A5E  AC83               	btfss	3971,6,c	;volatile
+   953  000A60  EF34  F005         	goto	u801
+   954  000A64  EF36  F005         	goto	u800
+   955  000A68                     u801:
+   956  000A68  EF41  F005         	goto	l1328
+   957  000A6C                     u800:
+   958  000A6C                     
+   959                           ;home_automation_4550.c: 183: {;home_automation_4550.c: 184: Lcd_Set_Cursor(2,4);
+   960  000A6C  0E04               	movlw	4
+   961  000A6E  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   962  000A70  0E02               	movlw	2
+   963  000A72  ECED  F006         	call	_Lcd_Set_Cursor
+   964  000A76                     
+   965                           ;home_automation_4550.c: 185: Lcd_Print_String("ON ");
+   966  000A76  0E30               	movlw	low STR_3
+   967  000A78  6E09               	movwf	Lcd_Print_String@a^0,c
+   968  000A7A  0E08               	movlw	high STR_3
+   969  000A7C  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   970  000A7E  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   971  000A82                     l1328:
+   972                           
+   973                           ;home_automation_4550.c: 187: if (RD7==0){
+   974  000A82  BE83               	btfsc	3971,7,c	;volatile
+   975  000A84  EF46  F005         	goto	u811
+   976  000A88  EF48  F005         	goto	u810
+   977  000A8C                     u811:
+   978  000A8C  EF55  F005         	goto	l146
+   979  000A90                     u810:
+   980  000A90                     
+   981                           ;home_automation_4550.c: 188: Lcd_Set_Cursor(2,7);
+   982  000A90  0E07               	movlw	7
+   983  000A92  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+   984  000A94  0E02               	movlw	2
+   985  000A96  ECED  F006         	call	_Lcd_Set_Cursor
+   986  000A9A                     
+   987                           ;home_automation_4550.c: 189: Lcd_Print_String("OFF");
+   988  000A9A  0E34               	movlw	low STR_2
+   989  000A9C  6E09               	movwf	Lcd_Print_String@a^0,c
+   990  000A9E  0E08               	movlw	high STR_2
+   991  000AA0  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+   992  000AA2  EC80  F007         	call	_Lcd_Print_String	;wreg free
+   993                           
+   994                           ;home_automation_4550.c: 190: }
+   995  000AA6  EF67  F005         	goto	l1338
+   996  000AAA                     l146:
+   997  000AAA  AE83               	btfss	3971,7,c	;volatile
+   998  000AAC  EF5A  F005         	goto	u821
+   999  000AB0  EF5C  F005         	goto	u820
+  1000  000AB4                     u821:
+  1001  000AB4  EF67  F005         	goto	l1338
+  1002  000AB8                     u820:
+  1003  000AB8                     
+  1004                           ;home_automation_4550.c: 192: {;home_automation_4550.c: 193: Lcd_Set_Cursor(2,7);
+  1005  000AB8  0E07               	movlw	7
+  1006  000ABA  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+  1007  000ABC  0E02               	movlw	2
+  1008  000ABE  ECED  F006         	call	_Lcd_Set_Cursor
+  1009  000AC2                     
+  1010                           ;home_automation_4550.c: 194: Lcd_Print_String("ON ");}
+  1011  000AC2  0E30               	movlw	low STR_3
+  1012  000AC4  6E09               	movwf	Lcd_Print_String@a^0,c
+  1013  000AC6  0E08               	movlw	high STR_3
+  1014  000AC8  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+  1015  000ACA  EC80  F007         	call	_Lcd_Print_String	;wreg free
+  1016  000ACE                     l1338:
+  1017                           
+  1018                           ;home_automation_4550.c: 195: if (RC1==0){
+  1019  000ACE  B282               	btfsc	3970,1,c	;volatile
+  1020  000AD0  EF6C  F005         	goto	u831
+  1021  000AD4  EF6E  F005         	goto	u830
+  1022  000AD8                     u831:
+  1023  000AD8  EF7B  F005         	goto	l149
+  1024  000ADC                     u830:
+  1025  000ADC                     
+  1026                           ;home_automation_4550.c: 196: Lcd_Set_Cursor(2,10);
+  1027  000ADC  0E0A               	movlw	10
+  1028  000ADE  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+  1029  000AE0  0E02               	movlw	2
+  1030  000AE2  ECED  F006         	call	_Lcd_Set_Cursor
+  1031  000AE6                     
+  1032                           ;home_automation_4550.c: 197: Lcd_Print_String("OFF");
+  1033  000AE6  0E34               	movlw	low STR_2
+  1034  000AE8  6E09               	movwf	Lcd_Print_String@a^0,c
+  1035  000AEA  0E08               	movlw	high STR_2
+  1036  000AEC  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+  1037  000AEE  EC80  F007         	call	_Lcd_Print_String	;wreg free
+  1038                           
+  1039                           ;home_automation_4550.c: 198: }
+  1040  000AF2  EF8D  F005         	goto	l1348
+  1041  000AF6                     l149:
+  1042  000AF6  A282               	btfss	3970,1,c	;volatile
+  1043  000AF8  EF80  F005         	goto	u841
+  1044  000AFC  EF82  F005         	goto	u840
+  1045  000B00                     u841:
+  1046  000B00  EF8D  F005         	goto	l1348
+  1047  000B04                     u840:
+  1048  000B04                     
+  1049                           ;home_automation_4550.c: 200: {;home_automation_4550.c: 201: Lcd_Set_Cursor(2,10);
+  1050  000B04  0E0A               	movlw	10
+  1051  000B06  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+  1052  000B08  0E02               	movlw	2
+  1053  000B0A  ECED  F006         	call	_Lcd_Set_Cursor
+  1054  000B0E                     
+  1055                           ;home_automation_4550.c: 202: Lcd_Print_String("ON ");
+  1056  000B0E  0E30               	movlw	low STR_3
+  1057  000B10  6E09               	movwf	Lcd_Print_String@a^0,c
+  1058  000B12  0E08               	movlw	high STR_3
+  1059  000B14  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+  1060  000B16  EC80  F007         	call	_Lcd_Print_String	;wreg free
+  1061  000B1A                     l1348:
+  1062                           
+  1063                           ;home_automation_4550.c: 204: if (RC2==0){
+  1064  000B1A  B482               	btfsc	3970,2,c	;volatile
+  1065  000B1C  EF92  F005         	goto	u851
+  1066  000B20  EF94  F005         	goto	u850
+  1067  000B24                     u851:
+  1068  000B24  EFA1  F005         	goto	l152
+  1069  000B28                     u850:
+  1070  000B28                     
+  1071                           ;home_automation_4550.c: 205: Lcd_Set_Cursor(2,13);
+  1072  000B28  0E0D               	movlw	13
+  1073  000B2A  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+  1074  000B2C  0E02               	movlw	2
+  1075  000B2E  ECED  F006         	call	_Lcd_Set_Cursor
+  1076  000B32                     
+  1077                           ;home_automation_4550.c: 206: Lcd_Print_String("OFF");
+  1078  000B32  0E34               	movlw	low STR_2
+  1079  000B34  6E09               	movwf	Lcd_Print_String@a^0,c
+  1080  000B36  0E08               	movlw	high STR_2
+  1081  000B38  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+  1082  000B3A  EC80  F007         	call	_Lcd_Print_String	;wreg free
+  1083                           
+  1084                           ;home_automation_4550.c: 207: }
+  1085  000B3E  EFB3  F005         	goto	l1358
+  1086  000B42                     l152:
+  1087  000B42  A482               	btfss	3970,2,c	;volatile
+  1088  000B44  EFA6  F005         	goto	u861
+  1089  000B48  EFA8  F005         	goto	u860
+  1090  000B4C                     u861:
+  1091  000B4C  EFB3  F005         	goto	l1358
+  1092  000B50                     u860:
+  1093  000B50                     
+  1094                           ;home_automation_4550.c: 209: {;home_automation_4550.c: 210: Lcd_Set_Cursor(2,13);
+  1095  000B50  0E0D               	movlw	13
+  1096  000B52  6E04               	movwf	Lcd_Set_Cursor@b^0,c
+  1097  000B54  0E02               	movlw	2
+  1098  000B56  ECED  F006         	call	_Lcd_Set_Cursor
+  1099  000B5A                     
+  1100                           ;home_automation_4550.c: 211: Lcd_Print_String("ON ");
+  1101  000B5A  0E30               	movlw	low STR_3
+  1102  000B5C  6E09               	movwf	Lcd_Print_String@a^0,c
+  1103  000B5E  0E08               	movlw	high STR_3
+  1104  000B60  6E0A               	movwf	(Lcd_Print_String@a+1)^0,c
+  1105  000B62  EC80  F007         	call	_Lcd_Print_String	;wreg free
+  1106  000B66                     l1358:
+  1107                           
+  1108                           ;home_automation_4550.c: 213: delay();
+  1109  000B66  ECAB  F007         	call	_delay	;wreg free
+  1110  000B6A  0012               	return		;funcret
+  1111  000B6C                     __end_of_lcdhome:
+  1112                           	opt callstack 0
+  1113                           
+  1114 ;; *************** function _delay *****************
+  1115 ;; Defined at:
+  1116 ;;		line 115 in file "home_automation_4550.c"
+  1117 ;; Parameters:    Size  Location     Type
+  1118 ;;		None
+  1119 ;; Auto vars:     Size  Location     Type
+  1120 ;;  z               2    2[COMRAM] int 
+  1121 ;;  i               2    0[COMRAM] int 
+  1122 ;; Return value:  Size  Location     Type
+  1123 ;;                  1    wreg      void 
+  1124 ;; Registers used:
+  1125 ;;		wreg, status,2, status,0
+  1126 ;; Tracked objects:
+  1127 ;;		On entry : 0/0
+  1128 ;;		On exit  : 0/0
+  1129 ;;		Unchanged: 0/0
+  1130 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1131 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1132 ;;      Locals:         4       0       0       0       0       0       0       0       0
+  1133 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1134 ;;      Totals:         4       0       0       0       0       0       0       0       0
+  1135 ;;Total ram usage:        4 bytes
+  1136 ;; Hardware stack levels used:    1
+  1137 ;; This function calls:
+  1138 ;;		Nothing
+  1139 ;; This function is called by:
+  1140 ;;		_lcdhome
+  1141 ;; This function uses a non-reentrant model
+  1142 ;;
+  1143                           
+  1144                           	psect	text2
+  1145  000F56                     __ptext2:
+  1146                           	opt callstack 0
+  1147  000F56                     _delay:
+  1148                           	opt callstack 29
+  1149  000F56                     
+  1150                           ;home_automation_4550.c: 116: for (int i=0;i<700;i++){
+  1151  000F56  0E00               	movlw	0
+  1152  000F58  6E02               	movwf	(delay@i+1)^0,c
+  1153  000F5A  0E00               	movlw	0
+  1154  000F5C  6E01               	movwf	delay@i^0,c
+  1155  000F5E                     l948:
+  1156                           
+  1157                           ;home_automation_4550.c: 117: for (int z=0;z<1000;z++){
+  1158  000F5E  0E00               	movlw	0
+  1159  000F60  6E04               	movwf	(delay@z+1)^0,c
+  1160  000F62  0E00               	movlw	0
+  1161  000F64  6E03               	movwf	delay@z^0,c
+  1162  000F66                     l954:
+  1163                           
+  1164                           ;home_automation_4550.c: 118: }}}
+  1165  000F66  4A03               	infsnz	delay@z^0,f,c
+  1166  000F68  2A04               	incf	(delay@z+1)^0,f,c
+  1167  000F6A  BE04               	btfsc	(delay@z+1)^0,7,c
+  1168  000F6C  EFC1  F007         	goto	u101
+  1169  000F70  0EE8               	movlw	232
+  1170  000F72  5C03               	subwf	delay@z^0,w,c
+  1171  000F74  0E03               	movlw	3
+  1172  000F76  5804               	subwfb	(delay@z+1)^0,w,c
+  1173  000F78  A0D8               	btfss	status,0,c
+  1174  000F7A  EFC1  F007         	goto	u101
+  1175  000F7E  EFC3  F007         	goto	u100
+  1176  000F82                     u101:
+  1177  000F82  EFB3  F007         	goto	l954
+  1178  000F86                     u100:
+  1179  000F86  4A01               	infsnz	delay@i^0,f,c
+  1180  000F88  2A02               	incf	(delay@i+1)^0,f,c
+  1181  000F8A  BE02               	btfsc	(delay@i+1)^0,7,c
+  1182  000F8C  EFD1  F007         	goto	u111
+  1183  000F90  0EBC               	movlw	188
+  1184  000F92  5C01               	subwf	delay@i^0,w,c
+  1185  000F94  0E02               	movlw	2
+  1186  000F96  5802               	subwfb	(delay@i+1)^0,w,c
+  1187  000F98  A0D8               	btfss	status,0,c
+  1188  000F9A  EFD1  F007         	goto	u111
+  1189  000F9E  EFD3  F007         	goto	u110
+  1190  000FA2                     u111:
+  1191  000FA2  EFAF  F007         	goto	l948
+  1192  000FA6                     u110:
+  1193  000FA6  0012               	return		;funcret
+  1194  000FA8                     __end_of_delay:
+  1195                           	opt callstack 0
+  1196                           
+  1197 ;; *************** function _Lcd_Set_Cursor *****************
+  1198 ;; Defined at:
+  1199 ;;		line 120 in file "./lcd16.h"
+  1200 ;; Parameters:    Size  Location     Type
+  1201 ;;  a               1    wreg     unsigned char 
+  1202 ;;  b               1    3[COMRAM] unsigned char 
+  1203 ;; Auto vars:     Size  Location     Type
+  1204 ;;  a               1    4[COMRAM] unsigned char 
+  1205 ;;  temp            1    7[COMRAM] unsigned char 
+  1206 ;;  y               1    6[COMRAM] unsigned char 
+  1207 ;;  z               1    5[COMRAM] unsigned char 
+  1208 ;; Return value:  Size  Location     Type
+  1209 ;;                  1    wreg      void 
+  1210 ;; Registers used:
+  1211 ;;		wreg, status,2, status,0, cstack
+  1212 ;; Tracked objects:
+  1213 ;;		On entry : 0/0
+  1214 ;;		On exit  : 0/0
+  1215 ;;		Unchanged: 0/0
+  1216 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1217 ;;      Params:         1       0       0       0       0       0       0       0       0
+  1218 ;;      Locals:         4       0       0       0       0       0       0       0       0
+  1219 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1220 ;;      Totals:         5       0       0       0       0       0       0       0       0
+  1221 ;;Total ram usage:        5 bytes
+  1222 ;; Hardware stack levels used:    1
+  1223 ;; Hardware stack levels required when called:    2
+  1224 ;; This function calls:
+  1225 ;;		_Lcd_Cmd
+  1226 ;; This function is called by:
+  1227 ;;		_lcdhome
+  1228 ;;		_main
+  1229 ;; This function uses a non-reentrant model
+  1230 ;;
+  1231                           
+  1232                           	psect	text3
+  1233  000DDA                     __ptext3:
+  1234                           	opt callstack 0
+  1235  000DDA                     _Lcd_Set_Cursor:
+  1236                           	opt callstack 27
+  1237                           
+  1238                           ;incstack = 0
+  1239                           ;Lcd_Set_Cursor@a stored from wreg
+  1240  000DDA  6E05               	movwf	Lcd_Set_Cursor@a^0,c
+  1241  000DDC                     
+  1242                           ;./lcd16.h: 120: void Lcd_Set_Cursor(char a, char b);./lcd16.h: 121: {;./lcd16.h: 122:  
+      +                          char temp,z,y;;./lcd16.h: 123:  if(a== 1)
+  1243  000DDC  0405               	decf	Lcd_Set_Cursor@a^0,w,c
+  1244  000DDE  A4D8               	btfss	status,2,c
+  1245  000DE0  EFF4  F006         	goto	u641
+  1246  000DE4  EFF6  F006         	goto	u640
+  1247  000DE8                     u641:
+  1248  000DE8  EF07  F007         	goto	l1230
+  1249  000DEC                     u640:
+  1250  000DEC                     
+  1251                           ;./lcd16.h: 124:  {;./lcd16.h: 125:    temp = 0x80 + b - 1;
+  1252  000DEC  5004               	movf	Lcd_Set_Cursor@b^0,w,c
+  1253  000DEE  0F7F               	addlw	127
+  1254  000DF0  6E08               	movwf	Lcd_Set_Cursor@temp^0,c
+  1255                           
+  1256                           ;./lcd16.h: 126:   z = temp>>4;
+  1257  000DF2  3808               	swapf	Lcd_Set_Cursor@temp^0,w,c
+  1258  000DF4  0B0F               	andlw	15
+  1259  000DF6  6E06               	movwf	Lcd_Set_Cursor@z^0,c
+  1260                           
+  1261                           ;./lcd16.h: 127:   y = temp & 0x0F;
+  1262  000DF8  5008               	movf	Lcd_Set_Cursor@temp^0,w,c
+  1263  000DFA  0B0F               	andlw	15
+  1264  000DFC  6E07               	movwf	Lcd_Set_Cursor@y^0,c
+  1265  000DFE                     
+  1266                           ;./lcd16.h: 128:   Lcd_Cmd(z);
+  1267  000DFE  5006               	movf	Lcd_Set_Cursor@z^0,w,c
+  1268  000E00  ECE6  F007         	call	_Lcd_Cmd
+  1269  000E04                     
+  1270                           ;./lcd16.h: 129:   Lcd_Cmd(y);
+  1271  000E04  5007               	movf	Lcd_Set_Cursor@y^0,w,c
+  1272  000E06  ECE6  F007         	call	_Lcd_Cmd
+  1273                           
+  1274                           ;./lcd16.h: 130:  }
+  1275  000E0A  EF1F  F007         	goto	l89
+  1276  000E0E                     l1230:
+  1277  000E0E  0E02               	movlw	2
+  1278  000E10  1805               	xorwf	Lcd_Set_Cursor@a^0,w,c
+  1279  000E12  A4D8               	btfss	status,2,c
+  1280  000E14  EF0E  F007         	goto	u651
+  1281  000E18  EF10  F007         	goto	u650
+  1282  000E1C                     u651:
+  1283  000E1C  EF1F  F007         	goto	l89
+  1284  000E20                     u650:
+  1285  000E20                     
+  1286                           ;./lcd16.h: 132:  {;./lcd16.h: 133:   temp = 0xC0 + b - 1;
+  1287  000E20  5004               	movf	Lcd_Set_Cursor@b^0,w,c
+  1288  000E22  0FBF               	addlw	191
+  1289  000E24  6E08               	movwf	Lcd_Set_Cursor@temp^0,c
+  1290                           
+  1291                           ;./lcd16.h: 134:   z = temp>>4;
+  1292  000E26  3808               	swapf	Lcd_Set_Cursor@temp^0,w,c
+  1293  000E28  0B0F               	andlw	15
+  1294  000E2A  6E06               	movwf	Lcd_Set_Cursor@z^0,c
+  1295                           
+  1296                           ;./lcd16.h: 135:   y = temp & 0x0F;
+  1297  000E2C  5008               	movf	Lcd_Set_Cursor@temp^0,w,c
+  1298  000E2E  0B0F               	andlw	15
+  1299  000E30  6E07               	movwf	Lcd_Set_Cursor@y^0,c
+  1300  000E32                     
+  1301                           ;./lcd16.h: 136:   Lcd_Cmd(z);
+  1302  000E32  5006               	movf	Lcd_Set_Cursor@z^0,w,c
+  1303  000E34  ECE6  F007         	call	_Lcd_Cmd
+  1304  000E38                     
+  1305                           ;./lcd16.h: 137:   Lcd_Cmd(y);
+  1306  000E38  5007               	movf	Lcd_Set_Cursor@y^0,w,c
+  1307  000E3A  ECE6  F007         	call	_Lcd_Cmd
+  1308  000E3E                     l89:
+  1309  000E3E  0012               	return		;funcret
+  1310  000E40                     __end_of_Lcd_Set_Cursor:
+  1311                           	opt callstack 0
+  1312                           
+  1313 ;; *************** function _Lcd_Print_String *****************
+  1314 ;; Defined at:
+  1315 ;;		line 175 in file "./lcd16.h"
+  1316 ;; Parameters:    Size  Location     Type
+  1317 ;;  a               2    8[COMRAM] PTR unsigned char 
+  1318 ;;		 -> STR_23(16), STR_22(4), STR_21(4), STR_20(4), 
+  1319 ;;		 -> STR_19(4), STR_18(4), STR_17(4), STR_16(4), 
+  1320 ;;		 -> STR_15(4), STR_14(4), STR_13(4), STR_12(16), 
+  1321 ;;		 -> STR_11(4), STR_10(4), STR_9(4), STR_8(4), 
+  1322 ;;		 -> STR_7(4), STR_6(4), STR_5(4), STR_4(4), 
+  1323 ;;		 -> STR_3(4), STR_2(4), STR_1(15), 
+  1324 ;; Auto vars:     Size  Location     Type
+  1325 ;;  i               2   12[COMRAM] int 
+  1326 ;; Return value:  Size  Location     Type
+  1327 ;;                  1    wreg      void 
+  1328 ;; Registers used:
+  1329 ;;		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+  1330 ;; Tracked objects:
+  1331 ;;		On entry : 0/0
+  1332 ;;		On exit  : 0/0
+  1333 ;;		Unchanged: 0/0
+  1334 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1335 ;;      Params:         2       0       0       0       0       0       0       0       0
+  1336 ;;      Locals:         2       0       0       0       0       0       0       0       0
+  1337 ;;      Temps:          2       0       0       0       0       0       0       0       0
+  1338 ;;      Totals:         6       0       0       0       0       0       0       0       0
+  1339 ;;Total ram usage:        6 bytes
+  1340 ;; Hardware stack levels used:    1
+  1341 ;; Hardware stack levels required when called:    2
+  1342 ;; This function calls:
+  1343 ;;		_Lcd_Print_Char
+  1344 ;; This function is called by:
+  1345 ;;		_lcdhome
+  1346 ;;		_main
+  1347 ;; This function uses a non-reentrant model
+  1348 ;;
+  1349                           
+  1350                           	psect	text4
+  1351  000F00                     __ptext4:
+  1352                           	opt callstack 0
+  1353  000F00                     _Lcd_Print_String:
+  1354                           	opt callstack 27
+  1355  000F00                     
+  1356                           ;./lcd16.h: 175: void Lcd_Print_String(char *a);./lcd16.h: 176: {;./lcd16.h: 177:  int i
+      +                          ;;./lcd16.h: 178:  for(i=0;a[i]!='\0';i++)
+  1357  000F00  0E00               	movlw	0
+  1358  000F02  6E0E               	movwf	(Lcd_Print_String@i+1)^0,c
+  1359  000F04  0E00               	movlw	0
+  1360  000F06  6E0D               	movwf	Lcd_Print_String@i^0,c
+  1361  000F08  EF96  F007         	goto	l1244
+  1362  000F0C                     l1240:
+  1363                           
+  1364                           ;./lcd16.h: 179:     Lcd_Print_Char(a[i]);
+  1365  000F0C  500D               	movf	Lcd_Print_String@i^0,w,c
+  1366  000F0E  2409               	addwf	Lcd_Print_String@a^0,w,c
+  1367  000F10  6E0B               	movwf	??_Lcd_Print_String^0,c
+  1368  000F12  500E               	movf	(Lcd_Print_String@i+1)^0,w,c
+  1369  000F14  200A               	addwfc	(Lcd_Print_String@a+1)^0,w,c
+  1370  000F16  6E0C               	movwf	(??_Lcd_Print_String+1)^0,c
+  1371  000F18  C00B  FFF6         	movff	??_Lcd_Print_String,tblptrl
+  1372  000F1C  C00C  FFF7         	movff	??_Lcd_Print_String+1,tblptrh
+  1373  000F20                     	if	0	;tblptru may be non-zero
+  1374  000F20                     	endif
+  1375  000F20                     	if	0	;tblptru may be non-zero
+  1376  000F20                     	endif
+  1377  000F20  0008               	tblrd		*
+  1378  000F22  50F5               	movf	tablat,w,c
+  1379  000F24  ECB1  F006         	call	_Lcd_Print_Char
+  1380  000F28  4A0D               	infsnz	Lcd_Print_String@i^0,f,c
+  1381  000F2A  2A0E               	incf	(Lcd_Print_String@i+1)^0,f,c
+  1382  000F2C                     l1244:
+  1383  000F2C  500D               	movf	Lcd_Print_String@i^0,w,c
+  1384  000F2E  2409               	addwf	Lcd_Print_String@a^0,w,c
+  1385  000F30  6E0B               	movwf	??_Lcd_Print_String^0,c
+  1386  000F32  500E               	movf	(Lcd_Print_String@i+1)^0,w,c
+  1387  000F34  200A               	addwfc	(Lcd_Print_String@a+1)^0,w,c
+  1388  000F36  6E0C               	movwf	(??_Lcd_Print_String+1)^0,c
+  1389  000F38  C00B  FFF6         	movff	??_Lcd_Print_String,tblptrl
+  1390  000F3C  C00C  FFF7         	movff	??_Lcd_Print_String+1,tblptrh
+  1391  000F40                     	if	0	;tblptru may be non-zero
+  1392  000F40                     	endif
+  1393  000F40                     	if	0	;tblptru may be non-zero
+  1394  000F40                     	endif
+  1395  000F40  0008               	tblrd		*
+  1396  000F42  50F5               	movf	tablat,w,c
+  1397  000F44  0900               	iorlw	0
+  1398  000F46  A4D8               	btfss	status,2,c
+  1399  000F48  EFA8  F007         	goto	u661
+  1400  000F4C  EFAA  F007         	goto	u660
+  1401  000F50                     u661:
+  1402  000F50  EF86  F007         	goto	l1240
+  1403  000F54                     u660:
+  1404  000F54  0012               	return		;funcret
+  1405  000F56                     __end_of_Lcd_Print_String:
+  1406                           	opt callstack 0
+  1407                           
+  1408 ;; *************** function _Lcd_Print_Char *****************
+  1409 ;; Defined at:
+  1410 ;;		line 159 in file "./lcd16.h"
+  1411 ;; Parameters:    Size  Location     Type
+  1412 ;;  data            1    wreg     unsigned char 
+  1413 ;; Auto vars:     Size  Location     Type
+  1414 ;;  data            1    7[COMRAM] unsigned char 
+  1415 ;;  i               2    5[COMRAM] int 
+  1416 ;;  i               2    3[COMRAM] int 
+  1417 ;;  Upper_Nibble    1    2[COMRAM] unsigned char 
+  1418 ;;  Lower_Nibble    1    1[COMRAM] unsigned char 
+  1419 ;; Return value:  Size  Location     Type
+  1420 ;;                  1    wreg      void 
+  1421 ;; Registers used:
+  1422 ;;		wreg, status,2, status,0, cstack
+  1423 ;; Tracked objects:
+  1424 ;;		On entry : 0/0
+  1425 ;;		On exit  : 0/0
+  1426 ;;		Unchanged: 0/0
+  1427 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1428 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1429 ;;      Locals:         7       0       0       0       0       0       0       0       0
+  1430 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1431 ;;      Totals:         7       0       0       0       0       0       0       0       0
+  1432 ;;Total ram usage:        7 bytes
+  1433 ;; Hardware stack levels used:    1
+  1434 ;; Hardware stack levels required when called:    1
+  1435 ;; This function calls:
+  1436 ;;		_Lcd_SetBit
+  1437 ;; This function is called by:
+  1438 ;;		_Lcd_Print_String
+  1439 ;; This function uses a non-reentrant model
+  1440 ;;
+  1441                           
+  1442                           	psect	text5
+  1443  000D62                     __ptext5:
+  1444                           	opt callstack 0
+  1445  000D62                     _Lcd_Print_Char:
+  1446                           	opt callstack 27
+  1447                           
+  1448                           ;incstack = 0
+  1449                           ;Lcd_Print_Char@data stored from wreg
+  1450  000D62  6E08               	movwf	Lcd_Print_Char@data^0,c
+  1451  000D64                     
+  1452                           ;./lcd16.h: 159: void Lcd_Print_Char(char data);./lcd16.h: 160: {;./lcd16.h: 161:    cha
+      +                          r Lower_Nibble,Upper_Nibble;;./lcd16.h: 162:    Lower_Nibble = data&0x0F;
+  1453  000D64  5008               	movf	Lcd_Print_Char@data^0,w,c
+  1454  000D66  0B0F               	andlw	15
+  1455  000D68  6E02               	movwf	Lcd_Print_Char@Lower_Nibble^0,c
+  1456                           
+  1457                           ;./lcd16.h: 163:    Upper_Nibble = data&0xF0;
+  1458  000D6A  5008               	movf	Lcd_Print_Char@data^0,w,c
+  1459  000D6C  0BF0               	andlw	240
+  1460  000D6E  6E03               	movwf	Lcd_Print_Char@Upper_Nibble^0,c
+  1461  000D70                     
+  1462                           ;./lcd16.h: 164:    RB0 = 1;
+  1463  000D70  8081               	bsf	3969,0,c	;volatile
+  1464  000D72                     
+  1465                           ;./lcd16.h: 165:    Lcd_SetBit(Upper_Nibble>>4);
+  1466  000D72  3803               	swapf	Lcd_Print_Char@Upper_Nibble^0,w,c
+  1467  000D74  0B0F               	andlw	15
+  1468  000D76  EC52  F007         	call	_Lcd_SetBit
+  1469  000D7A                     
+  1470                           ;./lcd16.h: 166:    RB1 = 1;
+  1471  000D7A  8281               	bsf	3969,1,c	;volatile
+  1472  000D7C                     
+  1473                           ;./lcd16.h: 167:    for(int i=2130483; i<=0; i--)
+  1474  000D7C  0E82               	movlw	130
+  1475  000D7E  6E05               	movwf	(Lcd_Print_Char@i+1)^0,c
+  1476  000D80  0E33               	movlw	51
+  1477  000D82  6E04               	movwf	Lcd_Print_Char@i^0,c
+  1478  000D84                     l97:
+  1479                           
+  1480                           ;./lcd16.h: 168:    RB1 = 0;
+  1481  000D84  9281               	bcf	3969,1,c	;volatile
+  1482  000D86  0604               	decf	Lcd_Print_Char@i^0,f,c
+  1483  000D88  A0D8               	btfss	status,0,c
+  1484  000D8A  0605               	decf	(Lcd_Print_Char@i+1)^0,f,c
+  1485  000D8C  BE05               	btfsc	(Lcd_Print_Char@i+1)^0,7,c
+  1486  000D8E  EFD1  F006         	goto	u51
+  1487  000D92  5005               	movf	(Lcd_Print_Char@i+1)^0,w,c
+  1488  000D94  E108               	bnz	u50
+  1489  000D96  0404               	decf	Lcd_Print_Char@i^0,w,c
+  1490  000D98  A0D8               	btfss	status,0,c
+  1491  000D9A  EFD1  F006         	goto	u51
+  1492  000D9E  EFD3  F006         	goto	u50
+  1493  000DA2                     u51:
+  1494  000DA2  EFC2  F006         	goto	l97
+  1495  000DA6                     u50:
+  1496  000DA6                     
+  1497                           ;./lcd16.h: 169:    Lcd_SetBit(Lower_Nibble);
+  1498  000DA6  5002               	movf	Lcd_Print_Char@Lower_Nibble^0,w,c
+  1499  000DA8  EC52  F007         	call	_Lcd_SetBit
+  1500  000DAC                     
+  1501                           ;./lcd16.h: 170:    RB1 = 1;
+  1502  000DAC  8281               	bsf	3969,1,c	;volatile
+  1503  000DAE                     
+  1504                           ;./lcd16.h: 171:    for(int i=2130483; i<=0; i--)
+  1505  000DAE  0E82               	movlw	130
+  1506  000DB0  6E07               	movwf	(Lcd_Print_Char@i_115+1)^0,c
+  1507  000DB2  0E33               	movlw	51
+  1508  000DB4  6E06               	movwf	Lcd_Print_Char@i_115^0,c
+  1509  000DB6                     l99:
+  1510                           
+  1511                           ;./lcd16.h: 172:    RB1 = 0;
+  1512  000DB6  9281               	bcf	3969,1,c	;volatile
+  1513  000DB8  0606               	decf	Lcd_Print_Char@i_115^0,f,c
+  1514  000DBA  A0D8               	btfss	status,0,c
+  1515  000DBC  0607               	decf	(Lcd_Print_Char@i_115+1)^0,f,c
+  1516  000DBE  BE07               	btfsc	(Lcd_Print_Char@i_115+1)^0,7,c
+  1517  000DC0  EFEA  F006         	goto	u61
+  1518  000DC4  5007               	movf	(Lcd_Print_Char@i_115+1)^0,w,c
+  1519  000DC6  E108               	bnz	u60
+  1520  000DC8  0406               	decf	Lcd_Print_Char@i_115^0,w,c
+  1521  000DCA  A0D8               	btfss	status,0,c
+  1522  000DCC  EFEA  F006         	goto	u61
+  1523  000DD0  EFEC  F006         	goto	u60
+  1524  000DD4                     u61:
+  1525  000DD4  EFDB  F006         	goto	l99
+  1526  000DD8                     u60:
+  1527  000DD8  0012               	return		;funcret
+  1528  000DDA                     __end_of_Lcd_Print_Char:
+  1529                           	opt callstack 0
+  1530                           
+  1531 ;; *************** function _Lcd_Clear *****************
+  1532 ;; Defined at:
+  1533 ;;		line 114 in file "./lcd16.h"
+  1534 ;; Parameters:    Size  Location     Type
+  1535 ;;		None
+  1536 ;; Auto vars:     Size  Location     Type
+  1537 ;;		None
+  1538 ;; Return value:  Size  Location     Type
+  1539 ;;                  2   82[None  ] int 
+  1540 ;; Registers used:
+  1541 ;;		wreg, status,2, cstack
+  1542 ;; Tracked objects:
+  1543 ;;		On entry : 0/0
+  1544 ;;		On exit  : 0/0
+  1545 ;;		Unchanged: 0/0
+  1546 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1547 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1548 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1549 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1550 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  1551 ;;Total ram usage:        0 bytes
+  1552 ;; Hardware stack levels used:    1
+  1553 ;; Hardware stack levels required when called:    2
+  1554 ;; This function calls:
+  1555 ;;		_Lcd_Cmd
+  1556 ;; This function is called by:
+  1557 ;;		_lcdhome
+  1558 ;;		_main
+  1559 ;; This function uses a non-reentrant model
+  1560 ;;
+  1561                           
+  1562                           	psect	text6
+  1563  001010                     __ptext6:
+  1564                           	opt callstack 0
+  1565  001010                     _Lcd_Clear:
+  1566                           	opt callstack 27
+  1567  001010                     
+  1568                           ;./lcd16.h: 116:  Lcd_Cmd(0);
+  1569  001010  0E00               	movlw	0
+  1570  001012  ECE6  F007         	call	_Lcd_Cmd
+  1571                           
+  1572                           ;./lcd16.h: 117:  Lcd_Cmd(1);
+  1573  001016  0E01               	movlw	1
+  1574  001018  ECE6  F007         	call	_Lcd_Cmd
+  1575  00101C  0012               	return		;funcret
+  1576  00101E                     __end_of_Lcd_Clear:
+  1577                           	opt callstack 0
+  1578                           
+  1579 ;; *************** function _UART_get_char *****************
+  1580 ;; Defined at:
+  1581 ;;		line 105 in file "home_automation_4550.c"
+  1582 ;; Parameters:    Size  Location     Type
+  1583 ;;		None
+  1584 ;; Auto vars:     Size  Location     Type
+  1585 ;;		None
+  1586 ;; Return value:  Size  Location     Type
+  1587 ;;                  1    wreg      unsigned char 
+  1588 ;; Registers used:
+  1589 ;;		wreg, status,2
+  1590 ;; Tracked objects:
+  1591 ;;		On entry : 0/0
+  1592 ;;		On exit  : 0/0
+  1593 ;;		Unchanged: 0/0
+  1594 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1595 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1596 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1597 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1598 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  1599 ;;Total ram usage:        0 bytes
+  1600 ;; Hardware stack levels used:    1
+  1601 ;; This function calls:
+  1602 ;;		Nothing
+  1603 ;; This function is called by:
+  1604 ;;		_main
+  1605 ;; This function uses a non-reentrant model
+  1606 ;;
+  1607                           
+  1608                           	psect	text7
+  1609  000FA8                     __ptext7:
+  1610                           	opt callstack 0
+  1611  000FA8                     _UART_get_char:
+  1612                           	opt callstack 30
+  1613  000FA8                     
+  1614                           ;home_automation_4550.c: 107: if (PIR1bits.RCIF==1){
+  1615  000FA8  AA9E               	btfss	158,5,c	;volatile
+  1616  000FAA  EFD9  F007         	goto	u121
+  1617  000FAE  EFDB  F007         	goto	u120
+  1618  000FB2                     u121:
+  1619  000FB2  EFE5  F007         	goto	l115
+  1620  000FB6                     u120:
+  1621  000FB6                     
+  1622                           ;home_automation_4550.c: 108: if(OERR)
+  1623  000FB6  A2AB               	btfss	4011,1,c	;volatile
+  1624  000FB8  EFE0  F007         	goto	u131
+  1625  000FBC  EFE2  F007         	goto	u130
+  1626  000FC0                     u131:
+  1627  000FC0  EFE4  F007         	goto	l1018
+  1628  000FC4                     u130:
+  1629  000FC4                     
+  1630                           ;home_automation_4550.c: 109: {;home_automation_4550.c: 110: CREN = 0;
+  1631  000FC4  98AB               	bcf	4011,4,c	;volatile
+  1632                           
+  1633                           ;home_automation_4550.c: 111: CREN = 1;
+  1634  000FC6  88AB               	bsf	4011,4,c	;volatile
+  1635  000FC8                     l1018:
+  1636                           
+  1637                           ;home_automation_4550.c: 113: return RCREG;
+  1638  000FC8  50AE               	movf	174,w,c	;volatile
+  1639  000FCA                     l115:
+  1640  000FCA  0012               	return		;funcret
+  1641  000FCC                     __end_of_UART_get_char:
+  1642                           	opt callstack 0
+  1643                           
+  1644 ;; *************** function _Lcd_Start *****************
+  1645 ;; Defined at:
+  1646 ;;		line 141 in file "./lcd16.h"
+  1647 ;; Parameters:    Size  Location     Type
+  1648 ;;		None
+  1649 ;; Auto vars:     Size  Location     Type
+  1650 ;;  i               2    0        int 
+  1651 ;; Return value:  Size  Location     Type
+  1652 ;;                  1    wreg      void 
+  1653 ;; Registers used:
+  1654 ;;		wreg, status,2, cstack
+  1655 ;; Tracked objects:
+  1656 ;;		On entry : 0/0
+  1657 ;;		On exit  : 0/0
+  1658 ;;		Unchanged: 0/0
+  1659 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1660 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1661 ;;      Locals:         2       0       0       0       0       0       0       0       0
+  1662 ;;      Temps:          1       0       0       0       0       0       0       0       0
+  1663 ;;      Totals:         3       0       0       0       0       0       0       0       0
+  1664 ;;Total ram usage:        3 bytes
+  1665 ;; Hardware stack levels used:    1
+  1666 ;; Hardware stack levels required when called:    2
+  1667 ;; This function calls:
+  1668 ;;		_Lcd_Cmd
+  1669 ;;		_Lcd_SetBit
+  1670 ;; This function is called by:
+  1671 ;;		_main
+  1672 ;; This function uses a non-reentrant model
+  1673 ;;
+  1674                           
+  1675                           	psect	text8
+  1676  000E40                     __ptext8:
+  1677                           	opt callstack 0
+  1678  000E40                     _Lcd_Start:
+  1679                           	opt callstack 28
+  1680  000E40                     
+  1681                           ;./lcd16.h: 143:   Lcd_SetBit(0x00);
+  1682  000E40  0E00               	movlw	0
+  1683  000E42  EC52  F007         	call	_Lcd_SetBit
+  1684  000E46                     
+  1685                           ;./lcd16.h: 145:   Lcd_Cmd(0x03);
+  1686  000E46  0E03               	movlw	3
+  1687  000E48  ECE6  F007         	call	_Lcd_Cmd
+  1688  000E4C                     
+  1689                           ;./lcd16.h: 146:  _delay((unsigned long)((5)*(20000000/4000.0)));
+  1690  000E4C  0E21               	movlw	33
+  1691  000E4E  6E04               	movwf	??_Lcd_Start^0,c
+  1692  000E50  0E76               	movlw	118
+  1693  000E52                     u1177:
+  1694  000E52  2EE8               	decfsz	wreg,f,c
+  1695  000E54  D7FE               	bra	u1177
+  1696  000E56  2E04               	decfsz	??_Lcd_Start^0,f,c
+  1697  000E58  D7FC               	bra	u1177
+  1698  000E5A  D000               	nop2	
+  1699  000E5C                     
+  1700                           ;./lcd16.h: 147:   Lcd_Cmd(0x03);
+  1701  000E5C  0E03               	movlw	3
+  1702  000E5E  ECE6  F007         	call	_Lcd_Cmd
+  1703                           
+  1704                           ;./lcd16.h: 148:  _delay((unsigned long)((11)*(20000000/4000.0)));
+  1705  000E62  0E48               	movlw	72
+  1706  000E64  6E04               	movwf	??_Lcd_Start^0,c
+  1707  000E66  0E6C               	movlw	108
+  1708  000E68                     u1187:
+  1709  000E68  2EE8               	decfsz	wreg,f,c
+  1710  000E6A  D7FE               	bra	u1187
+  1711  000E6C  2E04               	decfsz	??_Lcd_Start^0,f,c
+  1712  000E6E  D7FC               	bra	u1187
+  1713  000E70  D000               	nop2	
+  1714  000E72                     
+  1715                           ;./lcd16.h: 149:   Lcd_Cmd(0x03);
+  1716  000E72  0E03               	movlw	3
+  1717  000E74  ECE6  F007         	call	_Lcd_Cmd
+  1718  000E78                     
+  1719                           ;./lcd16.h: 150:   Lcd_Cmd(0x02);
+  1720  000E78  0E02               	movlw	2
+  1721  000E7A  ECE6  F007         	call	_Lcd_Cmd
+  1722  000E7E                     
+  1723                           ;./lcd16.h: 151:   Lcd_Cmd(0x02);
+  1724  000E7E  0E02               	movlw	2
+  1725  000E80  ECE6  F007         	call	_Lcd_Cmd
+  1726  000E84                     
+  1727                           ;./lcd16.h: 152:   Lcd_Cmd(0x08);
+  1728  000E84  0E08               	movlw	8
+  1729  000E86  ECE6  F007         	call	_Lcd_Cmd
+  1730  000E8A                     
+  1731                           ;./lcd16.h: 153:   Lcd_Cmd(0x00);
+  1732  000E8A  0E00               	movlw	0
+  1733  000E8C  ECE6  F007         	call	_Lcd_Cmd
+  1734  000E90                     
+  1735                           ;./lcd16.h: 154:   Lcd_Cmd(0x0C);
+  1736  000E90  0E0C               	movlw	12
+  1737  000E92  ECE6  F007         	call	_Lcd_Cmd
+  1738  000E96                     
+  1739                           ;./lcd16.h: 155:   Lcd_Cmd(0x00);
+  1740  000E96  0E00               	movlw	0
+  1741  000E98  ECE6  F007         	call	_Lcd_Cmd
+  1742  000E9C                     
+  1743                           ;./lcd16.h: 156:   Lcd_Cmd(0x06);
+  1744  000E9C  0E06               	movlw	6
+  1745  000E9E  ECE6  F007         	call	_Lcd_Cmd
+  1746  000EA2  0012               	return		;funcret
+  1747  000EA4                     __end_of_Lcd_Start:
+  1748                           	opt callstack 0
+  1749                           
+  1750 ;; *************** function _Lcd_Cmd *****************
+  1751 ;; Defined at:
+  1752 ;;		line 105 in file "./lcd16.h"
+  1753 ;; Parameters:    Size  Location     Type
+  1754 ;;  a               1    wreg     unsigned char 
+  1755 ;; Auto vars:     Size  Location     Type
+  1756 ;;  a               1    2[COMRAM] unsigned char 
+  1757 ;; Return value:  Size  Location     Type
+  1758 ;;                  1    wreg      void 
+  1759 ;; Registers used:
+  1760 ;;		wreg, status,2, cstack
+  1761 ;; Tracked objects:
+  1762 ;;		On entry : 0/0
+  1763 ;;		On exit  : 0/0
+  1764 ;;		Unchanged: 0/0
+  1765 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1766 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1767 ;;      Locals:         1       0       0       0       0       0       0       0       0
+  1768 ;;      Temps:          1       0       0       0       0       0       0       0       0
+  1769 ;;      Totals:         2       0       0       0       0       0       0       0       0
+  1770 ;;Total ram usage:        2 bytes
+  1771 ;; Hardware stack levels used:    1
+  1772 ;; Hardware stack levels required when called:    1
+  1773 ;; This function calls:
+  1774 ;;		_Lcd_SetBit
+  1775 ;; This function is called by:
+  1776 ;;		_Lcd_Clear
+  1777 ;;		_Lcd_Set_Cursor
+  1778 ;;		_Lcd_Start
+  1779 ;; This function uses a non-reentrant model
+  1780 ;;
+  1781                           
+  1782                           	psect	text9
+  1783  000FCC                     __ptext9:
+  1784                           	opt callstack 0
+  1785  000FCC                     _Lcd_Cmd:
+  1786                           	opt callstack 27
+  1787                           
+  1788                           ;incstack = 0
+  1789                           ;Lcd_Cmd@a stored from wreg
+  1790  000FCC  6E03               	movwf	Lcd_Cmd@a^0,c
+  1791  000FCE                     
+  1792                           ;./lcd16.h: 105: void Lcd_Cmd(char a);./lcd16.h: 106: {;./lcd16.h: 107:  RB0 = 0;
+  1793  000FCE  9081               	bcf	3969,0,c	;volatile
+  1794  000FD0                     
+  1795                           ;./lcd16.h: 108:  Lcd_SetBit(a);
+  1796  000FD0  5003               	movf	Lcd_Cmd@a^0,w,c
+  1797  000FD2  EC52  F007         	call	_Lcd_SetBit
+  1798  000FD6                     
+  1799                           ;./lcd16.h: 109:  RB1 = 1;
+  1800  000FD6  8281               	bsf	3969,1,c	;volatile
+  1801  000FD8                     
+  1802                           ;./lcd16.h: 110:         _delay((unsigned long)((4)*(20000000/4000.0)));
+  1803  000FD8  0E1A               	movlw	26
+  1804  000FDA  6E02               	movwf	??_Lcd_Cmd^0,c
+  1805  000FDC  0EF8               	movlw	248
+  1806  000FDE                     u1197:
+  1807  000FDE  2EE8               	decfsz	wreg,f,c
+  1808  000FE0  D7FE               	bra	u1197
+  1809  000FE2  2E02               	decfsz	??_Lcd_Cmd^0,f,c
+  1810  000FE4  D7FC               	bra	u1197
+  1811  000FE6  D000               	nop2	
+  1812  000FE8                     
+  1813                           ;./lcd16.h: 111:         RB1 = 0;
+  1814  000FE8  9281               	bcf	3969,1,c	;volatile
+  1815  000FEA  0012               	return		;funcret
+  1816  000FEC                     __end_of_Lcd_Cmd:
+  1817                           	opt callstack 0
+  1818                           
+  1819 ;; *************** function _Lcd_SetBit *****************
+  1820 ;; Defined at:
+  1821 ;;		line 82 in file "./lcd16.h"
+  1822 ;; Parameters:    Size  Location     Type
+  1823 ;;  data_bit        1    wreg     unsigned char 
+  1824 ;; Auto vars:     Size  Location     Type
+  1825 ;;  data_bit        1    0[COMRAM] unsigned char 
+  1826 ;; Return value:  Size  Location     Type
+  1827 ;;                  1    wreg      void 
+  1828 ;; Registers used:
+  1829 ;;		wreg
+  1830 ;; Tracked objects:
+  1831 ;;		On entry : 0/0
+  1832 ;;		On exit  : 0/0
+  1833 ;;		Unchanged: 0/0
+  1834 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1835 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1836 ;;      Locals:         1       0       0       0       0       0       0       0       0
+  1837 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1838 ;;      Totals:         1       0       0       0       0       0       0       0       0
+  1839 ;;Total ram usage:        1 bytes
+  1840 ;; Hardware stack levels used:    1
+  1841 ;; This function calls:
+  1842 ;;		Nothing
+  1843 ;; This function is called by:
+  1844 ;;		_Lcd_Cmd
+  1845 ;;		_Lcd_Start
+  1846 ;;		_Lcd_Print_Char
+  1847 ;; This function uses a non-reentrant model
+  1848 ;;
+  1849                           
+  1850                           	psect	text10
+  1851  000EA4                     __ptext10:
+  1852                           	opt callstack 0
+  1853  000EA4                     _Lcd_SetBit:
+  1854                           	opt callstack 27
+  1855                           
+  1856                           ;incstack = 0
+  1857                           ;Lcd_SetBit@data_bit stored from wreg
+  1858  000EA4  6E01               	movwf	Lcd_SetBit@data_bit^0,c
+  1859  000EA6                     
+  1860                           ;./lcd16.h: 82: void Lcd_SetBit(char data_bit);./lcd16.h: 83: {;./lcd16.h: 84:  if(data_
+      +                          bit& 1)
+  1861  000EA6  A001               	btfss	Lcd_SetBit@data_bit^0,0,c
+  1862  000EA8  EF58  F007         	goto	u11
+  1863  000EAC  EF5A  F007         	goto	u10
+  1864  000EB0                     u11:
+  1865  000EB0  EF5D  F007         	goto	l69
+  1866  000EB4                     u10:
+  1867  000EB4                     
+  1868                           ;./lcd16.h: 85:   RB2 = 1;
+  1869  000EB4  8481               	bsf	3969,2,c	;volatile
+  1870  000EB6  EF5E  F007         	goto	l862
+  1871  000EBA                     l69:
+  1872                           
+  1873                           ;./lcd16.h: 87:   RB2 = 0;
+  1874  000EBA  9481               	bcf	3969,2,c	;volatile
+  1875  000EBC                     l862:
+  1876                           
+  1877                           ;./lcd16.h: 89:  if(data_bit& 2)
+  1878  000EBC  A201               	btfss	Lcd_SetBit@data_bit^0,1,c
+  1879  000EBE  EF63  F007         	goto	u21
+  1880  000EC2  EF65  F007         	goto	u20
+  1881  000EC6                     u21:
+  1882  000EC6  EF68  F007         	goto	l71
+  1883  000ECA                     u20:
+  1884  000ECA                     
+  1885                           ;./lcd16.h: 90:   RB3 = 1;
+  1886  000ECA  8681               	bsf	3969,3,c	;volatile
+  1887  000ECC  EF69  F007         	goto	l866
+  1888  000ED0                     l71:
+  1889                           
+  1890                           ;./lcd16.h: 92:   RB3 = 0;
+  1891  000ED0  9681               	bcf	3969,3,c	;volatile
+  1892  000ED2                     l866:
+  1893                           
+  1894                           ;./lcd16.h: 94:  if(data_bit& 4)
+  1895  000ED2  A401               	btfss	Lcd_SetBit@data_bit^0,2,c
+  1896  000ED4  EF6E  F007         	goto	u31
+  1897  000ED8  EF70  F007         	goto	u30
+  1898  000EDC                     u31:
+  1899  000EDC  EF73  F007         	goto	l73
+  1900  000EE0                     u30:
+  1901  000EE0                     
+  1902                           ;./lcd16.h: 95:   RB4 = 1;
+  1903  000EE0  8881               	bsf	3969,4,c	;volatile
+  1904  000EE2  EF74  F007         	goto	l870
+  1905  000EE6                     l73:
+  1906                           
+  1907                           ;./lcd16.h: 97:   RB4 = 0;
+  1908  000EE6  9881               	bcf	3969,4,c	;volatile
+  1909  000EE8                     l870:
+  1910                           
+  1911                           ;./lcd16.h: 99:  if(data_bit& 8)
+  1912  000EE8  A601               	btfss	Lcd_SetBit@data_bit^0,3,c
+  1913  000EEA  EF79  F007         	goto	u41
+  1914  000EEE  EF7B  F007         	goto	u40
+  1915  000EF2                     u41:
+  1916  000EF2  EF7E  F007         	goto	l75
+  1917  000EF6                     u40:
+  1918  000EF6                     
+  1919                           ;./lcd16.h: 100:   RB5 = 1;
+  1920  000EF6  8A81               	bsf	3969,5,c	;volatile
+  1921  000EF8  EF7F  F007         	goto	l77
+  1922  000EFC                     l75:
+  1923                           
+  1924                           ;./lcd16.h: 102:   RB5 = 0;
+  1925  000EFC  9A81               	bcf	3969,5,c	;volatile
+  1926  000EFE                     l77:
+  1927  000EFE  0012               	return		;funcret
+  1928  000F00                     __end_of_Lcd_SetBit:
+  1929                           	opt callstack 0
+  1930                           
+  1931 ;; *************** function _Initialize_UART *****************
+  1932 ;; Defined at:
+  1933 ;;		line 92 in file "home_automation_4550.c"
+  1934 ;; Parameters:    Size  Location     Type
+  1935 ;;		None
+  1936 ;; Auto vars:     Size  Location     Type
+  1937 ;;		None
+  1938 ;; Return value:  Size  Location     Type
+  1939 ;;                  1    wreg      void 
+  1940 ;; Registers used:
+  1941 ;;		wreg, status,2
+  1942 ;; Tracked objects:
+  1943 ;;		On entry : 0/0
+  1944 ;;		On exit  : 0/0
+  1945 ;;		Unchanged: 0/0
+  1946 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1947 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1948 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1949 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1950 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  1951 ;;Total ram usage:        0 bytes
+  1952 ;; Hardware stack levels used:    1
+  1953 ;; This function calls:
+  1954 ;;		Nothing
+  1955 ;; This function is called by:
+  1956 ;;		_main
+  1957 ;; This function uses a non-reentrant model
+  1958 ;;
+  1959                           
+  1960                           	psect	text11
+  1961  000FEC                     __ptext11:
+  1962                           	opt callstack 0
+  1963  000FEC                     _Initialize_UART:
+  1964                           	opt callstack 30
+  1965  000FEC                     
+  1966                           ;home_automation_4550.c: 95: TRISC6 = 0;
+  1967  000FEC  9C94               	bcf	3988,6,c	;volatile
+  1968                           
+  1969                           ;home_automation_4550.c: 96: TRISC7 = 1;
+  1970  000FEE  8E94               	bsf	3988,7,c	;volatile
+  1971  000FF0                     
+  1972                           ;home_automation_4550.c: 97: SPBRG = ((20000000/16)/9600) - 1;
+  1973  000FF0  0E81               	movlw	129
+  1974  000FF2  6EAF               	movwf	175,c	;volatile
+  1975  000FF4                     
+  1976                           ;home_automation_4550.c: 98: BRGH = 1;
+  1977  000FF4  84AC               	bsf	4012,2,c	;volatile
+  1978  000FF6                     
+  1979                           ;home_automation_4550.c: 99: SYNC = 0;
+  1980  000FF6  98AC               	bcf	4012,4,c	;volatile
+  1981  000FF8                     
+  1982                           ;home_automation_4550.c: 100: SPEN = 1;
+  1983  000FF8  8EAB               	bsf	4011,7,c	;volatile
+  1984  000FFA                     
+  1985                           ;home_automation_4550.c: 101: CREN = 1;
+  1986  000FFA  88AB               	bsf	4011,4,c	;volatile
+  1987  000FFC                     
+  1988                           ;home_automation_4550.c: 102: TX9 = 0;
+  1989  000FFC  9CAC               	bcf	4012,6,c	;volatile
+  1990  000FFE                     
+  1991                           ;home_automation_4550.c: 103: RX9 = 0;
+  1992  000FFE  9CAB               	bcf	4011,6,c	;volatile
+  1993  001000  0012               	return		;funcret
+  1994  001002                     __end_of_Initialize_UART:
+  1995                           	opt callstack 0
+  1996                           
+  1997                           	psect	rparam
+  1998  0000                     tosu	equ	0xFFF
+  1999                           tosh	equ	0xFFE
+  2000                           tosl	equ	0xFFD
+  2001                           stkptr	equ	0xFFC
+  2002                           pclatu	equ	0xFFB
+  2003                           pclath	equ	0xFFA
+  2004                           pcl	equ	0xFF9
+  2005                           tblptru	equ	0xFF8
+  2006                           tblptrh	equ	0xFF7
+  2007                           tblptrl	equ	0xFF6
+  2008                           tablat	equ	0xFF5
+  2009                           prodh	equ	0xFF4
+  2010                           prodl	equ	0xFF3
+  2011                           indf0	equ	0xFEF
+  2012                           postinc0	equ	0xFEE
+  2013                           postdec0	equ	0xFED
+  2014                           preinc0	equ	0xFEC
+  2015                           plusw0	equ	0xFEB
+  2016                           fsr0h	equ	0xFEA
+  2017                           fsr0l	equ	0xFE9
+  2018                           wreg	equ	0xFE8
+  2019                           indf1	equ	0xFE7
+  2020                           postinc1	equ	0xFE6
+  2021                           postdec1	equ	0xFE5
+  2022                           preinc1	equ	0xFE4
+  2023                           plusw1	equ	0xFE3
+  2024                           fsr1h	equ	0xFE2
+  2025                           fsr1l	equ	0xFE1
+  2026                           bsr	equ	0xFE0
+  2027                           indf2	equ	0xFDF
+  2028                           postinc2	equ	0xFDE
+  2029                           postdec2	equ	0xFDD
+  2030                           preinc2	equ	0xFDC
+  2031                           plusw2	equ	0xFDB
+  2032                           fsr2h	equ	0xFDA
+  2033                           fsr2l	equ	0xFD9
+  2034                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     55
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95     17      17
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    Lcd_Print_String@a	PTR unsigned char  size(2) Largest target is 16
+		 -> STR_23(CODE[16]), STR_22(CODE[4]), STR_21(CODE[4]), STR_20(CODE[4]), 
+		 -> STR_19(CODE[4]), STR_18(CODE[4]), STR_17(CODE[4]), STR_16(CODE[4]), 
+		 -> STR_15(CODE[4]), STR_14(CODE[4]), STR_13(CODE[4]), STR_12(CODE[16]), 
+		 -> STR_11(CODE[4]), STR_10(CODE[4]), STR_9(CODE[4]), STR_8(CODE[4]), 
+		 -> STR_7(CODE[4]), STR_6(CODE[4]), STR_5(CODE[4]), STR_4(CODE[4]), 
+		 -> STR_3(CODE[4]), STR_2(CODE[4]), STR_1(CODE[15]), 
+
+
+Critical Paths under _main in COMRAM
+
+    _main->_Lcd_Print_String
+    _lcdhome->_Lcd_Print_String
+    _Lcd_Set_Cursor->_Lcd_Cmd
+    _Lcd_Print_String->_Lcd_Print_Char
+    _Lcd_Print_Char->_Lcd_SetBit
+    _Lcd_Clear->_Lcd_Cmd
+    _Lcd_Start->_Lcd_Cmd
+    _Lcd_Cmd->_Lcd_SetBit
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 5     5      0    8818
+                                             14 COMRAM     3     3      0
+                    _Initialize_UART
+                          _Lcd_Clear
+                   _Lcd_Print_String
+                     _Lcd_Set_Cursor
+                          _Lcd_Start
+                      _UART_get_char
+                            _lcdhome
+ ---------------------------------------------------------------------------------
+ (1) _lcdhome                                              0     0      0    4246
+                          _Lcd_Clear
+                   _Lcd_Print_String
+                     _Lcd_Set_Cursor
+                              _delay
+ ---------------------------------------------------------------------------------
+ (2) _delay                                                4     4      0      60
+                                              0 COMRAM     4     4      0
+ ---------------------------------------------------------------------------------
+ (2) _Lcd_Set_Cursor                                       5     4      1    2093
+                                              3 COMRAM     5     4      1
+                            _Lcd_Cmd
+ ---------------------------------------------------------------------------------
+ (2) _Lcd_Print_String                                     6     4      2    2018
+                                              8 COMRAM     6     4      2
+                     _Lcd_Print_Char
+ ---------------------------------------------------------------------------------
+ (3) _Lcd_Print_Char                                       7     7      0     180
+                                              1 COMRAM     7     7      0
+                         _Lcd_SetBit
+ ---------------------------------------------------------------------------------
+ (2) _Lcd_Clear                                            0     0      0      75
+                            _Lcd_Cmd
+ ---------------------------------------------------------------------------------
+ (1) _UART_get_char                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _Lcd_Start                                            3     3      0     165
+                                              3 COMRAM     3     3      0
+                            _Lcd_Cmd
+                         _Lcd_SetBit
+ ---------------------------------------------------------------------------------
+ (3) _Lcd_Cmd                                              2     2      0      75
+                                              1 COMRAM     2     2      0
+                         _Lcd_SetBit
+ ---------------------------------------------------------------------------------
+ (4) _Lcd_SetBit                                           1     1      0      60
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (1) _Initialize_UART                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 4
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _Initialize_UART
+   _Lcd_Clear
+     _Lcd_Cmd
+       _Lcd_SetBit
+   _Lcd_Print_String
+     _Lcd_Print_Char
+       _Lcd_SetBit
+   _Lcd_Set_Cursor
+     _Lcd_Cmd
+       _Lcd_SetBit
+   _Lcd_Start
+     _Lcd_Cmd
+       _Lcd_SetBit
+     _Lcd_SetBit
+   _UART_get_char
+   _lcdhome
+     _Lcd_Clear
+       _Lcd_Cmd
+         _Lcd_SetBit
+     _Lcd_Print_String
+       _Lcd_Print_Char
+         _Lcd_SetBit
+     _Lcd_Set_Cursor
+       _Lcd_Cmd
+         _Lcd_SetBit
+     _delay
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F     11      11       1       17.9%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+ABS                  0      0       0      20        0.0%
+BIGRAM             7FF      0       0      21        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V2.10 build 88905656 
+Symbol Table                                                                                   Fri Sep 04 14:16:44 2020
+
+                        l71 0ED0                          l80 0FEA                          l73 0EE6  
+                        l75 0EFC                          l83 101C                          l77 0EFE  
+                        l69 0EBA                          l94 0EA2                          l97 0D84  
+                        l89 0E3E                          l99 0DB6                          u10 0EB4  
+                        u11 0EB0                          u20 0ECA                          u21 0EC6  
+                        u30 0EE0                          u31 0EDC                          u40 0EF6  
+                        u41 0EF2                          u50 0DA6                          u51 0DA2  
+                        u60 0DD8                          u61 0DD4                 __CFG_BORV$3 000000  
+              __CFG_CP0$OFF 000000                __CFG_CP1$OFF 000000                __CFG_CP2$OFF 000000  
+              __CFG_CP3$OFF 000000                 __CFG_LVP$ON 000000                         l101 0DD8  
+                       l110 1000                         l122 0FA6                         l115 0FCA  
+                       l107 0F54                         l131 0914                         l140 0A12  
+                       l125 087C                         l134 0960                         l143 0A5E  
+                       l152 0B42                         l128 08C8                         l137 09AC  
+                       l146 0AAA                         l155 0B6A                         l149 0AF6  
+                       l174 0D5A                         l900 0D8C                         l902 0DA6  
+                       l912 0DB8                         l904 0DAC                         l914 0DBE  
+                       l906 0DAE                         l860 0EB4                         l916 1010  
+                       l870 0EE8                         l862 0EBC                         l942 0F56  
+                       l872 0EF6                         l864 0ECA                         l880 0FD8  
+                       l960 0F8A                         l866 0ED2                         l858 0EA6  
+                       l882 0FE8                         l874 0FCE                         l962 0E40  
+                       l890 0D7A                         l954 0F66                         l868 0EE0  
+                       l876 0FD0                         l980 0E72                         l964 0E46  
+                       l892 0D7C                         l884 0D64                         l956 0F6A  
+                       l948 0F5E                         l878 0FD6                         l990 0E90  
+                       l982 0E78                         l974 0E46                         l966 0E46  
+                       l886 0D70                         l958 0F86                         l992 0E96  
+                       l984 0E7E                         l976 0E4C                         l888 0D72  
+                       l994 0E9C                         l986 0E84                         l978 0E5C  
+                       l898 0D86                         l996 0FEC                         l988 0E8A  
+                       l998 0FF0                __CFG_CPB$OFF 000000                         _RB0 007C08  
+                       _RB1 007C09                         _RB2 007C0A                         _RB3 007C0B  
+                       _RC1 007C11                         _RB4 007C0C                         _RD0 007C18  
+                       _RC2 007C12                         _RB5 007C0D                         _RD1 007C19  
+                       _RD2 007C1A                         _RD3 007C1B                         u100 0F86  
+                       _RD4 007C1C                         u101 0F82                         _RD5 007C1D  
+                       u110 0FA6                         _RD6 007C1E                         u111 0FA2  
+                       _RD7 007C1F                         u120 0FB6                         u121 0FB2  
+                       u130 0FC4                         u131 0FC0                __CFG_CPD$OFF 000000  
+                       u700 08D6                         u701 08D2                         u710 08FA  
+                       u711 08F6                         u640 0DEC                         u800 0A6C  
+                       u720 0922                         u641 0DE8                         u801 0A68  
+                       u721 091E                         u650 0E20                         u810 0A90  
+                       u730 0946                         u651 0E1C                         u811 0A8C  
+                       u731 0942                         u660 0F54                         u820 0AB8  
+                       u740 096E                         u900 0BF4                         u661 0F50  
+                       u821 0AB4                         u741 096A                         u901 0BF0  
+                       u830 0ADC                         u750 0992                         u670 0862  
+                       u910 0C04                         u831 0AD8                         u751 098E  
+                       u671 085E                         u911 0BFE                         u840 0B04  
+                       u760 09BA                         u680 088A                         u841 0B00  
+                       u761 09B6                         u681 0886                         u850 0B28  
+                       u770 09F8                         u690 08AE                         u930 0C1E  
+                       u851 0B24                         u771 09F4                         u691 08AA  
+                       u931 0C1A                         u860 0B50                         u780 0A20  
+                       u940 0C2E                         u861 0B4C                         u781 0A1C  
+                       u941 0C28                         u925 0C06                         u790 0A44  
+                       u870 0BC6                         u791 0A40                         u871 0BC2  
+                       u960 0C48                         u880 0BD6                         u961 0C44  
+                       u881 0BD0                         _RX9 007D5E                         u970 0C58  
+                       u971 0C52                         u955 0C30                         u990 0C72  
+                       u991 0C6E                         u895 0BD8                         u985 0C5A  
+                       _TX9 007D66                __CFG_BOR$OFF 000000                         wreg 000FE8  
+              __CFG_FOSC$HS 000000                __CFG_WDT$OFF 000000                        l1000 0FF4  
+                      l1010 0FFE                        l1002 0FF6                        l1004 0FF8  
+                      l1012 0FA8                        l1006 0FFA                        l1014 0FB6  
+                      l1008 0FFC                        l1016 0FC4                        l1018 0FC8  
+                      l1300 09C4                        l1230 0E0E                        l1222 0DDC  
+                      l1310 09F8                        l1302 09D0                        l1240 0F0C  
+                      l1232 0E20                        l1224 0DEC                        l1320 0A44  
+                      l1312 0A02                        l1304 09D4                        l1400 0C1E  
+                      l1242 0F28                        l1234 0E32                        l1226 0DFE  
+                      l1330 0A90                        l1322 0A4E                        l1314 0A20  
+                      l1306 09DE                        l1250 0848                        l1410 0C5E  
+                      l1244 0F2C                        l1236 0E38                        l1228 0E04  
+                      l1340 0ADC                        l1332 0A9A                        l1324 0A6C  
+                      l1316 0A2A                        l1308 09EA                        l1260 0894  
+                      l1252 0854                        l1412 0C72                        l1404 0C34  
+                      l1238 0F00                        l1350 0B28                        l1342 0AE6  
+                      l1334 0AB8                        l1326 0A76                        l1318 0A36  
+                      l1270 08E0                        l1262 08A0                        l1254 0862  
+                      l1246 083A                        l1430 0CF0                        l1422 0CB2  
+                      l1406 0C48                        l1352 0B32                        l1344 0B04  
+                      l1336 0AC2                        l1328 0A82                        l1280 092C  
+                      l1272 08EC                        l1264 08AE                        l1256 086C  
+                      l1248 083E                        l1440 0D30                        l1424 0CC6  
+                      l1416 0C88                        l1354 0B50                        l1346 0B0E  
+                      l1338 0ACE                        l1290 0978                        l1282 0938  
+                      l1274 08FA                        l1266 08B8                        l1258 088A  
+                      l1442 0D44                        l1434 0D06                        l1418 0C9C  
+                      l1370 0B7C                        l1362 0B6C                        l1356 0B5A  
+                      l1348 0B1A                        l1292 0984                        l1284 0946  
+                      l1276 0904                        l1268 08D6                        l1436 0D1A  
+                      l1428 0CDC                        l1380 0B9E                        l1372 0B80  
+                      l1364 0B74                        l1358 0B66                        l1294 0992  
+                      l1286 0950                        l1278 0922                        l1390 0BD8  
+                      l1382 0BA2                        l1374 0B8A                        l1366 0B76  
+                      l1296 099C                        l1288 096E                        l1392 0BE0  
+                      l1384 0BA6                        l1376 0B96                        l1368 0B78  
+                      l1298 09BA                        l1394 0BF4                        l1386 0BB2  
+                      l1378 0B9A                        l1388 0BC6                        l1398 0C0A  
+                      STR_1 0821                        STR_2 0834                        STR_3 0830  
+                      STR_4 0834                        STR_5 0830                        STR_6 0834  
+                      STR_7 0830                        STR_8 0834                        STR_9 0830  
+                      _BRGH 007D62                        u1000 0C82                        _CREN 007D5C  
+                      u1001 0C7C                        u1020 0C9C                        u1021 0C98  
+                      u1110 0D1A                        u1030 0CAC                        u1111 0D16  
+                      u1031 0CA6                        u1015 0C84                        u1120 0D2A  
+                      u1121 0D24                        u1105 0D02                        u1050 0CC6  
+                      u1051 0CC2                        u1140 0D44                        u1060 0CD6  
+                      u1141 0D40                        u1061 0CD0                        u1045 0CAE  
+                      u1150 0D54                        u1151 0D4E                        u1135 0D2C  
+                      u1080 0CF0                        u1081 0CEC                        u1090 0D00  
+                      u1091 0CFA                        u1075 0CD8                        u1165 0D56  
+                      u1177 0E52                        u1187 0E68                        u1197 0FDE  
+                      _OERR 007D59                        _SPEN 007D5F                        _SYNC 007D64  
+                      _main 0B6C                        start 0000               __CFG_IESO$OFF 000000  
+        Lcd_Print_Char@data 0008             __end_of_Lcd_Cmd 0FEC               __CFG_MCLRE$ON 000000  
+              ___param_bank 000000                  _Lcd_SetBit 0EA4               __CFG_PLLDIV$1 000000  
+            __CFG_CCP2MX$ON 000000                       ?_main 0001                       STR_10 0834  
+                     STR_11 0830                       STR_20 0830                       STR_12 0801  
+                     STR_21 0834                       STR_13 0834                       STR_22 0830  
+                     STR_14 0830                       STR_15 0834                       STR_23 0811  
+                     STR_16 0830                       STR_17 0834                       STR_18 0830  
+                     STR_19 0834                       _RCREG 000FAE                       _SPBRG 000FAF  
+                     _PORTD 000F83               __CFG_USBDIV$1 000000     __size_of_Lcd_Set_Cursor 0066  
+                     _TRISB 000F93                       _TRISC 000F94                       _TRISD 000F95  
+             __CFG_PWRT$OFF 000000               __CFG_WRT0$OFF 000000               __CFG_WRT1$OFF 000000  
+             __CFG_WRT2$OFF 000000               __CFG_WRT3$OFF 000000              __CFG_EBTR0$OFF 000000  
+            __CFG_FCMEN$OFF 000000              __CFG_EBTR1$OFF 000000              __CFG_EBTR2$OFF 000000  
+            __CFG_EBTR3$OFF 000000               __CFG_WRTB$OFF 000000               __CFG_WRTC$OFF 000000  
+             __CFG_WRTD$OFF 000000             __end_of_lcdhome 0B6C              __CFG_EBTRB$OFF 000000  
+                     _delay 0F56                       tablat 000FF5   __size_of_Lcd_Print_String 0056  
+       Lcd_Print_Char@i_115 0006                       status 000FD8              __CFG_ICPRT$OFF 000000  
+            __CFG_PBADEN$ON 000000     __size_of_Lcd_Print_Char 0078             __initialization 1002  
+              __end_of_main 0D62                      ??_main 000F          __size_of_Lcd_Clear 000E  
+             __activetblptr 000001          __size_of_Lcd_Start 0064               main@get_value 0010  
+                    ?_delay 0001                   ??_Lcd_Cmd 0002                      _TRISC6 007CA6  
+                    _TRISC7 007CA7              __CFG_XINST$OFF 000000              __CFG_STVREN$ON 000000  
+               ?_Lcd_SetBit 0001                      delay@i 0001                      delay@z 0003  
+                 ??_lcdhome 000F                __mediumconst 0000                      tblptrh 000FF7  
+                    tblptrl 000FF6                      tblptru 000FF8             Lcd_Set_Cursor@a 0005  
+           Lcd_Set_Cursor@b 0004             Lcd_Set_Cursor@y 0007             Lcd_Set_Cursor@z 0006  
+                __accesstop 0060     __end_of__initialization 1002           __end_of_Lcd_Clear 101E  
+             ___rparam_used 000001           __end_of_Lcd_Start 0EA4              __pcstackCOMRAM 0001  
+             __end_of_delay 0FA8    __size_of_Initialize_UART 0016       __end_of_UART_get_char 0FCC  
+            _Lcd_Set_Cursor 0DDA                     ??_delay 0001            _Lcd_Print_String 0F00  
+       __size_of_Lcd_SetBit 005C              _Lcd_Print_Char 0D62          Lcd_SetBit@data_bit 0001  
+    __end_of_Lcd_Set_Cursor 0E40             __CFG_VREGEN$OFF 000000             Lcd_Print_Char@i 0004  
+                   _Lcd_Cmd 0FCC      __end_of_Lcd_Print_Char 0DDA                     __Hparam 0000  
+                   __Lparam 0000                __psmallconst 0800                     __pcinit 1002  
+                   __ramtop 0800             ?_Lcd_Set_Cursor 0004                     __ptext0 0B6C  
+                   __ptext1 083A                     __ptext2 0F56                     __ptext3 0DDA  
+                   __ptext4 0F00                     __ptext5 0D62                     __ptext6 1010  
+                   __ptext7 0FA8                     __ptext8 0E40                     __ptext9 0FCC  
+                   _lcdhome 083A           ??_Initialize_UART 0001        end_of_initialization 1002  
+           ?_Lcd_Print_Char 0001                ??_Lcd_SetBit 0001          __end_of_Lcd_SetBit 0F00  
+                 _Lcd_Clear 1010                   _Lcd_Start 0E40    __end_of_Lcd_Print_String 0F56  
+       start_initialization 1002           Lcd_Print_String@a 0009           Lcd_Print_String@i 000D  
+                ?_Lcd_Clear 0001                  ?_Lcd_Start 0001            __CFG_LPT1OSC$OFF 000000  
+Lcd_Print_Char@Lower_Nibble 0002                    ?_Lcd_Cmd 0001      __size_of_UART_get_char 0024  
+          ??_Lcd_Set_Cursor 0005             _Initialize_UART 0FEC                    ?_lcdhome 0001  
+               __smallconst 0800            ??_Lcd_Print_Char 0002              __size_of_delay 0052  
+                  Lcd_Cmd@a 0003                    _PIR1bits 000F9E                 ??_Lcd_Clear 0004  
+          __CFG_WDTPS$32768 000000                 ??_Lcd_Start 0004               _UART_get_char 0FA8  
+   __end_of_Initialize_UART 1002            __size_of_Lcd_Cmd 0020                    __Hrparam 0000  
+                  __Lrparam 0000                __Lsmallconst 0800           ?_Lcd_Print_String 0009  
+            ?_UART_get_char 0001            __size_of_lcdhome 0332          ??_Lcd_Print_String 000B  
+                  __ptext10 0EA4                    __ptext11 0FEC               __size_of_main 01F6  
+Lcd_Print_Char@Upper_Nibble 0003       __CFG_CPUDIV$OSC1_PLL2 000000            ?_Initialize_UART 0001  
+        Lcd_Set_Cursor@temp 0008             ??_UART_get_char 0001  

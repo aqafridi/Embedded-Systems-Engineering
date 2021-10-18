@@ -1,0 +1,5 @@
+#ifndef MYPROJECT_RESOURCES
+#define MYPROJECT_RESOURCES
+
+
+#endif

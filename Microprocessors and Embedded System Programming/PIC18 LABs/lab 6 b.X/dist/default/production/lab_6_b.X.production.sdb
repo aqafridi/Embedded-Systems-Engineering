@@ -1,0 +1,94 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4550 ]
+[d frameptr 4065 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"86 D:\4th Semester\EE222-LAB\PIC18 LABs\lab 6 b.X\lab 6b.c
+[v _main main `(v  1 e 1 0 ]
+"125
+[v _lcdcmd lcdcmd `(v  1 e 1 0 ]
+"135
+[v _lcddata lcddata `(v  1 e 1 0 ]
+"145
+[v _MSDelay MSDelay `(v  1 e 1 0 ]
+"2453 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f4550.h
+[v _PORTB PORTB `VEuc  1 e 1 @3969 ]
+"3625
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"4001
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"4223
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+"5414
+[v _RCREG RCREG `VEuc  1 e 1 @4014 ]
+"5426
+[v _SPBRG SPBRG `VEuc  1 e 1 @4015 ]
+"6581
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"9021
+[v _BRGH BRGH `VEb  1 e 0 @32098 ]
+"9201
+[v _CREN CREN `VEb  1 e 0 @32092 ]
+"10443
+[v _RCIF RCIF `VEb  1 e 0 @31989 ]
+"10491
+[v _RE0 RE0 `VEb  1 e 0 @31776 ]
+"10494
+[v _RE1 RE1 `VEb  1 e 0 @31777 ]
+"10497
+[v _RE2 RE2 `VEb  1 e 0 @31778 ]
+"10584
+[v _SPEN SPEN `VEb  1 e 0 @32095 ]
+"10710
+[v _SYNC SYNC `VEb  1 e 0 @32100 ]
+"86 D:\4th Semester\EE222-LAB\PIC18 LABs\lab 6 b.X\lab 6b.c
+[v _main main `(v  1 e 1 0 ]
+{
+"123
+} 0
+"135
+[v _lcddata lcddata `(v  1 e 1 0 ]
+{
+[v lcddata@value value `i  1 p 2 7 ]
+"143
+} 0
+"125
+[v _lcdcmd lcdcmd `(v  1 e 1 0 ]
+{
+[v lcdcmd@value value `i  1 p 2 7 ]
+"133
+} 0
+"145
+[v _MSDelay MSDelay `(v  1 e 1 0 ]
+{
+"147
+[v MSDelay@j j `i  1 a 2 5 ]
+[v MSDelay@i i `i  1 a 2 3 ]
+"145
+[v MSDelay@time time `i  1 p 2 0 ]
+"150
+} 0

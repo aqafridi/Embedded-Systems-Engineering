@@ -1,0 +1,76 @@
+
+
+Microchip MPLAB XC8 Assembler V2.10 build 88905656 
+                                                                                                           Sun Apr 12 10:31:53 2020
+
+
+     1                           	processor	18F458
+     2                           	opt	pw 132
+     3                           	opt	flic
+     4                           
+     5                           ; PIC18F458 Configuration Bit Settings
+     6                           ; Assembly source line config statements
+     7                           ; CONFIG1H
+     8                           ; CONFIG2L
+     9                           ; CONFIG2H
+    10                           ; CONFIG4L
+    11                           ; CONFIG5L
+    12                           ; CONFIG5H
+    13                           ; CONFIG6L
+    14                           ; CONFIG6H
+    15                           ; CONFIG7L
+    16                           ; CONFIG7H
+    17  0000  8500'              	bsf	TRISB,2,b
+    18  0002  6B00'              	clrf	TRISC,b
+    19  0004  0E45               	movlw	69
+    20  0006  9700'              	bcf	TRISD,3,b
+    21  0008  D7FB               	bra	AGAIN
+    22  000A  6F00'              	movwf	PORTC,b
+    23  000C  8700'              	bsf	TRISD,3,b
+    24  000E  9700'              	bcf	TRISD,3,b
+    25                           tosu	equ	0xFFF
+    26                           tosh	equ	0xFFE
+    27                           tosl	equ	0xFFD
+    28                           stkptr	equ	0xFFC
+    29                           pclatu	equ	0xFFB
+    30                           pclath	equ	0xFFA
+    31                           pcl	equ	0xFF9
+    32                           tblptru	equ	0xFF8
+    33                           tblptrh	equ	0xFF7
+    34                           tblptrl	equ	0xFF6
+    35                           tablat	equ	0xFF5
+    36                           prodh	equ	0xFF4
+    37                           prodl	equ	0xFF3
+    38                           indf0	equ	0xFEF
+    39                           postinc0	equ	0xFEE
+    40                           postdec0	equ	0xFED
+    41                           preinc0	equ	0xFEC
+    42                           plusw0	equ	0xFEB
+    43                           fsr0h	equ	0xFEA
+    44                           fsr0l	equ	0xFE9
+    45                           wreg	equ	0xFE8
+    46                           indf1	equ	0xFE7
+    47                           postinc1	equ	0xFE6
+    48                           postdec1	equ	0xFE5
+    49                           preinc1	equ	0xFE4
+    50                           plusw1	equ	0xFE3
+    51                           fsr1h	equ	0xFE2
+    52                           fsr1l	equ	0xFE1
+    53                           bsr	equ	0xFE0
+    54                           indf2	equ	0xFDF
+    55                           postinc2	equ	0xFDE
+    56                           postdec2	equ	0xFDD
+    57                           preinc2	equ	0xFDC
+    58                           plusw2	equ	0xFDB
+    59                           fsr2h	equ	0xFDA
+    60                           fsr2l	equ	0xFD9
+    61                           status	equ	0xFD8
+
+
+Microchip Technology PIC18 Macro Assembler V2.10 build 88905656 
+Symbol Table                                                                                               Sun Apr 12 10:31:53 2020
+
+                                                      PORTC 000000* 
+                                                      TRISB 000000* 
+                                                      TRISC 000000* 
+                                                      TRISD 000000* 

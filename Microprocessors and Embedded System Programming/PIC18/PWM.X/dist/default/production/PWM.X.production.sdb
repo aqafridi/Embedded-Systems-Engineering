@@ -1,0 +1,153 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4550 ]
+[d frameptr 4065 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"83 C:\Users\Abdul Qadeer\Desktop\PIC18\Assigment_5\PWM.X\pwm.c
+[v _main main `(v  1 e 1 0 ]
+"156
+[v _freq0 freq0 `(v  1 e 1 0 ]
+"172
+[v _freq1 freq1 `(v  1 e 1 0 ]
+"188
+[v _freq2 freq2 `(v  1 e 1 0 ]
+"204
+[v _freq3 freq3 `(v  1 e 1 0 ]
+[s S28 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+"2736 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f4550.h
+[s S37 . 1 `uc 1 SPP0 1 0 :1:0 
+`uc 1 SPP1 1 0 :1:1 
+`uc 1 SPP2 1 0 :1:2 
+`uc 1 SPP3 1 0 :1:3 
+`uc 1 SPP4 1 0 :1:4 
+`uc 1 SPP5 1 0 :1:5 
+`uc 1 SPP6 1 0 :1:6 
+`uc 1 SPP7 1 0 :1:7 
+]
+[s S46 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 SS2 1 0 :1:7 
+]
+[u S49 . 1 `S28 1 . 1 0 `S37 1 . 1 0 `S46 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES49  1 e 1 @3971 ]
+"5445
+[v _T3CON T3CON `VEuc  1 e 1 @4017 ]
+"5573
+[v _TMR3L TMR3L `VEuc  1 e 1 @4018 ]
+"5580
+[v _TMR3H TMR3H `VEuc  1 e 1 @4019 ]
+"7200
+[v _T2CON T2CON `VEuc  1 e 1 @4042 ]
+"7408
+[v _TMR2 TMR2 `VEuc  1 e 1 @4044 ]
+"7415
+[v _T1CON T1CON `VEuc  1 e 1 @4045 ]
+"7525
+[v _TMR1L TMR1L `VEuc  1 e 1 @4046 ]
+"7532
+[v _TMR1H TMR1H `VEuc  1 e 1 @4047 ]
+"8069
+[v _T0CON T0CON `VEuc  1 e 1 @4053 ]
+"8146
+[v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
+"8153
+[v _TMR0H TMR0H `VEuc  1 e 1 @4055 ]
+"9741
+[v _GIE GIE `VEb  1 e 0 @32663 ]
+"10269
+[v _PEIE PEIE `VEb  1 e 0 @32662 ]
+"10812
+[v _TMR0IE TMR0IE `VEb  1 e 0 @32661 ]
+"10815
+[v _TMR0IF TMR0IF `VEb  1 e 0 @32658 ]
+"10821
+[v _TMR0ON TMR0ON `VEb  1 e 0 @32431 ]
+"10827
+[v _TMR1IE TMR1IE `VEb  1 e 0 @31976 ]
+"10830
+[v _TMR1IF TMR1IF `VEb  1 e 0 @31984 ]
+"10836
+[v _TMR1ON TMR1ON `VEb  1 e 0 @32360 ]
+"10839
+[v _TMR2IE TMR2IE `VEb  1 e 0 @31977 ]
+"10842
+[v _TMR2IF TMR2IF `VEb  1 e 0 @31985 ]
+"10848
+[v _TMR2ON TMR2ON `VEb  1 e 0 @32338 ]
+"10854
+[v _TMR3IE TMR3IE `VEb  1 e 0 @32001 ]
+"10857
+[v _TMR3IF TMR3IF `VEb  1 e 0 @32009 ]
+"10863
+[v _TMR3ON TMR3ON `VEb  1 e 0 @32136 ]
+"10941
+[v _TRISD0 TRISD0 `VEb  1 e 0 @31912 ]
+"10944
+[v _TRISD1 TRISD1 `VEb  1 e 0 @31913 ]
+"10947
+[v _TRISD2 TRISD2 `VEb  1 e 0 @31914 ]
+"10950
+[v _TRISD3 TRISD3 `VEb  1 e 0 @31915 ]
+"83 C:\Users\Abdul Qadeer\Desktop\PIC18\Assigment_5\PWM.X\pwm.c
+[v _main main `(v  1 e 1 0 ]
+{
+"153
+} 0
+"204
+[v _freq3 freq3 `(v  1 e 1 0 ]
+{
+[v freq3@low low `i  1 p 2 0 ]
+"210
+} 0
+"188
+[v _freq2 freq2 `(v  1 e 1 0 ]
+{
+[v freq2@high high `i  1 p 2 0 ]
+[v freq2@low low `i  1 p 2 2 ]
+"196
+} 0
+"172
+[v _freq1 freq1 `(v  1 e 1 0 ]
+{
+[v freq1@high high `i  1 p 2 0 ]
+[v freq1@low low `i  1 p 2 2 ]
+"180
+} 0
+"156
+[v _freq0 freq0 `(v  1 e 1 0 ]
+{
+[v freq0@high high `i  1 p 2 0 ]
+[v freq0@low low `i  1 p 2 2 ]
+"164
+} 0

@@ -1,0 +1,6 @@
+[PROJECTS]
+Count=2
+Project0=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Examples\Internal MCU modules\P18F4520\External Interrupt\Ext_Interrupt.mcppi
+Project1=Blinking_Led.mcppi
+[ActiveProject]
+Index=1
